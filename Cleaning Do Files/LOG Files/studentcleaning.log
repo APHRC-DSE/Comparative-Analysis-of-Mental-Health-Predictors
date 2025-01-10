@@ -1,0 +1,2187 @@
+--------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  D:\Mental Health\studentcleaning.log
+  log type:  text
+ opened on:   6 Nov 2024, 01:36:28
+
+. import excel "D:\Mental Health\Mental_Health_Survey_-_all_versions_-_labels_-_2024-10-29-04-28-10.xlsx
+> ", sheet("Mental Health Survey") firstrow
+(91 vars, 4,271 obs)
+
+. mdesc
+
+    Variable    |     Missing          Total     Percent Missing
+----------------+-----------------------------------------------
+   Thesurveyw~e |          78          4,271           1.83
+   ResearchAs~s |          81          4,271           1.90
+      StartTime |          81          4,271           1.90
+   DateofInte~w |         105          4,271           2.46
+   SECTION1DE~I |       4,271          4,271         100.00
+      FullNames |          92          4,271           2.15
+    PhoneNumber |         515          4,271          12.06
+            Age |          81          4,271           1.90
+         Gender |          81          4,271           1.90
+   OtherSpecify |       4,261          4,271          99.77
+   MaritalSta~s |          81          4,271           1.90
+   LevelofEdu~n |          81          4,271           1.90
+   HouseholdH~d |          81          4,271           1.90
+        Village |         528          4,271          12.36
+    YearofStudy |       2,805          4,271          65.68
+   CourseofSt~y |       3,370          4,271          78.90
+         Income |       1,737          4,271          40.67
+   SECTION2SO~S |       4,271          4,271         100.00
+   Howoftendo~a |          81          4,271           1.90
+   Howsupport~r |       2,112          4,271          49.45
+   Howmuchtim~o |         934          4,271          21.87
+   Whatisyour~f |       3,132          4,271          73.33
+   Haveyoufac~u |       3,138          4,271          73.47
+   Ifyeshowof~n |       3,868          4,271          90.56
+   SECTION3AC~T |       4,271          4,271         100.00
+   Areyouawar~l |       3,146          4,271          73.66
+   Overthepas~o |       3,144          4,271          73.61
+   Howwouldyo~e |       4,130          4,271          96.70
+   Inyouropin~n |       4,029          4,271          94.33
+   SECTION4GE~H |       4,271          4,271         100.00
+             AE |       3,147          4,271          73.68
+   Ifyesdidy~ss |       3,843          4,271          89.98
+   Whichhelpw~e |       4,123          4,271          96.53
+   SECTION5GAD7 |       4,271          4,271         100.00
+   Overthelas~n |       4,271          4,271         100.00
+   Feelingner~n |          96          4,271           2.25
+   Notbeingab~o |         104          4,271           2.44
+   Worryingto~n |         107          4,271           2.51
+   Troublerel~g |         123          4,271           2.88
+   Beingsores~d |         157          4,271           3.68
+   Becomingea~t |         107          4,271           2.51
+   Feelingafr~a |         131          4,271           3.07
+   SECTION6PHQ9 |       4,271          4,271         100.00
+             AR |       4,271          4,271         100.00
+   Littleinte~d |         100          4,271           2.34
+   Feelingdow~e |         104          4,271           2.44
+   Troublefal~e |         109          4,271           2.55
+   Feelingtir~e |         100          4,271           2.34
+   Poorappeti~g |         128          4,271           3.00
+   Feelingbad~r |         169          4,271           3.96
+   Troublecon~s |         110          4,271           2.58
+   Movingorsp~a |         101          4,271           2.36
+   Thoughtsth~e |         131          4,271           3.07
+   SECTION7PS~S |       4,271          4,271         100.00
+   Hypomaniap~y |         136          4,271           3.18
+   Wastherean~r |       2,263          4,271          52.99
+   Thoughtins~t |         109          4,271           2.55
+   Ifyesdidth~a |       3,407          4,271          79.77
+   ParanoiaPr~e |         110          4,271           2.58
+   Ifyeshavet~h |       3,217          4,271          75.32
+   Strangeexp~a |         122          4,271           2.86
+   Ifyesdidy~os |       3,522          4,271          82.46
+   Hallucinat~e |         115          4,271           2.69
+             BL |       3,632          4,271          85.04
+        EndTime |         460          4,271          10.77
+             BN |       4,271          4,271         100.00
+             BO |       4,271          4,271         100.00
+             BP |       4,271          4,271         100.00
+             BQ |       4,271          4,271         100.00
+             BR |       4,271          4,271         100.00
+             BS |       4,271          4,271         100.00
+             BT |       4,271          4,271         100.00
+             BU |       4,271          4,271         100.00
+             BV |       4,271          4,271         100.00
+             BW |       4,271          4,271         100.00
+             BX |       4,271          4,271         100.00
+             BY |       4,271          4,271         100.00
+             BZ |       4,271          4,271         100.00
+             CA |       4,271          4,271         100.00
+             CB |       4,271          4,271         100.00
+             CC |       4,271          4,271         100.00
+            _id |           0          4,271           0.00
+          _uuid |           0          4,271           0.00
+   _submissio~e |           0          4,271           0.00
+   _validatio~s |       4,271          4,271         100.00
+         _notes |       4,271          4,271         100.00
+        _status |           0          4,271           0.00
+   _submitted~y |       4,271          4,271         100.00
+    __version__ |           0          4,271           0.00
+          _tags |       4,271          4,271         100.00
+         _index |           0          4,271           0.00
+----------------+-----------------------------------------------
+
+. tab YearofStudy
+
+    Year of |
+      Study |      Freq.     Percent        Cum.
+------------+-----------------------------------
+ First Year |        603       41.13       41.13
+Fourth Year |        196       13.37       54.50
+Second Year |        438       29.88       84.38
+ Third Year |        229       15.62      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+. tab CourseofStudy
+
+                        Course of Study |      Freq.     Percent        Cum.
+----------------------------------------+-----------------------------------
+                                   AGED |          3        0.33        0.33
+                                Account |          1        0.11        0.44
+                Accountancy and finance |          1        0.11        0.55
+                             Accounting |          4        0.44        1.00
+                           Agribusiness |          1        0.11        1.11
+   Agricultural Education and extension |          1        0.11        1.22
+                 Agricultural extension |          1        0.11        1.33
+                   Agricultural science |          1        0.11        1.44
+                   Agricultural studies |          2        0.22        1.66
+                            Agriculture |          1        0.11        1.78
+Animal health and production Management |          1        0.11        1.89
+                       Animal husbandry |          3        0.33        2.22
+          Animal production and healthy |          1        0.11        2.33
+                           Anthropology |          3        0.33        2.66
+                        Applied Biology |          1        0.11        2.77
+                            Archaeology |          1        0.11        2.89
+               B A Agricultural studies |          1        0.11        3.00
+                          B A sociology |          1        0.11        3.11
+                                  B COM |          1        0.11        3.22
+                                  B Com |          2        0.22        3.44
+                                  B com |          5        0.55        4.00
+                      B. Education arts |          1        0.11        4.11
+                                     BA |          1        0.11        4.22
+                             BA  French |          1        0.11        4.33
+                      BA . Anthropology |          1        0.11        4.44
+         BA . Child care and protection |          1        0.11        4.55
+                        BA Anthropology |          2        0.22        4.77
+                         BA Archaeology |          1        0.11        4.88
+           BA Child Care and Protection |          1        0.11        4.99
+            BA Childcare and protection |          1        0.11        5.11
+                            BA Commerce |          3        0.33        5.44
+                           BA EDUCATION |          1        0.11        5.55
+           BA Early childhood Education |          3        0.33        5.88
+                           BA Education |          1        0.11        5.99
+                             BA Eng Lit |          1        0.11        6.10
+                              BA French |         10        1.11        7.21
+                              BA German |          2        0.22        7.44
+                             BA Germany |          2        0.22        7.66
+                             BA History |          4        0.44        8.10
+                 BA History & Achaelogy |          1        0.11        8.21
+               BA History and Achaelogy |          1        0.11        8.32
+                           BA Kiswahili |          4        0.44        8.77
+                 BA Linguistics studies |          1        0.11        8.88
+          BA Literature and linguistics |          1        0.11        8.99
+                          BA PHILOSOPHY |          1        0.11        9.10
+                          BA Philosophy |          2        0.22        9.32
+                          BA Psychology |          4        0.44        9.77
+                           BA Socialogy |          1        0.11        9.88
+                           BA Sociology |          2        0.22       10.10
+                            BA Theology |          2        0.22       10.32
+            BA childcare and protection |          1        0.11       10.43
+                    BA computer Science |          1        0.11       10.54
+                        BA home science |          1        0.11       10.65
+                          BA linguistic |          1        0.11       10.77
+                         BA linguistics |          1        0.11       10.88
+                          BA literature |          1        0.11       10.99
+                           BA litrature |          1        0.11       11.10
+                          BA philosophy |          3        0.33       11.43
+                          BA psychology |          5        0.55       11.99
+                           BA socialogy |          1        0.11       12.10
+                           BA sociology |          1        0.11       12.21
+                       BA special needs |          1        0.11       12.32
+                         BA, Psychology |          1        0.11       12.43
+                        BA.Anthropology |          1        0.11       12.54
+             BACHELOR OF EDUCATION ARTS |          1        0.11       12.65
+           BACHELOR'S OF EDUCATION ARTS |          1        0.11       12.76
+                           BALITERATURE |          1        0.11       12.87
+                                   BCOM |          6        0.67       13.54
+                                    BED |          4        0.44       13.98
+                               BED ARTS |          1        0.11       14.10
+                               BED Arts |          1        0.11       14.21
+                 BED English literature |          1        0.11       14.32
+                       BED Home science |          1        0.11       14.43
+                            BED Science |          6        0.67       15.09
+                        BIO Agriculture |          1        0.11       15.21
+                      BSC Biotechnology |          1        0.11       15.32
+                   BSC Computer Science |          1        0.11       15.43
+                            BSC Nursing |          1        0.11       15.54
+                            BSC Physics |          1        0.11       15.65
+                 BSC Telecommunications |          1        0.11       15.76
+                 BSC Tourism management |          3        0.33       16.09
+                          BSC chemistry |          1        0.11       16.20
+                            BSC physics |          1        0.11       16.32
+                 Ba English linguistics |          1        0.11       16.43
+                           Ba Kis, Geog |          1        0.11       16.54
+                           Ba Sociology |          3        0.33       16.87
+                             Ba history |          1        0.11       16.98
+                           Ba kiswahili |          3        0.33       17.31
+                   Ba political science |          2        0.22       17.54
+                          Ba psychology |         11        1.22       18.76
+                                  Baccp |          4        0.44       19.20
+                  Bachalors of commerce |          1        0.11       19.31
+                               Bachelor |          1        0.11       19.42
+Bachelor  of science in Environmental.. |          1        0.11       19.53
+                   Bachelor Of Commerce |          1        0.11       19.64
+                  Bachelor Of Education |          1        0.11       19.76
+              Bachelor art's psychology |          1        0.11       19.87
+               Bachelor of  Mathematics |          1        0.11       19.98
+                Bachelor of Agriculture |          1        0.11       20.09
+                       Bachelor of Arts |          2        0.22       20.31
+            Bachelor of Arts Literature |          1        0.11       20.42
+        Bachelor of Arts and Literature |          1        0.11       20.53
+             Bachelor of Arts kiswahili |          1        0.11       20.64
+                   Bachelor of Commerce |          2        0.22       20.87
+                  Bachelor of Education |          3        0.33       21.20
+             Bachelor of Education Arts |          1        0.11       21.31
+                Bachelor of Hospitality |          1        0.11       21.42
+Bachelor of Journalism and Mass Commu.. |          1        0.11       21.53
+                Bachelor of Mathematics |          1        0.11       21.64
+                       Bachelor of arts |          2        0.22       21.86
+                Bachelor of arts French |          1        0.11       21.98
+Bachelor of arts in childcare and pro.. |          2        0.22       22.20
+             Bachelor of arts in french |          1        0.11       22.31
+          Bachelor of arts in sociology |          1        0.11       22.42
+            Bachelor of arts psychology |          2        0.22       22.64
+   Bachelor of arts(English/literature) |          1        0.11       22.75
+          Bachelor of business commerce |          1        0.11       22.86
+                   Bachelor of commerce |          5        0.55       23.42
+                Bachelor of criminology |          1        0.11       23.53
+                  Bachelor of education |          1        0.11       23.64
+        Bachelor of education (science) |          1        0.11       23.75
+             Bachelor of education arts |          6        0.67       24.42
+          Bachelor of education science |          5        0.55       24.97
+Bachelor of environmental studies and.. |          2        0.22       25.19
+                    Bachelor of science |          2        0.22       25.42
+   Bachelor of science forensic biology |          1        0.11       25.53
+     Bachelor of science in Agriculture |          1        0.11       25.64
+     Bachelor of science in agriculture |          1        0.11       25.75
+Bachelor of science in computer science |          1        0.11       25.86
+Bachelor of science in industrial che.. |          1        0.11       25.97
+         Bachelor of science in nursing |          1        0.11       26.08
+Bachelor of science in nursing and pu.. |          1        0.11       26.19
+            Bachelor of science nursing |          1        0.11       26.30
+                   Bachelor of theology |          1        0.11       26.42
+          Bachelor's Degree of commerce |          1        0.11       26.53
+              Bachelors arts psychology |          1        0.11       26.64
+                 Bachelors of education |          1        0.11       26.75
+                  Background of nursing |          1        0.11       26.86
+                  Batchelor of commerce |          1        0.11       26.97
+                                   Bcom |          7        0.78       27.75
+                                  Bcomm |          1        0.11       27.86
+                       BeD chem physics |          1        0.11       27.97
+                         Beauty Therapy |          2        0.22       28.19
+                                    Bed |          1        0.11       28.30
+                            Bed Science |          1        0.11       28.41
+               Bed Science chem physics |          1        0.11       28.52
+      Bed Science chemistry and physics |          5        0.55       29.08
+    Bed Science,  chemistry and physics |          1        0.11       29.19
+                           Bed agri/bio |          1        0.11       29.30
+                               Bed arts |          4        0.44       29.74
+                       Bed chem physics |          1        0.11       29.86
+                            Bed science |         13        1.44       31.30
+                   Bed science agri/bio |          1        0.11       31.41
+                         Bed.Maths Chem |          1        0.11       31.52
+      Bes science chemistry and physics |          1        0.11       31.63
+                               Bio chem |          1        0.11       31.74
+                          Biotechnology |          1        0.11       31.85
+                                 Botany |          1        0.11       31.96
+                          Bsc Geography |          1        0.11       32.08
+                      Bsc biotechnology |          1        0.11       32.19
+       Bsc food nutrition and dietetics |          1        0.11       32.30
+                     Bsc in Mathematics |          1        0.11       32.41
+        Bsc in Telecommunication and IT |          1        0.11       32.52
+                            Bsc nursing |          1        0.11       32.63
+          Bsc nursing and public health |          1        0.11       32.74
+                  Bsc telecommunication |          1        0.11       32.85
+                      Bsc. Microbiology |          3        0.33       33.19
+                               Business |          1        0.11       33.30
+                       Business studies |          1        0.11       33.41
+                  COMMUNITY DEVELOPMENT |          1        0.11       33.52
+                       COMPUTER SCIENCE |          1        0.11       33.63
+                               Catering |          1        0.11       33.74
+                   Chemical Engineering |          2        0.22       33.96
+              Child Care and Protection |          3        0.33       34.30
+              Child care and Protection |          1        0.11       34.41
+               Childcare and protection |          1        0.11       34.52
+                      Civil engineering |          1        0.11       34.63
+                      Clinical Medicine |          2        0.22       34.85
+                      Clinical medicine |          2        0.22       35.07
+                  Community Development |          3        0.33       35.41
+                  Community development |          3        0.33       35.74
+                       Community health |          1        0.11       35.85
+               Community health science |         19        2.11       37.96
+                           Comp Science |          1        0.11       38.07
+                       Computer Science |          5        0.55       38.62
+                       Computer science |         11        1.22       39.84
+                      Computers Science |          1        0.11       39.96
+                  Counseling Psychology |          1        0.11       40.07
+                  Counseling psychology |          1        0.11       40.18
+                Diploma in Horticulture |          1        0.11       40.29
+      Diploma in Information technology |          1        0.11       40.40
+                 Diploma in aquaculture |          1        0.11       40.51
+               Diploma in physiotherapy |          1        0.11       40.62
+           Diploma in primary education |          1        0.11       40.73
+                                Driving |          1        0.11       40.84
+              Early childhood Education |          1        0.11       40.95
+                               Economic |          1        0.11       41.07
+                      Economic  studies |          1        0.11       41.18
+               Economic and  statistics |          1        0.11       41.29
+                        Economic finans |          1        0.11       41.40
+                              Economics |          2        0.22       41.62
+                              Education |        162       17.98       59.60
+              Education  Bio, Geography |          1        0.11       59.71
+                         Education Arts |          3        0.33       60.04
+                    Education Bio,Maths |          1        0.11       60.16
+                 Education CRE, history |          1        0.11       60.27
+                  Education Cre History |          1        0.11       60.38
+                      Education Science |          5        0.55       60.93
+                          Education art |          1        0.11       61.04
+                         Education arts |          5        0.55       61.60
+                      Education science |          3        0.33       61.93
+                    Educators Bio, Chem |          1        0.11       62.04
+                         Eng literature |          1        0.11       62.15
+                            Engineering |          1        0.11       62.26
+                                English |          1        0.11       62.38
+                    English  Literature |          1        0.11       62.49
+                     English Literature |          1        0.11       62.60
+                       English and arts |          1        0.11       62.71
+                 English and literature |          1        0.11       62.82
+                     English literature |          6        0.67       63.49
+                 Environmental  Science |          1        0.11       63.60
+                 Environmental  Studies |          1        0.11       63.71
+                  Environmental Science |          3        0.33       64.04
+                  Environmental Studies |          1        0.11       64.15
+                  Environmental science |         11        1.22       65.37
+                  Environmental studies |          1        0.11       65.48
+Environmental studies community devel.. |          1        0.11       65.59
+        Event management and Decoration |          1        0.11       65.70
+                                    Fid |          1        0.11       65.82
+          Food Nutrition  and dietetics |          1        0.11       65.93
+           Food Nutrition and Dietetics |          1        0.11       66.04
+                     Food and dietetics |          2        0.22       66.26
+                     Food and dietician |          1        0.11       66.37
+                    Food and dieticians |          1        0.11       66.48
+                Front office management |          1        0.11       66.59
+                           Hairdressing |          3        0.33       66.93
+                                 Health |          1        0.11       67.04
+                 History and archeology |          1        0.11       67.15
+                  Horticultural studies |          1        0.11       67.26
+                           Horticulture |          5        0.55       67.81
+                   Horticulture studies |          1        0.11       67.92
+                            Hospitality |          2        0.22       68.15
+     Hospitality and Tourism management |          1        0.11       68.26
+     Hospitality and tourism management |          2        0.22       68.48
+                       Hotel Management |          2        0.22       68.70
+                                    Htm |          2        0.22       68.92
+                                     IT |          1        0.11       69.03
+                        Islamic studies |          2        0.22       69.26
+                                Kibaoni |          4        0.44       69.70
+                 Kiswahili home science |          1        0.11       69.81
+              Leadership and philosophy |          1        0.11       69.92
+                            Linguistics |          1        0.11       70.03
+                             Literature |          2        0.22       70.26
+                          Marinebiology |          1        0.11       70.37
+                       Maritime studies |         10        1.11       71.48
+                                Masonry |          2        0.22       71.70
+   Mathematics and computer programming |          1        0.11       71.81
+                          Maths physics |          1        0.11       71.92
+                                Medical |          2        0.22       72.14
+                   Medical microbiology |          1        0.11       72.25
+                               Medicine |          4        0.44       72.70
+                          Micro biology |          1        0.11       72.81
+                           Microbiology |          7        0.78       73.58
+                                      N |          1        0.11       73.70
+                                    N/A |          3        0.33       74.03
+        Networking hardware maintenance |          1        0.11       74.14
+                                   None |          3        0.33       74.47
+                                Nursing |         27        3.00       77.47
+              Nursing and public health |          1        0.11       77.58
+                   Nutrition &Dietetics |          2        0.22       77.80
+                Nutrition and Dietetics |          2        0.22       78.02
+                Nutrition and dietetics |          1        0.11       78.14
+         Orthopedic and trauma medicine |          1        0.11       78.25
+                               Pharmacy |          4        0.44       78.69
+                  Philosophical studies |          1        0.11       78.80
+                             Philosophy |          5        0.55       79.36
+                     Philosophy studies |          1        0.11       79.47
+                      Political Science |          6        0.67       80.13
+                      Political science |          4        0.44       80.58
+                            Procurement |          2        0.22       80.80
+                    Procurement studies |          1        0.11       80.91
+                             Psychology |         48        5.33       86.24
+                          Public health |          4        0.44       86.68
+                               Religion |          3        0.33       87.01
+                              Secondary |          2        0.22       87.24
+                            Secretarial |          1        0.11       87.35
+                            Social work |          1        0.11       87.46
+    Social worker/community Development |          1        0.11       87.57
+                              Sociology |         17        1.89       89.46
+                               Socology |          1        0.11       89.57
+                          Special needs |          2        0.22       89.79
+                Special needs education |          1        0.11       89.90
+                             Statistics |          5        0.55       90.46
+              Still at secondary school |          1        0.11       90.57
+                Supply chain management |          1        0.11       90.68
+                              Tailoring |          1        0.11       90.79
+                               Teaching |          2        0.22       91.01
+                      Telecommunication |          3        0.33       91.34
+                     Telecommunications |          1        0.11       91.45
+                               Theology |          2        0.22       91.68
+                                Tourism |          6        0.67       92.34
+                     Tourism management |          1        0.11       92.45
+     Tourism management and hospitality |          1        0.11       92.56
+                      Upgrading diploma |          2        0.22       92.79
+            Videography and photography |          1        0.11       92.90
+                                Welding |          1        0.11       93.01
+                                    Ys4 |          1        0.11       93.12
+                       bA Islamic study |          1        0.11       93.23
+                          bA philosophy |          1        0.11       93.34
+                          ba literature |          2        0.22       93.56
+                             ba physics |          1        0.11       93.67
+           bachelor of  arts in  French |          1        0.11       93.78
+                       bachelor of arts |          1        0.11       93.90
+                  bachelor's of science |          1        0.11       94.01
+bachelor's of science in nursing and .. |          1        0.11       94.12
+                                   bcom |          1        0.11       94.23
+                               bio chem |          1        0.11       94.34
+                        bio information |          1        0.11       94.45
+                          bsc chemistry |          1        0.11       94.56
+                               bsc math |          1        0.11       94.67
+                            bsc physics |          1        0.11       94.78
+              child Care and Protection |          2        0.22       95.01
+                       child protection |          1        0.11       95.12
+                       computer Science |          3        0.33       95.45
+                       computer science |          2        0.22       95.67
+                              education |         15        1.66       97.34
+                      education Science |          1        0.11       97.45
+                          education art |          1        0.11       97.56
+                  environmental Science |          2        0.22       97.78
+                            hospitality |          1        0.11       97.89
+                        industrial chem |          1        0.11       98.00
+                   industrial chemistry |          1        0.11       98.11
+                         marine Studies |          1        0.11       98.22
+                              nutrition |          1        0.11       98.34
+                             psychology |          3        0.33       98.67
+                             pure maths |          1        0.11       98.78
+                           pure physics |          1        0.11       98.89
+                              sociology |          7        0.78       99.67
+                          special needs |          2        0.22       99.89
+                special needs education |          1        0.11      100.00
+----------------------------------------+-----------------------------------
+                                  Total |        901      100.00
+
+. tab YearofStudy, m
+
+    Year of |
+      Study |      Freq.     Percent        Cum.
+------------+-----------------------------------
+            |      2,805       65.68       65.68
+ First Year |        603       14.12       79.79
+Fourth Year |        196        4.59       84.38
+Second Year |        438       10.26       94.64
+ Third Year |        229        5.36      100.00
+------------+-----------------------------------
+      Total |      4,271      100.00
+
+. 
+. ***Keeping only students in the dataset
+. encode YearofStudy, gen (study)
+
+. keep if study !=. //2,805 observations dropped 
+(2,805 observations deleted)
+
+. 
+. drop SECT* // Dropping section titles
+
+. drop BN-CC //Dropping variables with no observations
+
+. 
+. ****SOCIODEMOGRAPHIC VARIABLES
+. 
+. ***Age of the respondent
+. desc Age
+
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+--------------------------------------------------------------------------------------------------------
+Age             str11   %11s                  Age
+
+. **Age stored as string, converted to numeric
+. replace Age = "" if substr(Age, 1, 3) == "072"
+(2 real changes made)
+
+. replace Age = "" if substr(Age, 1, 3) == "074"
+(2 real changes made)
+
+. tab Age, m
+
+        Age |      Freq.     Percent        Cum.
+------------+-----------------------------------
+            |          4        0.27        0.27
+        ,27 |          2        0.14        0.41
+        ,35 |          2        0.14        0.55
+        ,57 |          1        0.07        0.61
+         17 |         27        1.84        2.46
+         18 |        235       16.03       18.49
+         19 |        197       13.44       31.92
+         20 |        210       14.32       46.25
+         21 |        166       11.32       57.57
+         22 |        131        8.94       66.51
+         23 |        102        6.96       73.47
+         24 |         46        3.14       76.60
+         25 |         35        2.39       78.99
+         26 |         23        1.57       80.56
+         27 |         15        1.02       81.58
+         28 |         13        0.89       82.47
+         29 |         14        0.95       83.42
+         2o |          1        0.07       83.49
+         30 |         17        1.16       84.65
+         31 |          1        0.07       84.72
+         32 |         17        1.16       85.88
+         33 |         12        0.82       86.70
+         34 |          9        0.61       87.31
+         35 |          8        0.55       87.86
+         36 |         15        1.02       88.88
+         37 |          6        0.41       89.29
+         38 |         25        1.71       91.00
+         39 |          7        0.48       91.47
+         40 |         12        0.82       92.29
+         41 |          4        0.27       92.56
+         42 |         10        0.68       93.25
+         43 |          5        0.34       93.59
+         44 |          8        0.55       94.13
+         45 |          9        0.61       94.75
+         46 |          5        0.34       95.09
+         47 |          3        0.20       95.29
+         48 |          4        0.27       95.57
+         49 |          4        0.27       95.84
+         50 |         11        0.75       96.59
+         51 |          6        0.41       97.00
+         52 |          7        0.48       97.48
+         53 |          3        0.20       97.68
+         54 |          4        0.27       97.95
+         55 |          3        0.20       98.16
+         56 |          1        0.07       98.23
+         57 |          7        0.48       98.70
+         58 |          4        0.27       98.98
+         60 |          1        0.07       99.05
+         61 |          2        0.14       99.18
+         63 |          1        0.07       99.25
+         64 |          1        0.07       99.32
+         66 |          3        0.20       99.52
+         67 |          3        0.20       99.73
+         68 |          1        0.07       99.80
+         70 |          2        0.14       99.93
+         72 |          1        0.07      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+. destring Age, gen(age) ignore("," "o") // Some observations had , and o as part of the entries
+Age: characters , o removed; age generated as byte
+(4 missing values generated)
+
+. replace age = 20 if age ==2 // replacing 20 to the obervation entered as 2o
+(1 real change made)
+
+. sum age, detail
+
+                             Age
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%           17             17
+ 5%           18             17
+10%           18             17       Obs               1,462
+25%           19             17       Sum of wgt.       1,462
+
+50%           21                      Mean           24.33721
+                        Largest       Std. dev.       9.35053
+75%           24             68
+90%           38             70       Variance       87.43241
+95%           46             70       Skewness       2.342714
+99%           60             72       Kurtosis       8.432212
+
+. recode age (min/19=1 "< 20 years") (20/24=2 "20-24 years") (25/29=3 "25-29 years") (30/max=4 ">30 year
+> s"), gen (Agegrps) // generating catergories for age
+(1462 differences between age and Agegrps)
+
+. lab var Agegrps "AGE GROUPS"
+
+. tab Agegrps
+
+ AGE GROUPS |      Freq.     Percent        Cum.
+------------+-----------------------------------
+ < 20 years |        459       31.40       31.40
+20-24 years |        656       44.87       76.27
+25-29 years |        102        6.98       83.24
+  >30 years |        245       16.76      100.00
+------------+-----------------------------------
+      Total |      1,462      100.00
+
+. 
+. 
+. ***Gender
+. tab Gender
+
+           Gender |      Freq.     Percent        Cum.
+------------------+-----------------------------------
+           Female |        791       53.96       53.96
+             Male |        664       45.29       99.25
+Prefer not to say |         11        0.75      100.00
+------------------+-----------------------------------
+            Total |      1,466      100.00
+
+. encode Gender, gen (gender) // gender entered as a string
+
+. recode gender (2=2 "Male") (1=1 "Female") (3=.), gen (sex) // prefer not to say changed to missing
+(11 differences between gender and sex)
+
+. lab var sex "Sex of the participant"
+
+. tab sex, m
+
+ Sex of the |
+participant |      Freq.     Percent        Cum.
+------------+-----------------------------------
+     Female |        791       53.96       53.96
+       Male |        664       45.29       99.25
+          . |         11        0.75      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+. 
+. 
+. **Marital status
+. tab MaritalStatus
+
+       Marital Status |      Freq.     Percent        Cum.
+----------------------+-----------------------------------
+              Married |        215       14.67       14.67
+Separated or divorced |          7        0.48       15.14
+               Single |      1,232       84.04       99.18
+      Widow / widower |         12        0.82      100.00
+----------------------+-----------------------------------
+                Total |      1,466      100.00
+
+. encode MaritalStatus, gen(marital_status)
+
+. recode marital_status (2 3 4 =2 "single/widowed/separated") (1 =1 "Married"), gen (marstat) 
+(1244 differences between marital_status and marstat)
+
+. lab var marstat "Marital status"
+
+. tab marstat
+
+          Marital status |      Freq.     Percent        Cum.
+-------------------------+-----------------------------------
+                 Married |        215       14.67       14.67
+single/widowed/separated |      1,251       85.33      100.00
+-------------------------+-----------------------------------
+                   Total |      1,466      100.00
+
+. 
+. /**Education level
+> tab LevelofEducation, nol
+> encode LevelofEducation, gen (edu)
+> tab edu, nol
+> recode edu (4=1 "No formal education") (5=2 "Primary level") (6=3 "Secondary level") (1 2 3 = 4 "Terti
+> ary level"), gen (Education)
+> lab var Education "Education level"
+> tab Education*/
+. 
+. **Head of the household
+. tab HouseholdHead
+
+  Household |
+       Head |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      1,083       73.87       73.87
+        Yes |        383       26.13      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+. tab HouseholdHead, nol
+
+  Household |
+       Head |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      1,083       73.87       73.87
+        Yes |        383       26.13      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+. encode HouseholdHead, gen (HH_head) // variable stored as a string
+
+. recode HH_head (2=2 "Yes") (1=1 "No"), gen (HHead)
+(0 differences between HH_head and HHead)
+
+. lab var HHead "Head of the household"
+
+. tab HHead
+
+Head of the |
+  household |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      1,083       73.87       73.87
+        Yes |        383       26.13      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+. 
+. 
+. /***Village
+> tab village
+> encode village, gen (Village)
+> tab Village
+> **tab 8*/
+. 
+. /***Income // variable ignored due to inconsistencies in data entry
+> desc income
+> destring income, gen (Income)
+> sum Income, det*/ 
+. 
+. **SOCIOECONOMIC FACTORS
+. 
+. **Activity level
+. tab Howoftendoyouengageinsocia
+
+How often do |
+  you engage |
+   in social |
+  activities |
+ with peers? |      Freq.     Percent        Cum.
+-------------+-----------------------------------
+  Frequently |        541       36.90       36.90
+       Never |         99        6.75       43.66
+Occasionally |        575       39.22       82.88
+      Rarely |        251       17.12      100.00
+-------------+-----------------------------------
+       Total |      1,466      100.00
+
+. encode Howoftendoyouengageinsocia, gen (activity)
+
+. recode activity (2 =1 "Never") (4=2 "Rarely") (3=3 "Occasionally") (1=4 "Frequently"), gen (Activityle
+> vel)
+(891 differences between activity and Activitylevel)
+
+. lab var Activitylevel "Activity level"
+
+. tab Activitylevel, m
+
+    Activity |
+       level |      Freq.     Percent        Cum.
+-------------+-----------------------------------
+       Never |         99        6.75        6.75
+      Rarely |        251       17.12       23.87
+Occasionally |        575       39.22       63.10
+  Frequently |        541       36.90      100.00
+-------------+-----------------------------------
+       Total |      1,466      100.00
+
+. 
+. **Social Media
+. tab Howmuchtimedoyouspendonso
+
+How much time do |
+    you spend on |
+social media per |
+            day? |      Freq.     Percent        Cum.
+-----------------+-----------------------------------
+       1-3 hours |        507       35.55       35.55
+       3-5 hours |        445       31.21       66.76
+   Above 5 hours |        176       12.34       79.10
+Less than 1 hour |        298       20.90      100.00
+-----------------+-----------------------------------
+           Total |      1,426      100.00
+
+. encode Howmuchtimedoyouspendonso, gen (SM)
+
+. recode SM (4=1 "< 1 hour") (1=2 "1-3 hours") (2=3 "3-5 hours") (3=4 "> 5 hours"), gen (SocialMedia)
+(1426 differences between SM and SocialMedia)
+
+. lab var SocialMedia "Social Media Use"
+
+. tab SocialMedia, m
+
+     Social |
+  Media Use |      Freq.     Percent        Cum.
+------------+-----------------------------------
+   < 1 hour |        298       20.33       20.33
+  1-3 hours |        507       34.58       54.91
+  3-5 hours |        445       30.35       85.27
+  > 5 hours |        176       12.01       97.27
+          . |         40        2.73      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+. 
+. 
+. **tab How supportive do you 
+. tab Howsupportivedoyoufindyour
+
+How supportive do you |
+  find your family in |
+  your academic life? |      Freq.     Percent        Cum.
+----------------------+-----------------------------------
+Moderately Supportive |        296       26.08       26.08
+       Not Supportive |         23        2.03       28.11
+  Slightly Supportive |        184       16.21       44.32
+           Supportive |        435       38.33       82.64
+      Very Supportive |        197       17.36      100.00
+----------------------+-----------------------------------
+                Total |      1,135      100.00
+
+. encode Howsupportivedoyoufindyour, gen (supportive)
+
+. recode supportive (2=1 "Not suppotive") (3=2 "Slightly supportive") (1=3 "Moderately Supportive") (4=4
+>  "Supportive") (5=5 "Very Supportive"), gen (Supportive)
+(503 differences between supportive and Supportive)
+
+. lab var Supportive "family support"
+
+. tab Supportive
+
+       family support |      Freq.     Percent        Cum.
+----------------------+-----------------------------------
+        Not suppotive |         23        2.03        2.03
+  Slightly supportive |        184       16.21       18.24
+Moderately Supportive |        296       26.08       44.32
+           Supportive |        435       38.33       82.64
+      Very Supportive |        197       17.36      100.00
+----------------------+-----------------------------------
+                Total |      1,135      100.00
+
+. 
+.  
+.  ***Sources of Income
+. tab Whatisyourprimarysourceoff
+
+    What is |
+       your |
+    primary |
+  source of |
+funding for |
+ university |
+ education? |      Freq.     Percent        Cum.
+------------+-----------------------------------
+     Family |        505       45.74       45.74
+       Loan |        236       21.38       67.12
+      Other |         13        1.18       68.30
+   Personal |         35        3.17       71.47
+Scholarship |        315       28.53      100.00
+------------+-----------------------------------
+      Total |      1,104      100.00
+
+. encode Whatisyourprimarysourceoff, gen (SourceIncome)
+
+. recode SourceIncome (1=1 "Family") (2=2 "Loan") (4=3 "Personal") (5=4 "Scholarship") (3=5 "Other"), ge
+> n (Incomesource)
+(363 differences between SourceIncome and Incomesource)
+
+. lab var Incomesource "Sources of Income"
+
+. tab Incomesource
+
+ Sources of |
+     Income |      Freq.     Percent        Cum.
+------------+-----------------------------------
+     Family |        505       45.74       45.74
+       Loan |        236       21.38       67.12
+   Personal |         35        3.17       70.29
+Scholarship |        315       28.53       98.82
+      Other |         13        1.18      100.00
+------------+-----------------------------------
+      Total |      1,104      100.00
+
+.  
+.  
+. ***Difficulties
+. tab Haveyoufacedfinancialdifficu
+
+   Have you |
+      faced |
+  financial |
+difficultie |
+   s during |
+  your time |
+         at |
+university? |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         NO |        704       64.35       64.35
+        Yes |        390       35.65      100.00
+------------+-----------------------------------
+      Total |      1,094      100.00
+
+. tab Haveyoufacedfinancialdifficu, m
+
+   Have you |
+      faced |
+  financial |
+difficultie |
+   s during |
+  your time |
+         at |
+university? |      Freq.     Percent        Cum.
+------------+-----------------------------------
+            |        372       25.38       25.38
+         NO |        704       48.02       73.40
+        Yes |        390       26.60      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+. encode Haveyoufacedfinancialdifficu, gen (difficult)
+
+. recode difficult (1=1 "No") (2=2 "Yes") , gen (Difficult)
+(0 differences between difficult and Difficult)
+
+. lab var Difficult "Financial difficulty in time at University"
+
+. tab Difficult
+
+  Financial |
+ difficulty |
+ in time at |
+ University |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        704       64.35       64.35
+        Yes |        390       35.65      100.00
+------------+-----------------------------------
+      Total |      1,094      100.00
+
+.  
+. ***If yes, how many times
+. tab Ifyeshowoftenhavethesefin
+
+ If yes, how |
+  often have |
+       these |
+   financial |
+difficulties |
+    affected |
+        your |
+    academic |
+       perfo |      Freq.     Percent        Cum.
+-------------+-----------------------------------
+  Frequently |         88       22.92       22.92
+       Never |         19        4.95       27.86
+Occasionally |        173       45.05       72.92
+      Rarely |        104       27.08      100.00
+-------------+-----------------------------------
+       Total |        384      100.00
+
+. encode Ifyeshowoftenhavethesefin, gen (howoften)
+
+. recode howoften (2=1 "Never") (4=2 "Rarely") (3=3 "Occasionally") (1=4 "Frequently"), gen (HowOften)
+(211 differences between howoften and HowOften)
+
+. lab var HowOften "How often have you faced financial difficulties"
+
+. tab HowOften
+
+   How often |
+    have you |
+       faced |
+   financial |
+difficulties |      Freq.     Percent        Cum.
+-------------+-----------------------------------
+       Never |         19        4.95        4.95
+      Rarely |        104       27.08       32.03
+Occasionally |        173       45.05       77.08
+  Frequently |         88       22.92      100.00
+-------------+-----------------------------------
+       Total |        384      100.00
+
+.  
+. 
+. **Awareness of mental health facilities 
+. tab Areyouawareofthementalheal
+
+    Are you |
+   aware of |
+ the mental |
+     health |
+   services |
+  available |
+    at your |
+university? |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        699       63.95       63.95
+        Yes |        394       36.05      100.00
+------------+-----------------------------------
+      Total |      1,093      100.00
+
+. encode Areyouawareofthementalheal, gen (awareness)
+
+. recode awareness (1=1 "No") (2=2 "Yes"), gen (Awareness)
+(0 differences between awareness and Awareness)
+
+. lab var Awareness "Awareness of mental health services available in the university"
+
+. tab Awareness
+
+  Awareness |
+  of mental |
+     health |
+   services |
+  available |
+     in the |
+ university |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        699       63.95       63.95
+        Yes |        394       36.05      100.00
+------------+-----------------------------------
+      Total |      1,093      100.00
+
+. 
+. **Used mental healths ervices in the last 12 months
+. tab Overthepast12monthshaveyo
+
+   Over the |
+    past 12 |
+    months, |
+   have you |
+  ever used |
+ any of the |
+     mental |
+     health |
+services pr |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        960       87.51       87.51
+        Yes |        137       12.49      100.00
+------------+-----------------------------------
+      Total |      1,097      100.00
+
+. encode Overthepast12monthshaveyo, gen (MHservices)
+
+. recode MHservices (1=1 "No") (2=2 "Yes"), gen (MHServices)
+(0 differences between MHservices and MHServices)
+
+. lab var MHServices "Used mental health services in the last 12 months"
+
+. tab MHServices
+
+Used mental |
+     health |
+services in |
+the last 12 |
+     months |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        960       87.51       87.51
+        Yes |        137       12.49      100.00
+------------+-----------------------------------
+      Total |      1,097      100.00
+
+. 
+. ***How would you rate the effectiveness of these mental health services?
+. tab Howwouldyouratetheeffective, m // 90% missing
+
+  How would you rate |
+the effectiveness of |
+ these mental health |
+           services? |      Freq.     Percent        Cum.
+---------------------+-----------------------------------
+                     |      1,331       90.79       90.79
+           Effective |         24        1.64       92.43
+Moderately Effective |         71        4.84       97.27
+       Not effective |          8        0.55       97.82
+  Slightly effective |         21        1.43       99.25
+      Very effective |         11        0.75      100.00
+---------------------+-----------------------------------
+               Total |      1,466      100.00
+
+. 
+. 
+. ***Experienced symptoms of depression, anxiety, or stress
+. tab AE
+
+   Over the |
+    past 12 |
+    months, |
+   have you |
+       ever |
+experienced |
+symptoms of |
+depression, |
+      anxie |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        671       61.62       61.62
+        Yes |        418       38.38      100.00
+------------+-----------------------------------
+      Total |      1,089      100.00
+
+. encode AE, gen (symptoms)
+
+. recode symptoms (1=1 "No") (2=2 "Yes"), gen (Symptoms)
+(0 differences between symptoms and Symptoms)
+
+. lab var Symptoms "Expreienced symptoms of depression, anxiety or stress"
+
+. tab Symptoms
+
+Expreienced |
+symptoms of |
+depression, |
+ anxiety or |
+     stress |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        671       61.62       61.62
+        Yes |        418       38.38      100.00
+------------+-----------------------------------
+      Total |      1,089      100.00
+
+. 
+. ***if yes
+. tab Ifyesdidyouseekanyprofess, m
+
+If yes, did |
+   you seek |
+        any |
+professiona |
+    l help? |      Freq.     Percent        Cum.
+------------+-----------------------------------
+            |      1,051       71.69       71.69
+         No |        344       23.47       95.16
+        Yes |         71        4.84      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+. encode Ifyesdidyouseekanyprofess, gen (seekhelp)
+
+. recode seekhelp (1=1 "No") (2=2 "Yes"), gen (SeekHelp)
+(0 differences between seekhelp and SeekHelp)
+
+. lab var SeekHelp "Did you seek help"
+
+. tab SeekHelp
+
+    Did you |
+  seek help |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        344       82.89       82.89
+        Yes |         71       17.11      100.00
+------------+-----------------------------------
+      Total |        415      100.00
+
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. **Generalized Anxiety Disorder 7-item (GAD-7)
+. ***The Generalized Anxiety Disorder 7-item (GAD-7) is a easy to perform initial screening tool for gen
+> eralized anxiety disorder
+. 
+. **GAD variables
+. rename Feelingnervousanxiousoron nervous
+
+. rename Notbeingabletostoporcontro control_worrying
+
+. rename Worryingtoomuchaboutdifferen worry_too_much
+
+. rename Troublerelaxing  relaxing
+
+. rename Beingsorestlessthatitshard restless
+
+. rename BecomingeasilyannoyedorIrrit irritable
+
+. rename Feelingafraidasifsomethinga afraid
+
+. 
+. foreach var of varlist nervous - afraid {
+  2.         encode `var', gen (`var'_1)
+  3. }
+
+. 
+. foreach var of varlist nervous_1 - afraid_1 {
+  2.         recode `var' (2=0 "not at all") (4=1 "several days") (3=2 "more than half the days") (1=3 "
+> Nearly everyday"), gen (`var'_2)
+  3. }
+(1456 differences between nervous_1 and nervous_1_2)
+(1453 differences between control_worrying_1 and control_worrying_1_2)
+(1451 differences between worry_too_much_1 and worry_too_much_1_2)
+(1445 differences between relaxing_1 and relaxing_1_2)
+(1426 differences between restless_1 and restless_1_2)
+(1452 differences between irritable_1 and irritable_1_2)
+(1444 differences between afraid_1 and afraid_1_2)
+
+. 
+. lab var nervous_1_2 "Feeling nervous, anxious, or on edge"
+
+. lab var control_worrying_1_2 "Not being able to stop or control worrying"
+
+. lab var worry_too_much_1_2 "Worrying too much about different things"
+
+. lab var relaxing_1_2 "Trouble relaxing"
+
+. lab var restless_1_2 "Being so restless that it's hard to sit still"
+
+. lab var irritable_1_2 "Becoming easily annoyed or Irritable"
+
+. lab var afraid_1_2 "Feeling afraid as if something awful might happen"
+
+. 
+. rename nervous_1_2 Nervous
+
+. rename control_worrying_1_2 Worrying
+
+. rename worry_too_much_1_2 Things
+
+. rename relaxing_1_2 Trouble
+
+. rename restless_1_2 Restless
+
+. rename irritable_1_2 Irritable
+
+. rename afraid_1_2 Afraid
+
+. 
+. foreach var of varlist Nervous-Afraid {
+  2.   tab `var', m
+  3.    }
+
+       Feeling nervous, |
+    anxious, or on edge |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        681       46.45       46.45
+           several days |        618       42.16       88.61
+more than half the days |        131        8.94       97.54
+        Nearly everyday |         26        1.77       99.32
+                      . |         10        0.68      100.00
+------------------------+-----------------------------------
+                  Total |      1,466      100.00
+
+ Not being able to stop |
+    or control worrying |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        693       47.27       47.27
+           several days |        602       41.06       88.34
+more than half the days |        139        9.48       97.82
+        Nearly everyday |         19        1.30       99.11
+                      . |         13        0.89      100.00
+------------------------+-----------------------------------
+                  Total |      1,466      100.00
+
+Worrying too much about |
+       different things |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        673       45.91       45.91
+           several days |        574       39.15       85.06
+more than half the days |        170       11.60       96.66
+        Nearly everyday |         34        2.32       98.98
+                      . |         15        1.02      100.00
+------------------------+-----------------------------------
+                  Total |      1,466      100.00
+
+       Trouble relaxing |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        841       57.37       57.37
+           several days |        444       30.29       87.65
+more than half the days |        141        9.62       97.27
+        Nearly everyday |         19        1.30       98.57
+                      . |         21        1.43      100.00
+------------------------+-----------------------------------
+                  Total |      1,466      100.00
+
+ Being so restless that |
+ it's hard to sit still |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        834       56.89       56.89
+           several days |        431       29.40       86.29
+more than half the days |        142        9.69       95.98
+        Nearly everyday |         19        1.30       97.27
+                      . |         40        2.73      100.00
+------------------------+-----------------------------------
+                  Total |      1,466      100.00
+
+Becoming easily annoyed |
+           or Irritable |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        765       52.18       52.18
+           several days |        517       35.27       87.45
+more than half the days |        139        9.48       96.93
+        Nearly everyday |         31        2.11       99.05
+                      . |         14        0.95      100.00
+------------------------+-----------------------------------
+                  Total |      1,466      100.00
+
+   Feeling afraid as if |
+  something awful might |
+                 happen |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        949       64.73       64.73
+           several days |        359       24.49       89.22
+more than half the days |        106        7.23       96.45
+        Nearly everyday |         30        2.05       98.50
+                      . |         22        1.50      100.00
+------------------------+-----------------------------------
+                  Total |      1,466      100.00
+
+.    
+. count if Nervous==. | Worrying==. | Things==. | Trouble==.| Restless==.| Irritable==.| Afraid ==.
+  84
+
+. **84 Participants miss atleast one of the components required to calculate GAD score
+. 
+. egen GAD = rowtotal (Nervous-Afraid)
+
+. replace GAD =. if Nervous==. | Worrying==. | Things==. | Trouble==.| Restless==.| Irritable==.| Afraid
+>  ==.
+(84 real changes made, 84 to missing)
+
+. 
+. ***GAD7 SCORES
+. sum GAD, detail
+
+                             GAD
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            0              0
+ 5%            0              0
+10%            0              0       Obs               1,382
+25%            2              0       Sum of wgt.       1,382
+
+50%            3                      Mean           4.152677
+                        Largest       Std. dev.      3.402813
+75%            6             19
+90%            9             20       Variance       11.57913
+95%           11             21       Skewness       1.119128
+99%           14             21       Kurtosis       4.433214
+
+. 
+. **Generating GAD categories 
+. ***Computing GAD-7 scores: Score 0-4: Minimal Anxiety. Score 5-9: Mild Anxiety. Score 10-14: Moderate 
+> Anxiety. Score greater than 15: Severe Anxiety.
+. recode GAD (min/4 =1 "Minimal") (5/9=2 "Mild") (10/14= 3 "Moderate ") (15/max=4 "Severe") (.=.), gen (
+> GADcategory)
+(1256 differences between GAD and GADcategory)
+
+. lab var GADcategory "GAD Category"
+
+. tab GADcategory, m
+
+        GAD |
+   Category |      Freq.     Percent        Cum.
+------------+-----------------------------------
+    Minimal |        865       59.00       59.00
+       Mild |        388       26.47       85.47
+  Moderate  |        119        8.12       93.59
+     Severe |         10        0.68       94.27
+          . |         84        5.73      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+. 
+. 
+. 
+. 
+. **PHQ9 QUESTIONNAIRE
+. ***The PHQ-9 is a multipurpose instrument for screening, diagnosing, monitoring and measuring the seve
+> rity of depression.
+. 
+. rename Littleinterestorpleasureind interest
+
+. rename Feelingdowndepressedorhope hopeless
+
+. rename Troublefallingorstayingaslee sleeping
+
+. rename Feelingtiredorhavinglittlee tired
+
+. rename Poorappetiteorovereating appetite
+
+. rename Feelingbadaboutyourselfor family
+
+. rename Troubleconcentratingonthings concentrating
+
+. rename Movingorspeakingsoslowlytha moving
+
+. rename Thoughtsthatyouwouldbebette thoughts
+
+. 
+. foreach var of varlist interest - thoughts {
+  2.         encode `var', gen (`var'_1)
+  3. }
+
+. 
+. foreach var of varlist interest_1 - thoughts_1 {
+  2.         recode `var' (3=0 "not at all") (4=1 "several days") (1=2 "more than half the days") (2=3 "
+> Nearly everyday"), gen (`var'_2)
+  3. }
+(1458 differences between interest_1 and interest_1_2)
+(1457 differences between hopeless_1 and hopeless_1_2)
+(1453 differences between sleeping_1 and sleeping_1_2)
+(1455 differences between tired_1 and tired_1_2)
+(1443 differences between appetite_1 and appetite_1_2)
+(1426 differences between family_1 and family_1_2)
+(1449 differences between concentrating_1 and concentrating_1_2)
+(1455 differences between moving_1 and moving_1_2)
+(1443 differences between thoughts_1 and thoughts_1_2)
+
+. 
+. lab var interest_1_2 "Little interest or pleasure in doing things"
+
+. lab var hopeless_1_2 "Feeling down, depressed, or hopeless"
+
+. lab var sleeping_1_2 "Trouble falling or staying asleep, or sleeping too much"
+
+. lab var tired_1_2 "Feeling tired or having little energy"
+
+. lab var appetite_1_2 "Poor appetite or overeating"
+
+. lab var family_1_2 "Feeling bad about yourself — or that you are a failure or have let yourself or you
+> r family down"
+note: label truncated to 80 characters
+
+. lab var concentrating_1_2 "Trouble concentrating on things, such as reading the newspaper or watching 
+> television"
+note: label truncated to 80 characters
+
+. lab var moving_1_2 "Moving or speaking so slowly that other people could have noticed? Or the opposite
+>  — being so fidgety or restless that you have been moving around a lot more than usual"
+note: label truncated to 80 characters
+
+. lab var thoughts_1_2 "Thoughts that you would be better off dead or of hurting yourself in some way"
+
+. 
+. rename interest_1_2 Interest
+
+. rename hopeless_1_2 Hopeless
+
+. rename sleeping_1_2 Sleeping
+
+. rename tired_1_2 Tired
+
+. rename appetite_1_2 Appetite
+
+. rename family_1_2 Family
+
+. rename concentrating_1_2 Concentrating
+
+. rename moving_1_2 Moving
+
+. rename thoughts_1_2 Thoughts
+
+. 
+. foreach var of varlist Interest-Thoughts {
+  2.   tab `var', m
+  3.    }
+
+     Little interest or |
+      pleasure in doing |
+                 things |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        726       49.52       49.52
+           several days |        564       38.47       87.99
+more than half the days |        127        8.66       96.66
+        Nearly everyday |         41        2.80       99.45
+                      . |          8        0.55      100.00
+------------------------+-----------------------------------
+                  Total |      1,466      100.00
+
+          Feeling down, |
+ depressed, or hopeless |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        804       54.84       54.84
+           several days |        508       34.65       89.50
+more than half the days |        126        8.59       98.09
+        Nearly everyday |         19        1.30       99.39
+                      . |          9        0.61      100.00
+------------------------+-----------------------------------
+                  Total |      1,466      100.00
+
+     Trouble falling or |
+     staying asleep, or |
+      sleeping too much |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        728       49.66       49.66
+           several days |        497       33.90       83.56
+more than half the days |        198       13.51       97.07
+        Nearly everyday |         30        2.05       99.11
+                      . |         13        0.89      100.00
+------------------------+-----------------------------------
+                  Total |      1,466      100.00
+
+Feeling tired or having |
+          little energy |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        730       49.80       49.80
+           several days |        522       35.61       85.40
+more than half the days |        170       11.60       97.00
+        Nearly everyday |         33        2.25       99.25
+                      . |         11        0.75      100.00
+------------------------+-----------------------------------
+                  Total |      1,466      100.00
+
+       Poor appetite or |
+             overeating |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        854       58.25       58.25
+           several days |        430       29.33       87.59
+more than half the days |        132        9.00       96.59
+        Nearly everyday |         27        1.84       98.43
+                      . |         23        1.57      100.00
+------------------------+-----------------------------------
+                  Total |      1,466      100.00
+
+      Feeling bad about |
+     yourself — or that |
+   you are a failure or |
+ have let yourself or y |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        925       63.10       63.10
+           several days |        356       24.28       87.38
+more than half the days |        125        8.53       95.91
+        Nearly everyday |         20        1.36       97.27
+                      . |         40        2.73      100.00
+------------------------+-----------------------------------
+                  Total |      1,466      100.00
+
+  Trouble concentrating |
+     on things, such as |
+  reading the newspaper |
+      or watching telev |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        890       60.71       60.71
+           several days |        407       27.76       88.47
+more than half the days |        104        7.09       95.57
+        Nearly everyday |         48        3.27       98.84
+                      . |         17        1.16      100.00
+------------------------+-----------------------------------
+                  Total |      1,466      100.00
+
+  Moving or speaking so |
+      slowly that other |
+      people could have |
+ noticed? Or the opposi |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        960       65.48       65.48
+           several days |        341       23.26       88.74
+more than half the days |        116        7.91       96.66
+        Nearly everyday |         38        2.59       99.25
+                      . |         11        0.75      100.00
+------------------------+-----------------------------------
+                  Total |      1,466      100.00
+
+Thoughts that you would |
+  be better off dead or |
+ of hurting yourself in |
+               some way |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,097       74.83       74.83
+           several days |        278       18.96       93.79
+more than half the days |         54        3.68       97.48
+        Nearly everyday |         14        0.95       98.43
+                      . |         23        1.57      100.00
+------------------------+-----------------------------------
+                  Total |      1,466      100.00
+
+. 
+. 
+. ****PHQ-9 ANALYSIS 
+. **PHQ-9 SCORES
+. egen PHQ = rowtotal(Interest-Thoughts), m
+(3 missing values generated)
+
+. sum PHQ, det
+
+                             PHQ
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            0              0
+ 5%            0              0
+10%            0              0       Obs               1,463
+25%            2              0       Sum of wgt.       1,463
+
+50%            3                      Mean           4.796309
+                        Largest       Std. dev.      4.411099
+75%            8             24
+90%           11             24       Variance        19.4578
+95%           13             24       Skewness       1.088813
+99%           17             26       Kurtosis       3.935995
+
+. 
+. count if Interest==. | Hopeless==. | Sleeping==. | Tired==.| Appetite==.| Family ==. |Concentrating==.
+> | Moving==.| Thoughts==.
+  119
+
+. 
+. **54 Participants missing at least one variable required to calculate a PHQ score
+. 
+. ***PHQ-9 categories: 0-4 None/minimal; 5-9 Mild; 10-14 Moderate; 15-19 Moderately severe; 20-27 Severe
+. replace PHQ=. if Interest==. | Hopeless==. | Sleeping==. | Tired==.| Appetite==.| Family ==. |Concentr
+> ating==.| Moving==.| Thoughts==.
+(116 real changes made, 116 to missing)
+
+. 
+. ***PHQ-9 categories: 0-4 None/minimal; 5-9 Mild; 10-14 Moderate; 15-19 Moderately severe; 20-27 Severe
+. recode PHQ (min/4=1 "None/minimal") (5/9=2 "Mild") (10/14=3 "Moderate") (15/19=4 "Moderate severe") (2
+> 0/27=4 "Severe"), gen (PHQcat)
+(1257 differences between PHQ and PHQcat)
+
+. lab var PHQcat "PHQ Category"
+
+. tab PHQcat
+
+PHQ Category |      Freq.     Percent        Cum.
+-------------+-----------------------------------
+None/minimal |        820       60.88       60.88
+        Mild |        295       21.90       82.78
+    Moderate |        200       14.85       97.62
+      Severe |         32        2.38      100.00
+-------------+-----------------------------------
+       Total |      1,347      100.00
+
+. 
+. 
+. 
+. 
+. ***Psychosis Screening Questionnaire
+. **Hypomania Probe
+. tab HypomaniaprobeOverthepasty
+
+  Hypomania |
+probe: Over |
+   the past |
+ year, have |
+ there been |
+ times when |
+   you felt |
+    very ha |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        776       53.44       53.44
+        Yes |        676       46.56      100.00
+------------+-----------------------------------
+      Total |      1,452      100.00
+
+. tab Wasthereanobviousreasonfor, m //55% missing
+
+  Was there |
+ an obvious |
+ reason for |
+  this? (b) |
+   Did your |
+  relatives |
+ or friends |
+   think it |      Freq.     Percent        Cum.
+------------+-----------------------------------
+            |        796       54.30       54.30
+         No |        251       17.12       71.42
+        Yes |        419       28.58      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+. lab var HypomaniaprobeOverthepasty "you felt very happy indeed without a break for days on end"
+
+. lab var Wasthereanobviousreasonfor "Hypomania"
+
+. encode HypomaniaprobeOverthepasty, gen (Hypomania)
+
+. encode Wasthereanobviousreasonfor, gen (Hypomania2)
+
+. 
+. 
+. **Thought insertion
+. tab ThoughtinsertionOverthepast
+
+    Thought |
+ insertion: |
+   Over the |
+ past year, |
+   have you |
+  ever felt |
+  that your |
+   thoughts |
+        wer |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        943       64.94       64.94
+        Yes |        509       35.06      100.00
+------------+-----------------------------------
+      Total |      1,452      100.00
+
+. tab Ifyesdidthiscomeaboutina, m //75% missing
+
+If yes, did |
+  this come |
+ about in a |
+   way that |
+many people |
+ would find |
+    hard to |
+    believe |      Freq.     Percent        Cum.
+------------+-----------------------------------
+            |        962       65.62       65.62
+         No |        155       10.57       76.19
+        Yes |        349       23.81      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+. lab var ThoughtinsertionOverthepast "felt that your thoughts were directly interfered with or controll
+> ed by some outside force or person"
+note: label truncated to 80 characters
+
+. lab var Ifyesdidthiscomeaboutina "Though insertion"
+
+. encode ThoughtinsertionOverthepast, gen (Thoughtinsertion)
+
+. encode Ifyesdidthiscomeaboutina, gen (Thoughtinsertion2)
+
+. 
+. **Paranoia Probe
+. tab ParanoiaProbeOverthepastye
+
+   Paranoia |
+Probe: Over |
+   the past |
+ year, have |
+ there been |
+ times when |
+   you felt |
+   that peo |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      1,169       80.40       80.40
+        Yes |        285       19.60      100.00
+------------+-----------------------------------
+      Total |      1,454      100.00
+
+. tab Ifyeshavetherebeentimeswh, m //70% missing
+
+    If yes, |
+ have there |
+ been times |
+   when you |
+  felt that |
+people were |
+deliberatel |
+   y acting |      Freq.     Percent        Cum.
+------------+-----------------------------------
+            |      1,187       80.97       80.97
+         No |        206       14.05       95.02
+        Yes |         73        4.98      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+. lab var ParanoiaProbeOverthepastye "u felt that people were against youu felt that people were against
+>  you"
+
+. lab var Ifyeshavetherebeentimeswh"Paranoia"
+
+. encode ParanoiaProbeOverthepastye, gen (Paranoia)
+
+. encode Ifyeshavetherebeentimeswh, gen (Paranoia2)
+
+. 
+. **Strange experiences
+. tab StrangeexperiencesOverthepa
+
+    Strange |
+experiences |
+ : Over the |
+ past year, |
+ have there |
+ been times |
+   when you |
+   felt tha |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      1,158       79.97       79.97
+        Yes |        290       20.03      100.00
+------------+-----------------------------------
+      Total |      1,448      100.00
+
+. tab Ifyesdidyoufeelitwassos, m //76% missing
+
+If yes, did |
+you feel it |
+     was so |
+    strange |
+ that other |
+     people |
+ would find |
+    it very |
+       hard |      Freq.     Percent        Cum.
+------------+-----------------------------------
+            |      1,178       80.35       80.35
+         No |        161       10.98       91.34
+        Yes |        127        8.66      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+. lab var StrangeexperiencesOverthepa "have there been times when you felt that something strange was go
+> ing on"
+
+. lab var Ifyesdidyoufeelitwassos "Strange experiences"
+
+. encode StrangeexperiencesOverthepa, gen (Strangeexperiences)
+
+. encode Ifyesdidyoufeelitwassos, gen (Strangeexperiences2)
+
+. 
+. **Hallucinations
+. tab HallucinationsOverthepastye
+
+Hallucinati |
+  ons: Over |
+   the past |
+ year, have |
+ there been |
+ times when |
+   you felt |
+   that som |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      1,193       82.28       82.28
+        Yes |        257       17.72      100.00
+------------+-----------------------------------
+      Total |      1,450      100.00
+
+. tab BL, m // 78% missing
+
+If yes, did |
+you feel it |
+     was so |
+    strange |
+ that other |
+     people |
+ would find |
+    it very |
+       hard |      Freq.     Percent        Cum.
+------------+-----------------------------------
+            |      1,215       82.88       82.88
+         No |        166       11.32       94.20
+        Yes |         85        5.80      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+. lab var HallucinationsOverthepastye "heard or saw things that other people couldn't"
+
+. lab var BL "Hallucinations"
+
+. encode HallucinationsOverthepastye, gen (Hallucinations)
+
+. encode BL, gen (Hallucinations2)
+
+. 
+. foreach var of varlist Hypomania-Hallucinations2 {
+  2.   tab `var', m
+  3.    }
+
+   you felt |
+ very happy |
+     indeed |
+  without a |
+  break for |
+days on end |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        776       52.93       52.93
+        Yes |        676       46.11       99.05
+          . |         14        0.95      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+  Hypomania |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        251       17.12       17.12
+        Yes |        419       28.58       45.70
+          . |        796       54.30      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+  felt that |
+       your |
+   thoughts |
+       were |
+   directly |
+ interfered |
+    with or |
+ controlled |
+    by some |
+       outs |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        943       64.32       64.32
+        Yes |        509       34.72       99.05
+          . |         14        0.95      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+     Though |
+  insertion |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        155       10.57       10.57
+        Yes |        349       23.81       34.38
+          . |        962       65.62      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+u felt that |
+people were |
+    against |
+  youu felt |
+that people |
+       were |
+against you |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      1,169       79.74       79.74
+        Yes |        285       19.44       99.18
+          . |         12        0.82      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+   Paranoia |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        206       14.05       14.05
+        Yes |         73        4.98       19.03
+          . |      1,187       80.97      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+ have there |
+ been times |
+   when you |
+  felt that |
+  something |
+strange was |
+   going on |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      1,158       78.99       78.99
+        Yes |        290       19.78       98.77
+          . |         18        1.23      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+    Strange |
+experiences |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        161       10.98       10.98
+        Yes |        127        8.66       19.65
+          . |      1,178       80.35      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+   heard or |
+ saw things |
+ that other |
+     people |
+   couldn't |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      1,193       81.38       81.38
+        Yes |        257       17.53       98.91
+          . |         16        1.09      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+Hallucinati |
+        ons |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        166       11.32       11.32
+        Yes |         85        5.80       17.12
+          . |      1,215       82.88      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+. 
+. /*rename hypomania_supplement hypomania
+> rename hypomania_supplement_001 hypomania2
+> rename thoughtinsertion_supplement insertion
+> rename thoughtinsertion_supplement_001 insertion2
+> rename paranoia_supplement paranoia
+> rename paranoia_supplement_001 paranoia2
+> rename strangeexperience_supplement strange 
+> rename strangeexperience_supplement_001 strange2
+> rename hallucinations_supplement hallucination
+> rename hallucinations_supplement_001 hallucination2
+> 
+> foreach var of varlist hypomania-hallucination2{
+>         encode `var', gen (`var'_1)
+> }
+> */
+. 
+. **For an item to be considered positive, both the root and the additional corroborating questions have
+>  to be endorsed either in the last 12 months or lifetime.
+. 
+. 
+. 
+. gen Hypomaniasymp =. 
+(1,466 missing values generated)
+
+. replace Hypomaniasymp =1 if Hypomania==2 & Hypomania2 ==2
+(419 real changes made)
+
+. replace Hypomaniasymp = 2 if Hypomaniasymp !=1
+(1,047 real changes made)
+
+. lab var Hypomaniasymp "Symptoms of hypomania"
+
+. tab Hypomaniasymp
+
+Symptoms of |
+  hypomania |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        419       28.58       28.58
+          2 |      1,047       71.42      100.00
+------------+-----------------------------------
+      Total |      1,466      100.00
+
+. 
+. gen Insertion =. 
+(1,466 missing values generated)
+
+. replace Insertion =1 if Thoughtinsertion==2 & Thoughtinsertion2 ==2
+(349 real changes made)
+
+. replace Insertion = 2 if Thoughtinsertion ==1 | Thoughtinsertion2 == 1
+(1,098 real changes made)
+
+. replace Insertion =. if Thoughtinsertion == . 
+(0 real changes made)
+
+. lab var Insertion "Thought insertion"
+
+. tab Insertion
+
+    Thought |
+  insertion |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        349       24.12       24.12
+          2 |      1,098       75.88      100.00
+------------+-----------------------------------
+      Total |      1,447      100.00
+
+. 
+. gen Paranoiasymp =. 
+(1,466 missing values generated)
+
+. replace Paranoiasymp =1 if Paranoia==2 & Paranoia2 ==2
+(73 real changes made)
+
+. replace Paranoiasymp = 2 if Paranoia ==1 | Paranoia2 ==1
+(1,375 real changes made)
+
+. replace Paranoiasymp = . if Paranoia == . 
+(0 real changes made)
+
+. lab var Paranoiasymp "Symptoms of paranoia"
+
+. tab Paranoiasymp
+
+Symptoms of |
+   paranoia |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         73        5.04        5.04
+          2 |      1,375       94.96      100.00
+------------+-----------------------------------
+      Total |      1,448      100.00
+
+. 
+. gen Strange =. 
+(1,466 missing values generated)
+
+. replace Strange = 1 if Strangeexperiences==2 & Strangeexperiences2==2
+(127 real changes made)
+
+. replace Strange = 2 if Strangeexperiences==1 | Strangeexperiences2==1
+(1,319 real changes made)
+
+. replace Strange = . if  Strangeexperiences ==.
+(0 real changes made)
+
+. lab var Strange "Strange experiences"
+
+. tab Strange
+
+    Strange |
+experiences |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        127        8.78        8.78
+          2 |      1,319       91.22      100.00
+------------+-----------------------------------
+      Total |      1,446      100.00
+
+. 
+. gen Hallucinationsymp =. 
+(1,466 missing values generated)
+
+. replace Hallucinationsymp =1 if Hallucinations==2 & Hallucinations2 ==2
+(85 real changes made)
+
+. replace Hallucinationsymp = 2 if Hallucinations == 1 | Hallucinations2 == 1
+(1,359 real changes made)
+
+. replace Hallucinationsymp = . if Hallucinations ==.
+(0 real changes made)
+
+. lab var Hallucinationsymp "Symptoms of Hallucination"
+
+. tab Hallucinationsymp
+
+Symptoms of |
+Hallucinati |
+         on |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         85        5.89        5.89
+          2 |      1,359       94.11      100.00
+------------+-----------------------------------
+      Total |      1,444      100.00
+
+. 
+. 
+. 
+. ***In addition to these five binary measures, a composite screening measure was created using response
+> s across all five psychotic symptoms (0 = negative on all; 1 = positive on any) and was further catego
+> rized into past-year 
+. 
+. gen Psychosis =.
+(1,466 missing values generated)
+
+. replace Psychosis =1 if Hypomaniasymp ==1 | Insertion==1 | Paranoiasymp ==1 | Strange==1 | Hallucinati
+> onsymp==1
+(574 real changes made)
+
+. replace Psychosis =. if Hypomaniasymp ==. & Insertion==. & Paranoiasymp ==. & Strange==. & Hallucinati
+> onsymp==.
+(0 real changes made)
+
+. replace Psychosis =2 if Hypomaniasymp ==2 & Insertion==2 & Paranoiasymp ==2 & Strange==2 & Hallucinati
+> onsymp==2
+(854 real changes made)
+
+. lab var Psychosis "Diagnosis of psychosis"
+
+. tab Psychosis
+
+  Diagnosis |
+         of |
+  psychosis |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        574       40.20       40.20
+          2 |        854       59.80      100.00
+------------+-----------------------------------
+      Total |      1,428      100.00
+
+. 
+. lab define symp 1 "Yes" 2 "No"
+
+. lab values Psychosis symp
+
+. tab Psychosis
+
+  Diagnosis |
+         of |
+  psychosis |      Freq.     Percent        Cum.
+------------+-----------------------------------
+        Yes |        574       40.20       40.20
+         No |        854       59.80      100.00
+------------+-----------------------------------
+      Total |      1,428      100.00
+
+. 
+. keep age study Agegrps  sex marstat HHead Activitylevel SocialMedia Supportive Incomesource Difficult 
+> HowOften Awareness MHServices Symptoms SeekHelp Nervous Worrying Things Trouble Restless Irritable Afr
+> aid GADcategory GAD Interest Hopeless Sleeping  Tired Appetite Family Concentrating Moving Thoughts PH
+> Qcat PHQ Hypomania Hypomania2 Thoughtinsertion Thoughtinsertion2 Paranoia Paranoia2 Strangeexperiences
+>  Strangeexperiences2 Hallucinations Hallucinations2 Hypomaniasymp Insertion Paranoiasymp Strange Hallu
+> cinationsymp Psychosis
+
+. 
+. 
+. save studentdata.dta
+file studentdata.dta saved
+
+. log close
+      name:  <unnamed>
+       log:  D:\Mental Health\studentcleaning.log
+  log type:  text
+ closed on:   6 Nov 2024, 01:36:34
+--------------------------------------------------------------------------------------------------------

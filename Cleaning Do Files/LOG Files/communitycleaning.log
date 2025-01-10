@@ -1,0 +1,3580 @@
+--------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  D:\Mental Health\communitycleaning.log
+  log type:  text
+ opened on:   6 Nov 2024, 01:45:16
+
+. import excel "D:\Mental Health\Mental_Health_Survey_-_all_versions_-_labels_-_2024-10-29-04-28-10.xlsx
+> ", sheet("Mental Health Survey") firstrow
+(91 vars, 4,271 obs)
+
+. 
+. ***Keeping only students in the dataset
+. encode YearofStudy, gen (study)
+
+. keep if study ==. //2,805 observations dropped 
+(1,466 observations deleted)
+
+. 
+. drop SECT* // Dropping section titles
+
+. drop BN-CC //Dropping variables with no observations
+
+. 
+. mdesc
+
+    Variable    |     Missing          Total     Percent Missing
+----------------+-----------------------------------------------
+   Thesurveyw~e |          78          2,805           2.78
+   ResearchAs~s |          81          2,805           2.89
+      StartTime |          81          2,805           2.89
+   DateofInte~w |          95          2,805           3.39
+      FullNames |          90          2,805           3.21
+    PhoneNumber |         486          2,805          17.33
+            Age |          81          2,805           2.89
+         Gender |          81          2,805           2.89
+   OtherSpecify |       2,805          2,805         100.00
+   MaritalSta~s |          81          2,805           2.89
+   LevelofEdu~n |          81          2,805           2.89
+   HouseholdH~d |          81          2,805           2.89
+        Village |         248          2,805           8.84
+    YearofStudy |       2,805          2,805         100.00
+   CourseofSt~y |       2,781          2,805          99.14
+         Income |       1,223          2,805          43.60
+   Howoftendo~a |          81          2,805           2.89
+   Howsupport~r |       1,781          2,805          63.49
+   Howmuchtim~o |         894          2,805          31.87
+   Whatisyour~f |       2,770          2,805          98.75
+   Haveyoufac~u |       2,766          2,805          98.61
+   Ifyeshowof~n |       2,786          2,805          99.32
+   Areyouawar~l |       2,773          2,805          98.86
+   Overthepas~o |       2,775          2,805          98.93
+   Howwouldyo~e |       2,799          2,805          99.79
+   Inyouropin~n |       2,798          2,805          99.75
+             AE |       2,770          2,805          98.75
+   Ifyesdidy~ss |       2,792          2,805          99.54
+   Whichhelpw~e |       2,800          2,805          99.82
+   Overthelas~n |       2,805          2,805         100.00
+   Feelingner~n |          86          2,805           3.07
+   Notbeingab~o |          91          2,805           3.24
+   Worryingto~n |          92          2,805           3.28
+   Troublerel~g |         102          2,805           3.64
+   Beingsores~d |         117          2,805           4.17
+   Becomingea~t |          93          2,805           3.32
+   Feelingafr~a |         109          2,805           3.89
+             AR |       2,805          2,805         100.00
+   Littleinte~d |          92          2,805           3.28
+   Feelingdow~e |          95          2,805           3.39
+   Troublefal~e |          96          2,805           3.42
+   Feelingtir~e |          89          2,805           3.17
+   Poorappeti~g |         105          2,805           3.74
+   Feelingbad~r |         129          2,805           4.60
+   Troublecon~s |          93          2,805           3.32
+   Movingorsp~a |          90          2,805           3.21
+   Thoughtsth~e |         108          2,805           3.85
+   Hypomaniap~y |         122          2,805           4.35
+   Wastherean~r |       1,467          2,805          52.30
+   Thoughtins~t |          95          2,805           3.39
+   Ifyesdidth~a |       2,445          2,805          87.17
+   ParanoiaPr~e |          98          2,805           3.49
+   Ifyeshavet~h |       2,030          2,805          72.37
+   Strangeexp~a |         104          2,805           3.71
+   Ifyesdidy~os |       2,344          2,805          83.57
+   Hallucinat~e |          99          2,805           3.53
+             BL |       2,417          2,805          86.17
+        EndTime |         407          2,805          14.51
+            _id |           0          2,805           0.00
+          _uuid |           0          2,805           0.00
+   _submissio~e |           0          2,805           0.00
+   _validatio~s |       2,805          2,805         100.00
+         _notes |       2,805          2,805         100.00
+        _status |           0          2,805           0.00
+   _submitted~y |       2,805          2,805         100.00
+    __version__ |           0          2,805           0.00
+          _tags |       2,805          2,805         100.00
+         _index |           0          2,805           0.00
+          study |       2,805          2,805         100.00
+----------------+-----------------------------------------------
+
+. ****SOCIODEMOGRAPHIC VARIABLES
+. 
+. ***Age of the respondent
+. desc Age
+
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+--------------------------------------------------------------------------------------------------------
+Age             str11   %11s                  Age
+
+. **Age stored as string, converted to numeric
+. replace Age = "" if substr(Age, 1, 3) == "011" ///
+>                         |       substr(Age, 1, 3) == "072" ///
+>                         |           substr(Age, 1, 3) == "074"
+(4 real changes made)
+
+. tab Age, m
+
+        Age |      Freq.     Percent        Cum.
+------------+-----------------------------------
+            |         85        3.03        3.03
+        ,28 |          1        0.04        3.07
+        ,30 |          1        0.04        3.10
+        ,40 |          1        0.04        3.14
+        ,50 |          1        0.04        3.17
+        ,59 |          1        0.04        3.21
+        ,71 |          1        0.04        3.24
+        ,73 |          1        0.04        3.28
+         -5 |          1        0.04        3.32
+        101 |          1        0.04        3.35
+         17 |          1        0.04        3.39
+         18 |         35        1.25        4.63
+         19 |         32        1.14        5.78
+         20 |         54        1.93        7.70
+         21 |         50        1.78        9.48
+         22 |         85        3.03       12.51
+        228 |          1        0.04       12.55
+         23 |         63        2.25       14.80
+         24 |         67        2.39       17.18
+         25 |         72        2.57       19.75
+         26 |         78        2.78       22.53
+         27 |         65        2.32       24.85
+         28 |         72        2.57       27.42
+         29 |         70        2.50       29.91
+          3 |          1        0.04       29.95
+         30 |        100        3.57       33.51
+         31 |         53        1.89       35.40
+   31 years |          1        0.04       35.44
+         32 |         92        3.28       38.72
+         33 |         70        2.50       41.21
+         34 |         96        3.42       44.63
+         35 |         76        2.71       47.34
+         36 |         81        2.89       50.23
+         37 |         54        1.93       52.16
+         38 |        103        3.67       55.83
+         39 |         72        2.57       58.40
+         40 |        111        3.96       62.35
+         41 |         30        1.07       63.42
+     41 see |          1        0.04       63.46
+         42 |         70        2.50       65.95
+         43 |         44        1.57       67.52
+         44 |         89        3.17       70.70
+         45 |         59        2.10       72.80
+         46 |         64        2.28       75.08
+         47 |         41        1.46       76.54
+         48 |         44        1.57       78.11
+         49 |         36        1.28       79.39
+         50 |         58        2.07       81.46
+         51 |         23        0.82       82.28
+         52 |         38        1.35       83.64
+         53 |         25        0.89       84.53
+         54 |         31        1.11       85.63
+   54 years |          1        0.04       85.67
+         55 |         33        1.18       86.84
+         56 |         26        0.93       87.77
+         57 |         18        0.64       88.41
+         58 |         20        0.71       89.13
+         59 |         16        0.57       89.70
+         60 |         44        1.57       91.27
+        60⁶ |          1        0.04       91.30
+         61 |         12        0.43       91.73
+         62 |         24        0.86       92.58
+         63 |         16        0.57       93.16
+      63yrs |          1        0.04       93.19
+         64 |         17        0.61       93.80
+         65 |         26        0.93       94.72
+         66 |         16        0.57       95.29
+         67 |         19        0.68       95.97
+         68 |         14        0.50       96.47
+         69 |          6        0.21       96.68
+         70 |         27        0.96       97.65
+         71 |          7        0.25       97.90
+         72 |          5        0.18       98.07
+         73 |          6        0.21       98.29
+         74 |          9        0.32       98.61
+         75 |         12        0.43       99.04
+         76 |          3        0.11       99.14
+         77 |          3        0.11       99.25
+         78 |          3        0.11       99.36
+         79 |          2        0.07       99.43
+         80 |          3        0.11       99.54
+         81 |          2        0.07       99.61
+         82 |          3        0.11       99.71
+         83 |          1        0.04       99.75
+         84 |          3        0.11       99.86
+         86 |          1        0.04       99.89
+         88 |          1        0.04       99.93
+         91 |          1        0.04       99.96
+         93 |          1        0.04      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+. replace Age = "60" in 2493
+(1 real change made)
+
+. destring Age, gen(age) ignore("," "see" "years" "yrs" "-") // Some observations had , and o as part of
+>  the entries
+Age: characters , space s e y a r - removed; age generated as int
+(85 missing values generated)
+
+. replace age = . if age ==228 ///
+>                         | age == 3 ///
+>                         | age == 228 ///
+>                         | age ==5 // Changing outliers to missing
+(3 real changes made, 3 to missing)
+
+. sum age, detail
+
+                             Age
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%           18             17
+ 5%           21             18
+10%           23             18       Obs               2,717
+25%           29             18       Sum of wgt.       2,717
+
+50%           37                      Mean           39.25359
+                        Largest       Std. dev.       13.9189
+75%           47             88
+90%           60             91       Variance       193.7357
+95%           66             93       Skewness       .7671618
+99%           76            101       Kurtosis       3.199782
+
+. recode age (min/24 =1 "<25 years") (25/34=2 "25-34 years") (35/44=3 "35-44 years") (45/54=4 "45-54 yea
+> rs") (55/64 =5 "55-64 years") (65/max=6 "> 65 years"), gen (Agegrps) 
+(2717 differences between age and Agegrps)
+
+. // generating catergories for age
+. lab var Agegrps "AGE GROUPS"
+
+. tab Agegrps
+
+ AGE GROUPS |      Freq.     Percent        Cum.
+------------+-----------------------------------
+  <25 years |        387       14.24       14.24
+25-34 years |        771       28.38       42.62
+35-44 years |        732       26.94       69.56
+45-54 years |        421       15.50       85.06
+55-64 years |        229        8.43       93.49
+ > 65 years |        177        6.51      100.00
+------------+-----------------------------------
+      Total |      2,717      100.00
+
+. 
+. 
+. ***Gender
+. tab Gender
+
+           Gender |      Freq.     Percent        Cum.
+------------------+-----------------------------------
+           Female |      1,634       59.99       59.99
+             Male |      1,085       39.83       99.82
+            Other |          1        0.04       99.85
+Prefer not to say |          4        0.15      100.00
+------------------+-----------------------------------
+            Total |      2,724      100.00
+
+. encode Gender, gen (gender) // gender entered as a string
+
+. recode gender (2=2 "Male") (1=1 "Female") (3 4=.), gen (sex) // prefer not to say changed to missing
+(5 differences between gender and sex)
+
+. lab var sex "Sex of the participant"
+
+. tab sex, m
+
+ Sex of the |
+participant |      Freq.     Percent        Cum.
+------------+-----------------------------------
+     Female |      1,634       58.25       58.25
+       Male |      1,085       38.68       96.93
+          . |         86        3.07      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+. 
+. 
+. **Marital status
+. tab MaritalStatus
+
+       Marital Status |      Freq.     Percent        Cum.
+----------------------+-----------------------------------
+              Married |      1,359       49.89       49.89
+Separated or divorced |        214        7.86       57.75
+               Single |        934       34.29       92.03
+      Widow / widower |        217        7.97      100.00
+----------------------+-----------------------------------
+                Total |      2,724      100.00
+
+. encode MaritalStatus, gen(marital_status)
+
+. recode marital_status (2 3 4 =2 "single/widowed/separated") (1 =1 "Married"), gen (marstat) 
+(1151 differences between marital_status and marstat)
+
+. lab var marstat "Marital status"
+
+. tab marstat
+
+          Marital status |      Freq.     Percent        Cum.
+-------------------------+-----------------------------------
+                 Married |      1,359       49.89       49.89
+single/widowed/separated |      1,365       50.11      100.00
+-------------------------+-----------------------------------
+                   Total |      2,724      100.00
+
+. 
+. **Education level
+. tab LevelofEducation, nol
+
+        Level of |
+       Education |      Freq.     Percent        Cum.
+-----------------+-----------------------------------
+Bachelors Degree |         34        1.25        1.25
+         Diploma |         54        1.98        3.23
+  Masters Degree |          1        0.04        3.27
+            None |      1,081       39.68       42.95
+             PhD |          1        0.04       42.99
+  Primary School |        812       29.81       72.80
+Secondary School |        741       27.20      100.00
+-----------------+-----------------------------------
+           Total |      2,724      100.00
+
+. encode LevelofEducation, gen (edu)
+
+. tab edu, nol
+
+   Level of |
+  Education |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         34        1.25        1.25
+          2 |         54        1.98        3.23
+          3 |          1        0.04        3.27
+          4 |      1,081       39.68       42.95
+          5 |          1        0.04       42.99
+          6 |        812       29.81       72.80
+          7 |        741       27.20      100.00
+------------+-----------------------------------
+      Total |      2,724      100.00
+
+. recode edu (4=1 "No formal education") (6=2 "Primary level") (7=3 "Secondary level") (1 2 3 5 = 4 "Ter
+> tiary level"), gen (Education)
+(2724 differences between edu and Education)
+
+. lab var Education "Education level"
+
+. tab Education
+
+    Education level |      Freq.     Percent        Cum.
+--------------------+-----------------------------------
+No formal education |      1,081       39.68       39.68
+      Primary level |        812       29.81       69.49
+    Secondary level |        741       27.20       96.70
+     Tertiary level |         90        3.30      100.00
+--------------------+-----------------------------------
+              Total |      2,724      100.00
+
+. 
+. **Head of the household
+. **# Bookmark #1
+. tab HouseholdHead
+
+  Household |
+       Head |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        795       29.19       29.19
+        Yes |      1,929       70.81      100.00
+------------+-----------------------------------
+      Total |      2,724      100.00
+
+. tab HouseholdHead, nol
+
+  Household |
+       Head |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        795       29.19       29.19
+        Yes |      1,929       70.81      100.00
+------------+-----------------------------------
+      Total |      2,724      100.00
+
+. encode HouseholdHead, gen (HH_head) // variable stored as a string
+
+. recode HH_head (2=2 "Yes") (1=1 "No"), gen (HHead)
+(0 differences between HH_head and HHead)
+
+. lab var HHead "Head of the household"
+
+. tab HHead
+
+Head of the |
+  household |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        795       29.19       29.19
+        Yes |      1,929       70.81      100.00
+------------+-----------------------------------
+      Total |      2,724      100.00
+
+. 
+. 
+. /***Village
+> tab village
+> encode village, gen (Village)
+> tab Village
+> **tab 8*/
+. 
+. /***Income // variable ignored due to inconsistencies in data entry
+> desc income
+> destring income, gen (Income)
+> sum Income, det*/ 
+. 
+. **SOCIOECONOMIC FACTORS
+. 
+. **Activity level
+. tab Howoftendoyouengageinsocia
+
+How often do |
+  you engage |
+   in social |
+  activities |
+ with peers? |      Freq.     Percent        Cum.
+-------------+-----------------------------------
+  Frequently |        975       35.79       35.79
+       Never |        108        3.96       39.76
+Occasionally |        938       34.43       74.19
+      Rarely |        703       25.81      100.00
+-------------+-----------------------------------
+       Total |      2,724      100.00
+
+. encode Howoftendoyouengageinsocia, gen (activity)
+
+. recode activity (2 =1 "Never") (4=2 "Rarely") (3=3 "Occasionally") (1=4 "Frequently"), gen (Activityle
+> vel)
+(1786 differences between activity and Activitylevel)
+
+. lab var Activitylevel "Activity level"
+
+. tab Activitylevel, m
+
+    Activity |
+       level |      Freq.     Percent        Cum.
+-------------+-----------------------------------
+       Never |        108        3.85        3.85
+      Rarely |        703       25.06       28.91
+Occasionally |        938       33.44       62.35
+  Frequently |        975       34.76       97.11
+           . |         81        2.89      100.00
+-------------+-----------------------------------
+       Total |      2,805      100.00
+
+. 
+. **Social Media
+. tab Howmuchtimedoyouspendonso
+
+How much time do |
+    you spend on |
+social media per |
+            day? |      Freq.     Percent        Cum.
+-----------------+-----------------------------------
+       1-3 hours |        462       24.18       24.18
+       3-5 hours |        537       28.10       52.28
+   Above 5 hours |        255       13.34       65.62
+Less than 1 hour |        657       34.38      100.00
+-----------------+-----------------------------------
+           Total |      1,911      100.00
+
+. encode Howmuchtimedoyouspendonso, gen (SM)
+
+. recode SM (4=1 "< 1 hour") (1=2 "1-3 hours") (2=3 "3-5 hours") (3=4 "> 5 hours"), gen (SocialMedia)
+(1911 differences between SM and SocialMedia)
+
+. lab var SocialMedia "Social Media Use"
+
+. tab SocialMedia, m
+
+     Social |
+  Media Use |      Freq.     Percent        Cum.
+------------+-----------------------------------
+   < 1 hour |        657       23.42       23.42
+  1-3 hours |        462       16.47       39.89
+  3-5 hours |        537       19.14       59.04
+  > 5 hours |        255        9.09       68.13
+          . |        894       31.87      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+. 
+. 
+. **tab How supportive do you |
+. tab Howsupportivedoyoufindyour
+
+How supportive do you |
+  find your family in |
+  your academic life? |      Freq.     Percent        Cum.
+----------------------+-----------------------------------
+Moderately Supportive |        447       43.65       43.65
+       Not Supportive |        252       24.61       68.26
+  Slightly Supportive |        132       12.89       81.15
+           Supportive |        159       15.53       96.68
+      Very Supportive |         34        3.32      100.00
+----------------------+-----------------------------------
+                Total |      1,024      100.00
+
+. encode Howsupportivedoyoufindyour, gen (supportive)
+
+. recode supportive (2=1 "Not suppotive") (3=2 "Slightly supportive") (1=3 "Moderately Supportive") (4=4
+>  "Supportive") (5=5 "Very Supportive"), gen (Supportive)
+(831 differences between supportive and Supportive)
+
+. lab var Supportive "family support"
+
+. tab Supportive
+
+       family support |      Freq.     Percent        Cum.
+----------------------+-----------------------------------
+        Not suppotive |        252       24.61       24.61
+  Slightly supportive |        132       12.89       37.50
+Moderately Supportive |        447       43.65       81.15
+           Supportive |        159       15.53       96.68
+      Very Supportive |         34        3.32      100.00
+----------------------+-----------------------------------
+                Total |      1,024      100.00
+
+. 
+.  
+. /***Sources of Income //98.8% missing
+> tab Whatisyourprimarysourceoff
+> encode Whatisyourprimarysourceoff, gen (SourceIncome)
+> recode SourceIncome (1=1 "Family") (2=2 "Loan") (4=3 "Personal") (5=4 "Scholarship") (3=5 "Other"), ge
+> n (Incomesource)
+> lab var Incomesource "Sources of Income"
+> tab Incomesource
+>  */
+.  
+. /***Difficulties // 98.6% missing
+> tab Haveyoufacedfinancialdifficu
+> tab Haveyoufacedfinancialdifficu, m
+> encode Haveyoufacedfinancialdifficu, gen (difficult)
+> recode difficult (1=1 "No") (2=2 "Yes") , gen (Difficult)
+> lab var Difficult "Financial difficulty in time at University"
+> tab Difficult*/ 
+.  
+. ***If yes, how many times //99.3% missing
+. /*tab Ifyeshowoftenhavethesefin, m
+> encode Ifyeshowoftenhavethesefin, gen (howoften)
+> recode howoften (2=1 "Never") (4=2 "Rarely") (3=3 "Occasionally") (1=4 "Frequently"), gen (HowOften)
+> lab var HowOften "How often have you faced financial difficulties"
+> tab HowOften*/
+.  
+. 
+. /**Awareness of mental health facilities  // 98.9% missing
+> tab Areyouawareofthementalheal, m
+> encode Areyouawareofthementalheal, gen (awareness)
+> recode awareness (1=1 "No") (2=2 "Yes"), gen (Awareness)
+> lab var Awareness "Awareness of mental health services available in the university"
+> tab Awareness*/
+. 
+. **Used mental healths ervices in the last 12 months
+. /*tab Overthepast12monthshaveyo, m // 98.9% missing
+> encode Overthepast12monthshaveyo, gen (MHservices)
+> recode MHservices (1=1 "No") (2=2 "Yes"), gen (MHServices)
+> lab var MHServices "Used mental health services in the last 12 months"
+> tab MHServices*/
+. 
+. ***How would you rate the effectiveness of these mental health services?
+. tab Howwouldyouratetheeffective, m // 99.8% missing
+
+  How would you rate |
+the effectiveness of |
+ these mental health |
+           services? |      Freq.     Percent        Cum.
+---------------------+-----------------------------------
+                     |      2,799       99.79       99.79
+           Effective |          1        0.04       99.82
+Moderately Effective |          4        0.14       99.96
+  Slightly effective |          1        0.04      100.00
+---------------------+-----------------------------------
+               Total |      2,805      100.00
+
+. 
+. 
+. ***Experienced symptoms of depression, anxiety, or stress
+. /*tab AE, m  // 98.7% missing
+> encode AE, gen (symptoms)
+> recode symptoms (1=1 "No") (2=2 "Yes"), gen (Symptoms)
+> lab var Symptoms "Expreienced symptoms of depression, anxiety or stress"
+> tab Symptoms*/
+. 
+. ***if yes
+. /*tab Ifyesdidyouseekanyprofess, m // 99.5% missing
+> encode Ifyesdidyouseekanyprofess, gen (seekhelp)
+> recode seekhelp (1=1 "No") (2=2 "Yes"), gen (SeekHelp)
+> lab var SeekHelp "Did you seek help"
+> tab SeekHelp*/
+. 
+. 
+. 
+. **Generalized Anxiety Disorder 7-item (GAD-7)
+. ***The Generalized Anxiety Disorder 7-item (GAD-7) is a easy to perform initial screening tool for gen
+> eralized anxiety disorder
+. 
+. **GAD variables
+. rename Feelingnervousanxiousoron nervous
+
+. rename Notbeingabletostoporcontro control_worrying
+
+. rename Worryingtoomuchaboutdifferen worry_too_much
+
+. rename Troublerelaxing  relaxing
+
+. rename Beingsorestlessthatitshard restless
+
+. rename BecomingeasilyannoyedorIrrit irritable
+
+. rename Feelingafraidasifsomethinga afraid
+
+. 
+. foreach var of varlist nervous - afraid {
+  2.         encode `var', gen (`var'_1)
+  3. }
+
+. 
+. foreach var of varlist nervous_1 - afraid_1 {
+  2.         recode `var' (2=0 "not at all") (4=1 "several days") (3=2 "more than half the days") (1=3 "
+> Nearly everyday"), gen (`var'_2)
+  3. }
+(2719 differences between nervous_1 and nervous_1_2)
+(2714 differences between control_worrying_1 and control_worrying_1_2)
+(2713 differences between worry_too_much_1 and worry_too_much_1_2)
+(2703 differences between relaxing_1 and relaxing_1_2)
+(2688 differences between restless_1 and restless_1_2)
+(2712 differences between irritable_1 and irritable_1_2)
+(2696 differences between afraid_1 and afraid_1_2)
+
+. 
+. lab var nervous_1_2 "Feeling nervous, anxious, or on edge"
+
+. lab var control_worrying_1_2 "Not being able to stop or control worrying"
+
+. lab var worry_too_much_1_2 "Worrying too much about different things"
+
+. lab var relaxing_1_2 "Trouble relaxing"
+
+. lab var restless_1_2 "Being so restless that it's hard to sit still"
+
+. lab var irritable_1_2 "Becoming easily annoyed or Irritable"
+
+. lab var afraid_1_2 "Feeling afraid as if something awful might happen"
+
+. 
+. rename nervous_1_2 Nervous
+
+. rename control_worrying_1_2 Worrying
+
+. rename worry_too_much_1_2 Things
+
+. rename relaxing_1_2 Trouble
+
+. rename restless_1_2 Restless
+
+. rename irritable_1_2 Irritable
+
+. rename afraid_1_2 Afraid
+
+. 
+. foreach var of varlist Nervous-Afraid {
+  2.   tab `var', m
+  3.    }
+
+       Feeling nervous, |
+    anxious, or on edge |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,203       42.89       42.89
+           several days |      1,227       43.74       86.63
+more than half the days |        184        6.56       93.19
+        Nearly everyday |        105        3.74       96.93
+                      . |         86        3.07      100.00
+------------------------+-----------------------------------
+                  Total |      2,805      100.00
+
+ Not being able to stop |
+    or control worrying |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,569       55.94       55.94
+           several days |        644       22.96       78.89
+more than half the days |        449       16.01       94.90
+        Nearly everyday |         52        1.85       96.76
+                      . |         91        3.24      100.00
+------------------------+-----------------------------------
+                  Total |      2,805      100.00
+
+Worrying too much about |
+       different things |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,343       47.88       47.88
+           several days |        964       34.37       82.25
+more than half the days |        322       11.48       93.73
+        Nearly everyday |         84        2.99       96.72
+                      . |         92        3.28      100.00
+------------------------+-----------------------------------
+                  Total |      2,805      100.00
+
+       Trouble relaxing |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,774       63.24       63.24
+           several days |        557       19.86       83.10
+more than half the days |        308       10.98       94.08
+        Nearly everyday |         64        2.28       96.36
+                      . |        102        3.64      100.00
+------------------------+-----------------------------------
+                  Total |      2,805      100.00
+
+ Being so restless that |
+ it's hard to sit still |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,735       61.85       61.85
+           several days |        601       21.43       83.28
+more than half the days |        272        9.70       92.98
+        Nearly everyday |         80        2.85       95.83
+                      . |        117        4.17      100.00
+------------------------+-----------------------------------
+                  Total |      2,805      100.00
+
+Becoming easily annoyed |
+           or Irritable |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        843       30.05       30.05
+           several days |      1,332       47.49       77.54
+more than half the days |        420       14.97       92.51
+        Nearly everyday |        117        4.17       96.68
+                      . |         93        3.32      100.00
+------------------------+-----------------------------------
+                  Total |      2,805      100.00
+
+   Feeling afraid as if |
+  something awful might |
+                 happen |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,364       48.63       48.63
+           several days |        882       31.44       80.07
+more than half the days |        341       12.16       92.23
+        Nearly everyday |        109        3.89       96.11
+                      . |        109        3.89      100.00
+------------------------+-----------------------------------
+                  Total |      2,805      100.00
+
+.    
+. count if Nervous==. | Worrying==. | Things==. | Trouble==.| Restless==.| Irritable==.| Afraid ==.
+  180
+
+. **84 Participants miss atleast one of the components required to calculate GAD score
+. 
+. egen GAD = rowtotal (Nervous-Afraid)
+
+. replace GAD =. if Nervous==. | Worrying==. | Things==. | Trouble==.| Restless==.| Irritable==.| Afraid
+>  ==.
+(180 real changes made, 180 to missing)
+
+. 
+. ***GAD7 SCORES
+. sum GAD, detail
+
+                             GAD
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            0              0
+ 5%            0              0
+10%            0              0       Obs               2,625
+25%            1              0       Sum of wgt.       2,625
+
+50%            4                      Mean           4.665143
+                        Largest       Std. dev.      3.921226
+75%            8             18
+90%           10             18       Variance       15.37601
+95%           11             19       Skewness       .6260701
+99%           14             21       Kurtosis       2.493634
+
+. 
+. **Generating GAD categories 
+. ***Computing GAD-7 scores: Score 0-4: Minimal Anxiety. Score 5-9: Mild Anxiety. Score 10-14: Moderate 
+> Anxiety. Score greater than 15: Severe Anxiety.
+. recode GAD (min/4 =1 "Minimal") (5/9=2 "Mild") (10/14= 3 "Moderate ") (15/max=4 "Severe") (.=.), gen (
+> GADcategory)
+(2206 differences between GAD and GADcategory)
+
+. lab var GADcategory "GAD Category"
+
+. tab GADcategory, m
+
+        GAD |
+   Category |      Freq.     Percent        Cum.
+------------+-----------------------------------
+    Minimal |      1,475       52.58       52.58
+       Mild |        797       28.41       81.00
+  Moderate  |        327       11.66       92.66
+     Severe |         26        0.93       93.58
+          . |        180        6.42      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+. 
+. 
+. 
+. 
+. **PHQ9 QUESTIONNAIRE
+. ***The PHQ-9 is a multipurpose instrument for screening, diagnosing, monitoring and measuring the seve
+> rity of depression.
+. 
+. rename Littleinterestorpleasureind interest
+
+. rename Feelingdowndepressedorhope hopeless
+
+. rename Troublefallingorstayingaslee sleeping
+
+. rename Feelingtiredorhavinglittlee tired
+
+. rename Poorappetiteorovereating appetite
+
+. rename Feelingbadaboutyourselfor family
+
+. rename Troubleconcentratingonthings concentrating
+
+. rename Movingorspeakingsoslowlytha moving
+
+. rename Thoughtsthatyouwouldbebette thoughts
+
+. 
+. foreach var of varlist interest - thoughts {
+  2.         encode `var', gen (`var'_1)
+  3. }
+
+. 
+. foreach var of varlist interest_1 - thoughts_1 {
+  2.         recode `var' (3=0 "not at all") (4=1 "several days") (1=2 "more than half the days") (2=3 "
+> Nearly everyday"), gen (`var'_2)
+  3. }
+(2713 differences between interest_1 and interest_1_2)
+(2710 differences between hopeless_1 and hopeless_1_2)
+(2709 differences between sleeping_1 and sleeping_1_2)
+(2716 differences between tired_1 and tired_1_2)
+(2700 differences between appetite_1 and appetite_1_2)
+(2676 differences between family_1 and family_1_2)
+(2712 differences between concentrating_1 and concentrating_1_2)
+(2715 differences between moving_1 and moving_1_2)
+(2697 differences between thoughts_1 and thoughts_1_2)
+
+. 
+. lab var interest_1_2 "Little interest or pleasure in doing things"
+
+. lab var hopeless_1_2 "Feeling down, depressed, or hopeless"
+
+. lab var sleeping_1_2 "Trouble falling or staying asleep, or sleeping too much"
+
+. lab var tired_1_2 "Feeling tired or having little energy"
+
+. lab var appetite_1_2 "Poor appetite or overeating"
+
+. lab var family_1_2 "Feeling bad about yourself — or that you are a failure or have let yourself or you
+> r family down"
+note: label truncated to 80 characters
+
+. lab var concentrating_1_2 "Trouble concentrating on things, such as reading the newspaper or watching 
+> television"
+note: label truncated to 80 characters
+
+. lab var moving_1_2 "Moving or speaking so slowly that other people could have noticed? Or the opposite
+>  — being so fidgety or restless that you have been moving around a lot more than usual"
+note: label truncated to 80 characters
+
+. lab var thoughts_1_2 "Thoughts that you would be better off dead or of hurting yourself in some way"
+
+. 
+. rename interest_1_2 Interest
+
+. rename hopeless_1_2 Hopeless
+
+. rename sleeping_1_2 Sleeping
+
+. rename tired_1_2 Tired
+
+. rename appetite_1_2 Appetite
+
+. rename family_1_2 Family
+
+. rename concentrating_1_2 Concentrating
+
+. rename moving_1_2 Moving
+
+. rename thoughts_1_2 Thoughts
+
+. 
+. foreach var of varlist Interest-Thoughts {
+  2.   tab `var', m
+  3.    }
+
+     Little interest or |
+      pleasure in doing |
+                 things |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,016       36.22       36.22
+           several days |      1,419       50.59       86.81
+more than half the days |        208        7.42       94.22
+        Nearly everyday |         70        2.50       96.72
+                      . |         92        3.28      100.00
+------------------------+-----------------------------------
+                  Total |      2,805      100.00
+
+          Feeling down, |
+ depressed, or hopeless |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,390       49.55       49.55
+           several days |        723       25.78       75.33
+more than half the days |        480       17.11       92.44
+        Nearly everyday |        117        4.17       96.61
+                      . |         95        3.39      100.00
+------------------------+-----------------------------------
+                  Total |      2,805      100.00
+
+     Trouble falling or |
+     staying asleep, or |
+      sleeping too much |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,162       41.43       41.43
+           several days |      1,050       37.43       78.86
+more than half the days |        366       13.05       91.91
+        Nearly everyday |        131        4.67       96.58
+                      . |         96        3.42      100.00
+------------------------+-----------------------------------
+                  Total |      2,805      100.00
+
+Feeling tired or having |
+          little energy |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        847       30.20       30.20
+           several days |      1,417       50.52       80.71
+more than half the days |        344       12.26       92.98
+        Nearly everyday |        108        3.85       96.83
+                      . |         89        3.17      100.00
+------------------------+-----------------------------------
+                  Total |      2,805      100.00
+
+       Poor appetite or |
+             overeating |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,564       55.76       55.76
+           several days |        667       23.78       79.54
+more than half the days |        358       12.76       92.30
+        Nearly everyday |        111        3.96       96.26
+                      . |        105        3.74      100.00
+------------------------+-----------------------------------
+                  Total |      2,805      100.00
+
+      Feeling bad about |
+     yourself — or that |
+   you are a failure or |
+ have let yourself or y |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,545       55.08       55.08
+           several days |        718       25.60       80.68
+more than half the days |        295       10.52       91.19
+        Nearly everyday |        118        4.21       95.40
+                      . |        129        4.60      100.00
+------------------------+-----------------------------------
+                  Total |      2,805      100.00
+
+  Trouble concentrating |
+     on things, such as |
+  reading the newspaper |
+      or watching telev |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,829       65.20       65.20
+           several days |        644       22.96       88.16
+more than half the days |        183        6.52       94.69
+        Nearly everyday |         56        2.00       96.68
+                      . |         93        3.32      100.00
+------------------------+-----------------------------------
+                  Total |      2,805      100.00
+
+  Moving or speaking so |
+      slowly that other |
+      people could have |
+ noticed? Or the opposi |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,526       54.40       54.40
+           several days |        745       26.56       80.96
+more than half the days |        363       12.94       93.90
+        Nearly everyday |         81        2.89       96.79
+                      . |         90        3.21      100.00
+------------------------+-----------------------------------
+                  Total |      2,805      100.00
+
+Thoughts that you would |
+  be better off dead or |
+ of hurting yourself in |
+               some way |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,957       69.77       69.77
+           several days |        560       19.96       89.73
+more than half the days |        126        4.49       94.22
+        Nearly everyday |         54        1.93       96.15
+                      . |        108        3.85      100.00
+------------------------+-----------------------------------
+                  Total |      2,805      100.00
+
+. 
+. 
+. ****PHQ-9 ANALYSIS 
+. **PHQ-9 SCORES
+. egen PHQ = rowtotal(Interest-Thoughts), m
+(84 missing values generated)
+
+. sum PHQ, det
+
+                             PHQ
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            0              0
+ 5%            0              0
+10%            0              0       Obs               2,721
+25%            2              0       Sum of wgt.       2,721
+
+50%            4                      Mean           5.853363
+                        Largest       Std. dev.      4.908519
+75%           10             25
+90%           13             25       Variance       24.09356
+95%           14             26       Skewness       .7487417
+99%           18             27       Kurtosis       2.734285
+
+. 
+. count if Interest==. | Hopeless==. | Sleeping==. | Tired==.| Appetite==.| Family ==. |Concentrating==.
+> | Moving==.| Thoughts==.
+  215
+
+. 
+. **54 Participants missing at least one variable required to calculate a PHQ score
+. 
+. ***PHQ-9 categories: 0-4 None/minimal; 5-9 Mild; 10-14 Moderate; 15-19 Moderately severe; 20-27 Severe
+. replace PHQ=. if Interest==. | Hopeless==. | Sleeping==. | Tired==.| Appetite==.| Family ==. |Concentr
+> ating==.| Moving==.| Thoughts==.
+(131 real changes made, 131 to missing)
+
+. 
+. ***PHQ-9 categories: 0-4 None/minimal; 5-9 Mild; 10-14 Moderate; 15-19 Moderately severe; 20-27 Severe
+. recode PHQ (min/4=1 "None/minimal") (5/9=2 "Mild") (10/14=3 "Moderate") (15/19=4 "Moderate severe") (2
+> 0/27=4 "Severe"), gen (PHQcat)
+(2401 differences between PHQ and PHQcat)
+
+. lab var PHQcat "PHQ Category"
+
+. tab PHQcat
+
+PHQ Category |      Freq.     Percent        Cum.
+-------------+-----------------------------------
+None/minimal |      1,366       52.74       52.74
+        Mild |        486       18.76       71.51
+    Moderate |        629       24.29       95.79
+      Severe |        109        4.21      100.00
+-------------+-----------------------------------
+       Total |      2,590      100.00
+
+. 
+. 
+. 
+. 
+. ***Psychosis Screening Questionnaire
+. **Hypomania Probe
+. tab HypomaniaprobeOverthepasty
+
+  Hypomania |
+probe: Over |
+   the past |
+ year, have |
+ there been |
+ times when |
+   you felt |
+    very ha |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      1,339       49.91       49.91
+        Yes |      1,344       50.09      100.00
+------------+-----------------------------------
+      Total |      2,683      100.00
+
+. tab Wasthereanobviousreasonfor, m //55% missing
+
+  Was there |
+ an obvious |
+ reason for |
+  this? (b) |
+   Did your |
+  relatives |
+ or friends |
+   think it |      Freq.     Percent        Cum.
+------------+-----------------------------------
+            |      1,467       52.30       52.30
+         No |        608       21.68       73.98
+        Yes |        730       26.02      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+. lab var HypomaniaprobeOverthepasty "you felt very happy indeed without a break for days on end"
+
+. lab var Wasthereanobviousreasonfor "Hypomania"
+
+. encode HypomaniaprobeOverthepasty, gen (Hypomania)
+
+. encode Wasthereanobviousreasonfor, gen (Hypomania2)
+
+. 
+. 
+. **Thought insertion
+. tab ThoughtinsertionOverthepast
+
+    Thought |
+ insertion: |
+   Over the |
+ past year, |
+   have you |
+  ever felt |
+  that your |
+   thoughts |
+        wer |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      2,345       86.53       86.53
+        Yes |        365       13.47      100.00
+------------+-----------------------------------
+      Total |      2,710      100.00
+
+. tab Ifyesdidthiscomeaboutina, m //75% missing
+
+If yes, did |
+  this come |
+ about in a |
+   way that |
+many people |
+ would find |
+    hard to |
+    believe |      Freq.     Percent        Cum.
+------------+-----------------------------------
+            |      2,445       87.17       87.17
+         No |        167        5.95       93.12
+        Yes |        193        6.88      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+. lab var ThoughtinsertionOverthepast "felt that your thoughts were directly interfered with or controll
+> ed by some outside force or person"
+note: label truncated to 80 characters
+
+. lab var Ifyesdidthiscomeaboutina "Though insertion"
+
+. encode ThoughtinsertionOverthepast, gen (Thoughtinsertion)
+
+. encode Ifyesdidthiscomeaboutina, gen (Thoughtinsertion2)
+
+. 
+. **Paranoia Probe
+. tab ParanoiaProbeOverthepastye
+
+   Paranoia |
+Probe: Over |
+   the past |
+ year, have |
+ there been |
+ times when |
+   you felt |
+   that peo |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      1,927       71.19       71.19
+        Yes |        780       28.81      100.00
+------------+-----------------------------------
+      Total |      2,707      100.00
+
+. tab Ifyeshavetherebeentimeswh, m //70% missing
+
+    If yes, |
+ have there |
+ been times |
+   when you |
+  felt that |
+people were |
+deliberatel |
+   y acting |      Freq.     Percent        Cum.
+------------+-----------------------------------
+            |      2,030       72.37       72.37
+         No |        510       18.18       90.55
+        Yes |        265        9.45      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+. lab var ParanoiaProbeOverthepastye "u felt that people were against youu felt that people were against
+>  you"
+
+. lab var Ifyeshavetherebeentimeswh"Paranoia"
+
+. encode ParanoiaProbeOverthepastye, gen (Paranoia)
+
+. encode Ifyeshavetherebeentimeswh, gen (Paranoia2)
+
+. 
+. **Strange experiences
+. tab StrangeexperiencesOverthepa
+
+    Strange |
+experiences |
+ : Over the |
+ past year, |
+ have there |
+ been times |
+   when you |
+   felt tha |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      2,238       82.86       82.86
+        Yes |        463       17.14      100.00
+------------+-----------------------------------
+      Total |      2,701      100.00
+
+. tab Ifyesdidyoufeelitwassos, m //76% missing
+
+If yes, did |
+you feel it |
+     was so |
+    strange |
+ that other |
+     people |
+ would find |
+    it very |
+       hard |      Freq.     Percent        Cum.
+------------+-----------------------------------
+            |      2,344       83.57       83.57
+         No |        205        7.31       90.87
+        Yes |        256        9.13      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+. lab var StrangeexperiencesOverthepa "have there been times when you felt that something strange was go
+> ing on"
+
+. lab var Ifyesdidyoufeelitwassos "Strange experiences"
+
+. encode StrangeexperiencesOverthepa, gen (Strangeexperiences)
+
+. encode Ifyesdidyoufeelitwassos, gen (Strangeexperiences2)
+
+. 
+. **Hallucinations
+. tab HallucinationsOverthepastye
+
+Hallucinati |
+  ons: Over |
+   the past |
+ year, have |
+ there been |
+ times when |
+   you felt |
+   that som |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      2,308       85.29       85.29
+        Yes |        398       14.71      100.00
+------------+-----------------------------------
+      Total |      2,706      100.00
+
+. tab BL, m // 78% missing
+
+If yes, did |
+you feel it |
+     was so |
+    strange |
+ that other |
+     people |
+ would find |
+    it very |
+       hard |      Freq.     Percent        Cum.
+------------+-----------------------------------
+            |      2,417       86.17       86.17
+         No |        190        6.77       92.94
+        Yes |        198        7.06      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+. lab var HallucinationsOverthepastye "heard or saw things that other people couldn't"
+
+. lab var BL "Hallucinations"
+
+. encode HallucinationsOverthepastye, gen (Hallucinations)
+
+. encode BL, gen (Hallucinations2)
+
+. 
+. foreach var of varlist Hypomania-Hallucinations2 {
+  2.   tab `var', m
+  3.    }
+
+   you felt |
+ very happy |
+     indeed |
+  without a |
+  break for |
+days on end |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      1,339       47.74       47.74
+        Yes |      1,344       47.91       95.65
+          . |        122        4.35      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+  Hypomania |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        608       21.68       21.68
+        Yes |        730       26.02       47.70
+          . |      1,467       52.30      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+  felt that |
+       your |
+   thoughts |
+       were |
+   directly |
+ interfered |
+    with or |
+ controlled |
+    by some |
+       outs |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      2,345       83.60       83.60
+        Yes |        365       13.01       96.61
+          . |         95        3.39      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+     Though |
+  insertion |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        167        5.95        5.95
+        Yes |        193        6.88       12.83
+          . |      2,445       87.17      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+u felt that |
+people were |
+    against |
+  youu felt |
+that people |
+       were |
+against you |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      1,927       68.70       68.70
+        Yes |        780       27.81       96.51
+          . |         98        3.49      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+   Paranoia |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        510       18.18       18.18
+        Yes |        265        9.45       27.63
+          . |      2,030       72.37      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+ have there |
+ been times |
+   when you |
+  felt that |
+  something |
+strange was |
+   going on |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      2,238       79.79       79.79
+        Yes |        463       16.51       96.29
+          . |        104        3.71      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+    Strange |
+experiences |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        205        7.31        7.31
+        Yes |        256        9.13       16.43
+          . |      2,344       83.57      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+   heard or |
+ saw things |
+ that other |
+     people |
+   couldn't |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      2,308       82.28       82.28
+        Yes |        398       14.19       96.47
+          . |         99        3.53      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+Hallucinati |
+        ons |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        190        6.77        6.77
+        Yes |        198        7.06       13.83
+          . |      2,417       86.17      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+. 
+. /*rename hypomania_supplement hypomania
+> rename hypomania_supplement_001 hypomania2
+> rename thoughtinsertion_supplement insertion
+> rename thoughtinsertion_supplement_001 insertion2
+> rename paranoia_supplement paranoia
+> rename paranoia_supplement_001 paranoia2
+> rename strangeexperience_supplement strange 
+> rename strangeexperience_supplement_001 strange2
+> rename hallucinations_supplement hallucination
+> rename hallucinations_supplement_001 hallucination2
+> 
+> foreach var of varlist hypomania-hallucination2{
+>         encode `var', gen (`var'_1)
+> }*/
+. 
+. 
+. **For an item to be considered positive, both the root and the additional corroborating questions have
+>  to be endorsed either in the last 12 months or lifetime.
+. gen Hypomaniasymp =. 
+(2,805 missing values generated)
+
+. replace Hypomaniasymp =1 if Hypomania==2 & Hypomania2 ==2
+(730 real changes made)
+
+. replace Hypomaniasymp = 2 if Hypomaniasymp !=1
+(2,075 real changes made)
+
+. lab var Hypomaniasymp "Symptoms of hypomania"
+
+. tab Hypomaniasymp
+
+Symptoms of |
+  hypomania |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        730       26.02       26.02
+          2 |      2,075       73.98      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+. 
+. gen Insertion =. 
+(2,805 missing values generated)
+
+. replace Insertion =1 if Thoughtinsertion==2 & Thoughtinsertion2 ==2
+(193 real changes made)
+
+. replace Insertion = 2 if Thoughtinsertion ==1 | Thoughtinsertion2 == 1
+(2,512 real changes made)
+
+. replace Insertion =. if Thoughtinsertion == . 
+(0 real changes made)
+
+. lab var Insertion "Thought insertion"
+
+. tab Insertion
+
+    Thought |
+  insertion |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        193        7.13        7.13
+          2 |      2,512       92.87      100.00
+------------+-----------------------------------
+      Total |      2,705      100.00
+
+. 
+. gen Paranoiasymp =. 
+(2,805 missing values generated)
+
+. replace Paranoiasymp =1 if Paranoia==2 & Paranoia2 ==2
+(265 real changes made)
+
+. replace Paranoiasymp = 2 if Paranoia ==1 | Paranoia2 ==1
+(2,437 real changes made)
+
+. replace Paranoiasymp = . if Paranoia == . 
+(0 real changes made)
+
+. lab var Paranoiasymp "Symptoms of paranoia"
+
+. tab Paranoiasymp
+
+Symptoms of |
+   paranoia |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        265        9.81        9.81
+          2 |      2,437       90.19      100.00
+------------+-----------------------------------
+      Total |      2,702      100.00
+
+. 
+. gen Strange =. 
+(2,805 missing values generated)
+
+. replace Strange = 1 if Strangeexperiences==2 & Strangeexperiences2==2
+(256 real changes made)
+
+. replace Strange = 2 if Strangeexperiences==1 | Strangeexperiences2==1
+(2,443 real changes made)
+
+. replace Strange = . if  Strangeexperiences ==.
+(0 real changes made)
+
+. lab var Strange "Strange experiences"
+
+. tab Strange
+
+    Strange |
+experiences |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        256        9.48        9.48
+          2 |      2,443       90.52      100.00
+------------+-----------------------------------
+      Total |      2,699      100.00
+
+. 
+. gen Hallucinationsymp =. 
+(2,805 missing values generated)
+
+. replace Hallucinationsymp =1 if Hallucinations==2 & Hallucinations2 ==2
+(198 real changes made)
+
+. replace Hallucinationsymp = 2 if Hallucinations == 1 | Hallucinations2 == 1
+(2,498 real changes made)
+
+. replace Hallucinationsymp = . if Hallucinations ==.
+(0 real changes made)
+
+. lab var Hallucinationsymp "Symptoms of Hallucination"
+
+. tab Hallucinationsymp
+
+Symptoms of |
+Hallucinati |
+         on |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        198        7.34        7.34
+          2 |      2,498       92.66      100.00
+------------+-----------------------------------
+      Total |      2,696      100.00
+
+. 
+. 
+. ***In addition to these five binary measures, a composite screening measure was created using response
+> s across all five psychotic symptoms (0 = negative on all; 1 = positive on any) and was further catego
+> rized into past-year 
+. 
+. gen Psychosis =.
+(2,805 missing values generated)
+
+. replace Psychosis =1 if Hypomaniasymp ==1 | Insertion==1 | Paranoiasymp ==1 | Strange==1 | Hallucinati
+> onsymp==1
+(1,017 real changes made)
+
+. replace Psychosis =. if Hypomaniasymp ==. & Insertion==. & Paranoiasymp ==. & Strange==. & Hallucinati
+> onsymp==.
+(0 real changes made)
+
+. replace Psychosis =2 if Psychosis !=1
+(1,788 real changes made)
+
+. lab var Psychosis "Diagnosis of psychosis"
+
+. tab Psychosis
+
+  Diagnosis |
+         of |
+  psychosis |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |      1,017       36.26       36.26
+          2 |      1,788       63.74      100.00
+------------+-----------------------------------
+      Total |      2,805      100.00
+
+. 
+. 
+. 
+. keep age Agegrps  sex marstat Education HHead Activitylevel SocialMedia Nervous Worrying Things Troubl
+> e Restless Irritable Afraid GADcategory GAD Interest Hopeless Sleeping  Tired Appetite Family Concentr
+> ating Moving Thoughts PHQcat PHQ Hypomania Hypomania2 Thoughtinsertion Thoughtinsertion2 Paranoia Para
+> noia2 Strangeexperiences Strangeexperiences2 Hallucinations Hallucinations2 Hypomaniasymp Insertion Pa
+> ranoiasymp Strange Hallucinationsymp Psychosis
+
+. 
+. save community2.dta, replace
+file community2.dta saved
+
+. 
+. 
+. 
+. clear all
+
+. 
+. 
+. ****Importing dataset
+.  import excel "D:\Mental Health\Excel Datasets\Uchunguzi_wa_afya_ya_akili_-_all_versions_-_labels_-_20
+> 24-09-16-10-23-32.xlsx", sheet("Uchunguzi wa afya ya akili") firstrow
+(94 vars, 662 obs)
+
+. 
+. mdesc
+
+    Variable    |     Missing          Total     Percent Missing
+----------------+-----------------------------------------------
+   Utafitihuu~d |          18            662           2.72
+   ResearchAs~s |          18            662           2.72
+      StartTime |          18            662           2.72
+   DateofInte~w |          33            662           4.98
+   SECTION1DE~I |         662            662         100.00
+   Majinakamili |          19            662           2.87
+   Nambariyas~u |          24            662           3.63
+           Umri |          18            662           2.72
+         Jinsia |          18            662           2.72
+   Nyinginezo~a |         662            662         100.00
+     HaliyaNdoa |          18            662           2.72
+   Kiwangocha~u |          18            662           2.72
+   KichwachaK~a |          18            662           2.72
+         Kijiji |          23            662           3.47
+   MwakawaMas~o |         556            662          83.99
+   KoziyaMasomo |         647            662          97.73
+   ChanzochaM~o |         353            662          53.32
+   SECTION2SO~S |         662            662         100.00
+   Jeunashiri~a |          18            662           2.72
+   Unapatajeu~a |         631            662          95.32
+   Unatumiamu~d |          31            662           4.68
+   Chanzochak~i |         638            662          96.37
+   Jeumewahik~o |         637            662          96.22
+   Ikiwandion~i |         642            662          96.98
+   SECTION3AC~T |         662            662         100.00
+   Jeunafaham~a |         638            662          96.37
+   Katikamiez~a |         639            662          96.53
+   Kwakipimoc~u |         661            662          99.85
+   Kwamaoniya~y |         648            662          97.89
+   SECTION4GE~H |         662            662         100.00
+             AE |         638            662          96.37
+   Ikiwandiou~a |         650            662          98.19
+   Nimsaadaga~a |         649            662          98.04
+   SECTION5GAD7 |         662            662         100.00
+   Kwakipindi~z |         662            662         100.00
+   Kuwanawasi~u |          20            662           3.02
+   Kutowezaku~t |          23            662           3.47
+   Mwenyewasi~h |          23            662           3.47
+   Mwenyetati~u |          21            662           3.17
+   Uliyekosau~a |          26            662           3.93
+   Mwenyehasi~h |          21            662           3.17
+   Mwenyewoga~o |          24            662           3.63
+   SECTION6PHQ9 |         662            662         100.00
+   Jekwakipin~z |         662            662         100.00
+   Usiyekuwan~a |          19            662           2.87
+   Kujihisimn~i |          20            662           3.02
+   Unamatatiz~i |          22            662           3.32
+   Kujihisimc~u |          22            662           3.32
+   Mwenyekuko~u |          33            662           4.98
+   Kujihisivi~m |          23            662           3.47
+   Kuwamatati~m |          24            662           3.63
+   Kutembeaau~a |          20            662           3.02
+   Kujihisikw~a |          24            662           3.63
+   SECTION7PS~S |         662            662         100.00
+   Hypomaniap~a |          45            662           6.80
+   Jekulikuwa~y |         618            662          93.35
+   Thoughtins~d |          22            662           3.32
+   Jehililili~a |         595            662          89.88
+   ParanoiaPr~w |          21            662           3.17
+   Jekunanyak~i |         532            662          80.36
+   Strangeexp~a |          23            662           3.47
+   Jeulihisik~a |         599            662          90.48
+   Hallucinat~w |          24            662           3.63
+   Jewakatiwo~i |         616            662          93.05
+        EndTime |          33            662           4.98
+   OtherSpecify |         662            662         100.00
+   Overthelas~n |         662            662         100.00
+   Feelingner~n |         662            662         100.00
+   Notbeingab~o |         662            662         100.00
+   Worryingto~n |         662            662         100.00
+   Troublerel~g |         662            662         100.00
+   Beingsores~d |         662            662         100.00
+   Becomingea~t |         662            662         100.00
+   Feelingafr~a |         662            662         100.00
+             BW |         662            662         100.00
+   Littleinte~d |         662            662         100.00
+   Feelingdow~e |         662            662         100.00
+   Troublefal~e |         662            662         100.00
+   Feelingtir~e |         662            662         100.00
+   Poorappeti~g |         662            662         100.00
+   Feelingbad~r |         662            662         100.00
+   Troublecon~s |         662            662         100.00
+   Movingorsp~a |         662            662         100.00
+   Thoughtsth~e |         662            662         100.00
+            _id |           0            662           0.00
+          _uuid |           0            662           0.00
+   _submissio~e |           0            662           0.00
+   _validatio~s |         662            662         100.00
+         _notes |         662            662         100.00
+        _status |           0            662           0.00
+   _submitted~y |         662            662         100.00
+    __version__ |           0            662           0.00
+          _tags |         662            662         100.00
+         _index |           0            662           0.00
+----------------+-----------------------------------------------
+
+. 
+. drop OtherSpecify -Thoughtsthatyouwouldbebette
+
+. drop SECTION1DEMOGRAPHICINFORMATI
+
+. drop SECTION2SOCIOECONOMICFACTORS
+
+. drop SECTION4GENERALMENTALHEALTH
+
+. drop AE
+
+. drop SECTION3ACCESSIBILITYTOMENT
+
+. drop SECTION6PHQ9
+
+. drop SECTION5GAD7
+
+. drop SECTION7PSYCHOSIS
+
+. drop Nyinginezotafadhalifafanua
+
+. mdesc
+
+    Variable    |     Missing          Total     Percent Missing
+----------------+-----------------------------------------------
+   Utafitihuu~d |          18            662           2.72
+   ResearchAs~s |          18            662           2.72
+      StartTime |          18            662           2.72
+   DateofInte~w |          33            662           4.98
+   Majinakamili |          19            662           2.87
+   Nambariyas~u |          24            662           3.63
+           Umri |          18            662           2.72
+         Jinsia |          18            662           2.72
+     HaliyaNdoa |          18            662           2.72
+   Kiwangocha~u |          18            662           2.72
+   KichwachaK~a |          18            662           2.72
+         Kijiji |          23            662           3.47
+   MwakawaMas~o |         556            662          83.99
+   KoziyaMasomo |         647            662          97.73
+   ChanzochaM~o |         353            662          53.32
+   Jeunashiri~a |          18            662           2.72
+   Unapatajeu~a |         631            662          95.32
+   Unatumiamu~d |          31            662           4.68
+   Chanzochak~i |         638            662          96.37
+   Jeumewahik~o |         637            662          96.22
+   Ikiwandion~i |         642            662          96.98
+   Jeunafaham~a |         638            662          96.37
+   Katikamiez~a |         639            662          96.53
+   Kwakipimoc~u |         661            662          99.85
+   Kwamaoniya~y |         648            662          97.89
+   Ikiwandiou~a |         650            662          98.19
+   Nimsaadaga~a |         649            662          98.04
+   Kwakipindi~z |         662            662         100.00
+   Kuwanawasi~u |          20            662           3.02
+   Kutowezaku~t |          23            662           3.47
+   Mwenyewasi~h |          23            662           3.47
+   Mwenyetati~u |          21            662           3.17
+   Uliyekosau~a |          26            662           3.93
+   Mwenyehasi~h |          21            662           3.17
+   Mwenyewoga~o |          24            662           3.63
+   Jekwakipin~z |         662            662         100.00
+   Usiyekuwan~a |          19            662           2.87
+   Kujihisimn~i |          20            662           3.02
+   Unamatatiz~i |          22            662           3.32
+   Kujihisimc~u |          22            662           3.32
+   Mwenyekuko~u |          33            662           4.98
+   Kujihisivi~m |          23            662           3.47
+   Kuwamatati~m |          24            662           3.63
+   Kutembeaau~a |          20            662           3.02
+   Kujihisikw~a |          24            662           3.63
+   Hypomaniap~a |          45            662           6.80
+   Jekulikuwa~y |         618            662          93.35
+   Thoughtins~d |          22            662           3.32
+   Jehililili~a |         595            662          89.88
+   ParanoiaPr~w |          21            662           3.17
+   Jekunanyak~i |         532            662          80.36
+   Strangeexp~a |          23            662           3.47
+   Jeulihisik~a |         599            662          90.48
+   Hallucinat~w |          24            662           3.63
+   Jewakatiwo~i |         616            662          93.05
+        EndTime |          33            662           4.98
+            _id |           0            662           0.00
+          _uuid |           0            662           0.00
+   _submissio~e |           0            662           0.00
+   _validatio~s |         662            662         100.00
+         _notes |         662            662         100.00
+        _status |           0            662           0.00
+   _submitted~y |         662            662         100.00
+    __version__ |           0            662           0.00
+          _tags |         662            662         100.00
+         _index |           0            662           0.00
+----------------+-----------------------------------------------
+
+. 
+. ****Variables with no observations dropped
+. *drop  OtherSpecify-Thoughtsthatyouwouldbebette //100% missing observations
+. 
+. 
+. **Age
+. replace Umri = "45" in 67
+(1 real change made)
+
+. 
+. replace Umri = "29" in 131
+(1 real change made)
+
+. 
+. replace Umri = "75" in 567
+(1 real change made)
+
+. 
+. destring Umri, gen (age)
+Umri: all characters numeric; age generated as byte
+(18 missing values generated)
+
+. sum age, det
+
+                            Umri
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%           18             18
+ 5%           20             18
+10%           22             18       Obs                 644
+25%           26             18       Sum of wgt.         644
+
+50%         32.5                      Mean           35.11491
+                        Largest       Std. dev.       11.8555
+75%           41             71
+90%           52             75       Variance       140.5529
+95%           58             80       Skewness        .974103
+99%           70             80       Kurtosis       3.712588
+
+. 
+. lab var age "Age in years"
+
+. 
+. recode age (min/24 =1 "<25 years") (25/34=2 "25-34 years") (35/44=3 "35-44 years") (45/54=4 "45-54 yea
+> rs") (55/64 =5 "55-64 years") (65/max=6 "> 65 years"), gen (Agegrps) 
+(644 differences between age and Agegrps)
+
+. lab var Agegrps "AGE GROUPS"
+
+. tab Agegrps
+
+ AGE GROUPS |      Freq.     Percent        Cum.
+------------+-----------------------------------
+  <25 years |        122       18.94       18.94
+25-34 years |        231       35.87       54.81
+35-44 years |        158       24.53       79.35
+45-54 years |         85       13.20       92.55
+55-64 years |         32        4.97       97.52
+ > 65 years |         16        2.48      100.00
+------------+-----------------------------------
+      Total |        644      100.00
+
+. 
+. **Gender
+. tab Jinsia
+
+             Jinsia |      Freq.     Percent        Cum.
+--------------------+-----------------------------------
+           Mwanamke |        447       69.41       69.41
+           Mwanaume |        196       30.43       99.84
+Napendelea kutosema |          1        0.16      100.00
+--------------------+-----------------------------------
+              Total |        644      100.00
+
+. tab Jinsia, nol
+
+             Jinsia |      Freq.     Percent        Cum.
+--------------------+-----------------------------------
+           Mwanamke |        447       69.41       69.41
+           Mwanaume |        196       30.43       99.84
+Napendelea kutosema |          1        0.16      100.00
+--------------------+-----------------------------------
+              Total |        644      100.00
+
+. encode Jinsia, gen (gender)
+
+. tab gender, nol
+
+     Jinsia |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        447       69.41       69.41
+          2 |        196       30.43       99.84
+          3 |          1        0.16      100.00
+------------+-----------------------------------
+      Total |        644      100.00
+
+. recode gender (1=1 "Female") (2=2 "Male") (3=.), gen (sex)
+(1 differences between gender and sex)
+
+. lab var sex "Sex the participant"
+
+. tab sex
+
+    Sex the |
+participant |      Freq.     Percent        Cum.
+------------+-----------------------------------
+     Female |        447       69.52       69.52
+       Male |        196       30.48      100.00
+------------+-----------------------------------
+      Total |        643      100.00
+
+. 
+. **Marital status
+. tab HaliyaNdoa
+
+        Hali ya Ndoa |      Freq.     Percent        Cum.
+---------------------+-----------------------------------
+               Mjane |         22        3.42        3.42
+                Ndoa |        403       62.58       65.99
+               Singo |        207       32.14       98.14
+Talaka au ametengana |         12        1.86      100.00
+---------------------+-----------------------------------
+               Total |        644      100.00
+
+. encode HaliyaNdoa, gen (marital_status)
+
+. tab marital_status , nol
+
+    Hali ya |
+       Ndoa |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         22        3.42        3.42
+          2 |        403       62.58       65.99
+          3 |        207       32.14       98.14
+          4 |         12        1.86      100.00
+------------+-----------------------------------
+      Total |        644      100.00
+
+. tab marital_status
+
+        Hali ya Ndoa |      Freq.     Percent        Cum.
+---------------------+-----------------------------------
+               Mjane |         22        3.42        3.42
+                Ndoa |        403       62.58       65.99
+               Singo |        207       32.14       98.14
+Talaka au ametengana |         12        1.86      100.00
+---------------------+-----------------------------------
+               Total |        644      100.00
+
+. recode marital_status (1 3 4 =1 "single/widowed/separated") (2=2 "Married"), gen (marstat)
+(219 differences between marital_status and marstat)
+
+. lab var marstat "Marital status"
+
+. tab marstat
+
+          Marital status |      Freq.     Percent        Cum.
+-------------------------+-----------------------------------
+single/widowed/separated |        241       37.42       37.42
+                 Married |        403       62.58      100.00
+-------------------------+-----------------------------------
+                   Total |        644      100.00
+
+. 
+. **Education level
+. tab KiwangochaElimu
+
+ Kiwango cha Elimu |      Freq.     Percent        Cum.
+-------------------+-----------------------------------
+           Diploma |         47        7.30        7.30
+            Hakuna |         29        4.50       11.80
+           Shahada |         17        2.64       14.44
+Shahada ya Uzamili |          3        0.47       14.91
+   Shule ya Msingi |        337       52.33       67.24
+Shule ya Sekondari |        211       32.76      100.00
+-------------------+-----------------------------------
+             Total |        644      100.00
+
+. encode KiwangochaElimu, gen (education)
+
+. tab education, nol
+
+Kiwango cha |
+      Elimu |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         47        7.30        7.30
+          2 |         29        4.50       11.80
+          3 |         17        2.64       14.44
+          4 |          3        0.47       14.91
+          5 |        337       52.33       67.24
+          6 |        211       32.76      100.00
+------------+-----------------------------------
+      Total |        644      100.00
+
+. recode education (2=1 "No formal education") (5=2 "Primary level") (6=3 "Secondary level") (1 3 4 = 4 
+> "Tertiary level"), gen (Education)
+(641 differences between education and Education)
+
+. lab var Education "Education level"
+
+. tab Education
+
+    Education level |      Freq.     Percent        Cum.
+--------------------+-----------------------------------
+No formal education |         29        4.50        4.50
+      Primary level |        337       52.33       56.83
+    Secondary level |        211       32.76       89.60
+     Tertiary level |         67       10.40      100.00
+--------------------+-----------------------------------
+              Total |        644      100.00
+
+. 
+. **Head of the household
+. tab KichwachaKaya
+
+ Kichwa cha |
+       Kaya |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         La |        374       58.07       58.07
+       Ndio |        270       41.93      100.00
+------------+-----------------------------------
+      Total |        644      100.00
+
+. encode KichwachaKaya, gen (household_head)
+
+. tab household_head, nol
+
+ Kichwa cha |
+       Kaya |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        374       58.07       58.07
+          2 |        270       41.93      100.00
+------------+-----------------------------------
+      Total |        644      100.00
+
+. recode household_head (2=1 "Yes") (1=2 "No"), gen (HHead)
+(644 differences between household_head and HHead)
+
+. lab var HHead "Head of the household"
+
+. tab HHead 
+
+Head of the |
+  household |      Freq.     Percent        Cum.
+------------+-----------------------------------
+        Yes |        270       41.93       41.93
+         No |        374       58.07      100.00
+------------+-----------------------------------
+      Total |        644      100.00
+
+. 
+. 
+. 
+. ***Village
+. tab Kijiji
+
+          Kijiji |      Freq.     Percent        Cum.
+-----------------+-----------------------------------
+    Green Estate |          1        0.16        0.16
+        Kasarani |          1        0.16        0.31
+          Mtaani |          2        0.31        0.63
+     Mwezangombe |        310       48.51       49.14
+Prison kiwandani |        325       50.86      100.00
+-----------------+-----------------------------------
+           Total |        639      100.00
+
+. encode Kijiji, gen (Vill)
+
+. recode Vill (5=1 "Prison Viwandani") (4=2 "Mwezangombe") (1=3 "Green Estate") (2=4 "Kasarani") (3=5 "M
+> taani"), gen (Village)
+(639 differences between Vill and Village)
+
+. lab var Village "Village of residence"
+
+. tab Village
+
+      Village of |
+       residence |      Freq.     Percent        Cum.
+-----------------+-----------------------------------
+Prison Viwandani |        325       50.86       50.86
+     Mwezangombe |        310       48.51       99.37
+    Green Estate |          1        0.16       99.53
+        Kasarani |          1        0.16       99.69
+          Mtaani |          2        0.31      100.00
+-----------------+-----------------------------------
+           Total |        639      100.00
+
+. 
+. 
+. ***Income
+. tab ChanzochaMapato
+
+ Chanzo cha |
+     Mapato |      Freq.     Percent        Cum.
+------------+-----------------------------------
+     ,10000 |          1        0.32        0.32
+        100 |          2        0.65        0.97
+       1000 |         82       26.54       27.51
+      10000 |         11        3.56       31.07
+      10800 |          1        0.32       31.39
+      12000 |          1        0.32       31.72
+      15000 |          4        1.29       33.01
+     150000 |          1        0.32       33.33
+      17000 |          1        0.32       33.66
+        200 |         10        3.24       36.89
+       2000 |         62       20.06       56.96
+      20000 |          1        0.32       57.28
+        300 |          2        0.65       57.93
+       3000 |         19        6.15       64.08
+      30000 |          1        0.32       64.40
+       4000 |          9        2.91       67.31
+        500 |         51       16.50       83.82
+       5000 |         32       10.36       94.17
+      50000 |          1        0.32       94.50
+       6000 |          3        0.97       95.47
+      60000 |          1        0.32       95.79
+       6850 |          1        0.32       96.12
+       8000 |          2        0.65       96.76
+      80000 |          1        0.32       97.09
+        900 |          1        0.32       97.41
+       9000 |          2        0.65       98.06
+   Business |          1        0.32       98.38
+    Familia |          1        0.32       98.71
+ Kshs 10000 |          1        0.32       99.03
+  Kshs 2000 |          1        0.32       99.35
+  Kshs 3000 |          1        0.32       99.68
+        N/A |          1        0.32      100.00
+------------+-----------------------------------
+      Total |        309      100.00
+
+. desc ChanzochaMapato
+
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+--------------------------------------------------------------------------------------------------------
+ChanzochaMapato str10   %10s                  Chanzo cha Mapato
+
+. destring ChanzochaMapato, ignore ("Business, Familia, Kshs, N/A, ,") gen (Income)
+ChanzochaMapato: characters B u s i n e , space F a m l K h N / A removed; Income generated as long
+(356 missing values generated)
+
+. sum Income, det
+
+                      Chanzo cha Mapato
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%          200            100
+ 5%          500            100
+10%          500            200       Obs                 306
+25%         1000            200       Sum of wgt.         306
+
+50%         2000                      Mean           3829.575
+                        Largest       Std. dev.      10936.33
+75%         3000          50000
+90%         6850          60000       Variance       1.20e+08
+95%        10000          80000       Skewness       9.717126
+99%        50000         150000       Kurtosis       116.2012
+
+. lab var Income "Income level"
+
+. 
+. **SOCIOECONOMIC FACTORS
+. 
+. **Activity level
+. tab Jeunashirikimarangapikatika
+
+          Je, |
+   unashiriki |
+   mara ngapi |
+       katika |
+  shughuli za |
+   kijamii na |
+     wenzako? |      Freq.     Percent        Cum.
+--------------+-----------------------------------
+        Kamwe |          3        0.47        0.47
+  Mara chache |        189       29.35       29.81
+Mara kwa mara |        367       56.99       86.80
+   Mara nadra |         85       13.20      100.00
+--------------+-----------------------------------
+        Total |        644      100.00
+
+. encode Jeunashirikimarangapikatika, gen (activity)
+
+. tab activity, nol
+
+        Je, |
+ unashiriki |
+ mara ngapi |
+     katika |
+shughuli za |
+ kijamii na |
+   wenzako? |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |          3        0.47        0.47
+          2 |        189       29.35       29.81
+          3 |        367       56.99       86.80
+          4 |         85       13.20      100.00
+------------+-----------------------------------
+      Total |        644      100.00
+
+. recode activity (1 =1 "Never") (4=2 "Rarely") (2=3 "Occasionally") (3=4 "Frequently"), gen (Activityle
+> vel)
+(641 differences between activity and Activitylevel)
+
+. lab var Activitylevel "Activity level"
+
+. tab Activitylevel, m
+
+    Activity |
+       level |      Freq.     Percent        Cum.
+-------------+-----------------------------------
+       Never |          3        0.45        0.45
+      Rarely |         85       12.84       13.29
+Occasionally |        189       28.55       41.84
+  Frequently |        367       55.44       97.28
+           . |         18        2.72      100.00
+-------------+-----------------------------------
+       Total |        662      100.00
+
+. 
+. 
+. **Social Media
+. tab Unatumiamudaganikwenyemitand
+
+ Unatumia muda |
+   gani kwenye |
+   mitandao ya |
+   kijamii kwa |
+         siku? |      Freq.     Percent        Cum.
+---------------+-----------------------------------
+Chini ya saa 1 |        294       46.59       46.59
+       Saa 1-3 |        208       32.96       79.56
+       Saa 3-5 |         77       12.20       91.76
+Zaidi ya saa 5 |         52        8.24      100.00
+---------------+-----------------------------------
+         Total |        631      100.00
+
+. encode Unatumiamudaganikwenyemitand, gen(SM)
+
+. tab SM, nol
+
+   Unatumia |
+  muda gani |
+     kwenye |
+mitandao ya |
+kijamii kwa |
+      siku? |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        294       46.59       46.59
+          2 |        208       32.96       79.56
+          3 |         77       12.20       91.76
+          4 |         52        8.24      100.00
+------------+-----------------------------------
+      Total |        631      100.00
+
+. recode SM (1=1 "< 1 hour") (2=2 "1-3 hours") (3=3 "3-5 hours") (4=4 "> 5 hours"), gen (SocialMedia)
+(0 differences between SM and SocialMedia)
+
+. lab var SocialMedia "Social Media Use"
+
+. tab SocialMedia, m
+
+     Social |
+  Media Use |      Freq.     Percent        Cum.
+------------+-----------------------------------
+   < 1 hour |        294       44.41       44.41
+  1-3 hours |        208       31.42       75.83
+  3-5 hours |         77       11.63       87.46
+  > 5 hours |         52        7.85       95.32
+          . |         31        4.68      100.00
+------------+-----------------------------------
+      Total |        662      100.00
+
+. 
+. 
+. 
+. **** cariable with > 96% missing observations
+. /*
+> tab Chanzochakokikuuchaufadhili, m
+> tab Jeumewahikukumbwanamatatizo, m
+> tab Ikiwandionimarangapimatati, m
+> tab Jeunafahamuhudumazaafyaya, m
+> tab Katikamiezi12iliyopitaumewa, m
+> tab Kwakipimocha15ungepimajeu, m
+> tab Kwamaoniyakomaboreshoganiy, m
+> tab AE, m
+> tab Ikiwandioulitafutamsaadawa, m
+> tab Nimsaadaganiuliofikiwakatika, m
+> */
+. 
+. /**Accessibility to mental health mitigation measures (over the last 12 months)
+> tab aware, m // 98.4% missing
+> tab mhservices_supplement, m // 98.2% missing
+> tab mhservices_supplement_001, m //99.2% missing
+> tab mhopinion, m // 99% missing
+> 
+> 
+> **General Mental Health (Over the last 12 months)
+> **symptoms_supplement
+> tab symptoms_supplement, m // 98% missing
+> tab symptoms_supplement // 98% missing
+> tab accessible_service, m // 99.4% missing*/
+. 
+. 
+. **Generalized Anxiety Disorder 7-item (GAD-7)
+. ***The Generalized Anxiety Disorder 7-item (GAD-7) is a easy to perform initial screening tool for gen
+> eralized anxiety disorder
+. 
+. foreach var of varlist Kwakipindichawikimbiliziliz- Mwenyewoganikanakwambajambo{
+  2. tab `var', m
+  3. }
+
+Kwa kipindi |
+   cha wiki |
+      mbili |
+zilizopita, |
+je, ni mara |
+      ngapi |
+    umehisi |
+kusumbuliwa |
+        na  |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          . |        662      100.00      100.00
+------------+-----------------------------------
+      Total |        662      100.00
+
+    Kuwa na wasiwasi, mwenye |
+                        hofu |      Freq.     Percent        Cum.
+-----------------------------+-----------------------------------
+                             |         20        3.02        3.02
+          Haijawahi kutokea  |        232       35.05       38.07
+         Napendelea kutosema |          1        0.15       38.22
+                       Sijui |          3        0.45       38.67
+                 Siku kadhaa |        217       32.78       71.45
+          Takriban kila siku |         36        5.44       76.89
+ Zaidi ya nusu ya siku hizo  |        153       23.11      100.00
+-----------------------------+-----------------------------------
+                       Total |        662      100.00
+
+     Kutoweza kuzuia hofu au |
+          kudhibiti
+wasiwasi |      Freq.     Percent        Cum.
+-----------------------------+-----------------------------------
+                             |         23        3.47        3.47
+          Haijawahi kutokea  |        357       53.93       57.40
+                       Sijui |          4        0.60       58.01
+                 Siku kadhaa |        151       22.81       80.82
+          Takriban kila siku |         21        3.17       83.99
+ Zaidi ya nusu ya siku hizo  |        106       16.01      100.00
+-----------------------------+-----------------------------------
+                       Total |        662      100.00
+
+      Mwenye wasiwasi kupita |
+  kiasi
+kuhusu mambo tofauti |
+                     tofauti |      Freq.     Percent        Cum.
+-----------------------------+-----------------------------------
+                             |         23        3.47        3.47
+          Haijawahi kutokea  |        372       56.19       59.67
+         Napendelea kutosema |          2        0.30       59.97
+                       Sijui |          6        0.91       60.88
+                 Siku kadhaa |        146       22.05       82.93
+          Takriban kila siku |         30        4.53       87.46
+ Zaidi ya nusu ya siku hizo  |         83       12.54      100.00
+-----------------------------+-----------------------------------
+                       Total |        662      100.00
+
+ Mwenye
+tatizo la kutulia na |
+         kupumzika/kustarehe |      Freq.     Percent        Cum.
+-----------------------------+-----------------------------------
+                             |         21        3.17        3.17
+          Haijawahi kutokea  |        434       65.56       68.73
+                       Sijui |          2        0.30       69.03
+                 Siku kadhaa |        108       16.31       85.35
+          Takriban kila siku |         18        2.72       88.07
+ Zaidi ya nusu ya siku hizo  |         79       11.93      100.00
+-----------------------------+-----------------------------------
+                       Total |        662      100.00
+
+Uliyekosa
+utulivu sana kiasi |
+   cha kutoweza kukaa mahali |
+                      pamoja |      Freq.     Percent        Cum.
+-----------------------------+-----------------------------------
+                             |         26        3.93        3.93
+          Haijawahi kutokea  |        487       73.56       77.49
+         Napendelea kutosema |          1        0.15       77.64
+                       Sijui |          2        0.30       77.95
+                 Siku kadhaa |         84       12.69       90.63
+          Takriban kila siku |         17        2.57       93.20
+ Zaidi ya nusu ya siku hizo  |         45        6.80      100.00
+-----------------------------+-----------------------------------
+                       Total |        662      100.00
+
+  Mwenye
+hasira, ama kukerwa |
+                  kwa haraka |      Freq.     Percent        Cum.
+-----------------------------+-----------------------------------
+                             |         21        3.17        3.17
+          Haijawahi kutokea  |        231       34.89       38.07
+         Napendelea kutosema |          7        1.06       39.12
+                       Sijui |          8        1.21       40.33
+                 Siku kadhaa |        225       33.99       74.32
+          Takriban kila siku |         51        7.70       82.02
+ Zaidi ya nusu ya siku hizo  |        119       17.98      100.00
+-----------------------------+-----------------------------------
+                       Total |        662      100.00
+
+  Mwenye
+woga ni kana kwamba |
+ jambo baya linaweza kutokea |
+               wakati wowote |      Freq.     Percent        Cum.
+-----------------------------+-----------------------------------
+                             |         24        3.63        3.63
+          Haijawahi kutokea  |        425       64.20       67.82
+         Napendelea kutosema |          3        0.45       68.28
+                       Sijui |          1        0.15       68.43
+                 Siku kadhaa |        120       18.13       86.56
+          Takriban kila siku |         31        4.68       91.24
+ Zaidi ya nusu ya siku hizo  |         58        8.76      100.00
+-----------------------------+-----------------------------------
+                       Total |        662      100.00
+
+. 
+. **GAD variables
+. rename Kuwanawasiwasimwenyehofu nervous
+
+. rename Kutowezakuzuiahofuaukudhibit control_worrying
+
+. rename Mwenyewasiwasikupitakiasiku worry_too_much
+
+. rename Mwenyetatizolakutulianakupu  relaxing
+
+. rename Uliyekosautulivusanakiasicha restless
+
+. rename Mwenyehasiraamakukerwakwah irritable
+
+. rename Mwenyewoganikanakwambajambo afraid
+
+. 
+. 
+. foreach var of varlist nervous - afraid {
+  2.         encode `var', gen (`var'_1)
+  3. }
+
+. 
+. recode nervous_1 (1=0 "Not at all") (4=1 "several days") (6=2 "more than half the days") (5=3 "Nearly 
+> everyday") (3 2=.), gen (nervous_1_2)
+(642 differences between nervous_1 and nervous_1_2)
+
+. 
+. recode control_worrying_1 (1=0 "Not at all") (3=1 "several days") (5=2 "more than half the days") (4=3
+>  "Nearly everyday") (2=.), gen (control_worrying_1_2)
+(639 differences between control_worrying_1 and control_worrying_1_2)
+
+. 
+. recode worry_too_much_1 (1=0 "Not at all") (4=1 "several days") (6=2 "more than half the days") (5=3 "
+> Nearly everyday") (3 2=.), gen (worry_too_much_1_2)
+(639 differences between worry_too_much_1 and worry_too_much_1_2)
+
+. 
+. recode relaxing_1 (1=0 "Not at all") (3=1 "several days") (5=2 "more than half the days") (4=3 "Nearly
+>  everyday") (2=.), gen (relaxing_1_2)
+(641 differences between relaxing_1 and relaxing_1_2)
+
+. 
+. recode restless_1 (1=0 "Not at all") (4=1 "several days") (6=2 "more than half the days") (5=3 "Nearly
+>  everyday") (3 2=.), gen (restless_1_2)
+(636 differences between restless_1 and restless_1_2)
+
+. 
+. recode irritable_1 (1=0 "Not at all") (4=1 "several days") (6=2 "more than half the days") (5=3 "Nearl
+> y everyday") (3 2=.), gen (irritable_1_2)
+(641 differences between irritable_1 and irritable_1_2)
+
+. 
+. recode afraid_1 (1=0 "Not at all") (4=1 "several days") (6=2 "more than half the days") (5=3 "Nearly e
+> veryday") (3 2=.), gen (afraid_1_2)
+(638 differences between afraid_1 and afraid_1_2)
+
+. 
+. foreach var of varlist nervous_1_2- afraid_1_2{
+  2.         tab `var', m
+  3.         }
+
+    RECODE of nervous_1 |
+     (Kuwa na wasiwasi, |
+           mwenye hofu) |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             Not at all |        232       35.05       35.05
+           several days |        217       32.78       67.82
+more than half the days |        153       23.11       90.94
+        Nearly everyday |         36        5.44       96.37
+                      . |         24        3.63      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+              RECODE of |
+     control_worrying_1 |
+  (Kutoweza kuzuia hofu |
+ au kudhibiti
+wasiwasi) |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             Not at all |        357       53.93       53.93
+           several days |        151       22.81       76.74
+more than half the days |        106       16.01       92.75
+        Nearly everyday |         21        3.17       95.92
+                      . |         27        4.08      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+              RECODE of |
+       worry_too_much_1 |
+(Mwenye wasiwasi kupita |
+     kiasi
+kuhusu mambo |
+             tofauti to |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             Not at all |        372       56.19       56.19
+           several days |        146       22.05       78.25
+more than half the days |         83       12.54       90.79
+        Nearly everyday |         30        4.53       95.32
+                      . |         31        4.68      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+   RECODE of relaxing_1 |
+      (Mwenye
+tatizo la |
+             kutulia na |
+   kupumzika/kustarehe) |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             Not at all |        434       65.56       65.56
+           several days |        108       16.31       81.87
+more than half the days |         79       11.93       93.81
+        Nearly everyday |         18        2.72       96.53
+                      . |         23        3.47      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+   RECODE of restless_1 |
+(Uliyekosa
+utulivu sana |
+     kiasi cha kutoweza |
+       kukaa mahali pam |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             Not at all |        487       73.56       73.56
+           several days |         84       12.69       86.25
+more than half the days |         45        6.80       93.05
+        Nearly everyday |         17        2.57       95.62
+                      . |         29        4.38      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+  RECODE of irritable_1 |
+    (Mwenye
+hasira, ama |
+    kukerwa kwa haraka) |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             Not at all |        231       34.89       34.89
+           several days |        225       33.99       68.88
+more than half the days |        119       17.98       86.86
+        Nearly everyday |         51        7.70       94.56
+                      . |         36        5.44      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+     RECODE of afraid_1 |
+   (Mwenye
+woga ni kana |
+      kwamba jambo baya |
+ linaweza kutokea wakat |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             Not at all |        425       64.20       64.20
+           several days |        120       18.13       82.33
+more than half the days |         58        8.76       91.09
+        Nearly everyday |         31        4.68       95.77
+                      . |         28        4.23      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+. 
+. 
+. lab var nervous_1_2 "Feeling nervous, anxious, or on edge"
+
+. lab var control_worrying_1_2 "Not being able to stop or control worrying"
+
+. lab var worry_too_much_1_2 "Worrying too much about different things"
+
+. lab var relaxing_1_2 "Trouble relaxing"
+
+. lab var restless_1_2 "Being so restless that it's hard to sit still"
+
+. lab var irritable_1_2 "Becoming easily annoyed or Irritable"
+
+. lab var afraid_1_2 "Feeling afraid as if something awful might happen"
+
+. 
+. rename nervous_1_2 Nervous
+
+. rename control_worrying_1_2 Worrying
+
+. rename worry_too_much_1_2 Things
+
+. rename relaxing_1_2 Trouble
+
+. rename restless_1_2 Restless
+
+. rename irritable_1_2 Irritable
+
+. rename afraid_1_2 Afraid
+
+. 
+. foreach var of varlist Nervous-Afraid {
+  2.   tab `var', m
+  3.    }
+
+       Feeling nervous, |
+    anxious, or on edge |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             Not at all |        232       35.05       35.05
+           several days |        217       32.78       67.82
+more than half the days |        153       23.11       90.94
+        Nearly everyday |         36        5.44       96.37
+                      . |         24        3.63      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+ Not being able to stop |
+    or control worrying |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             Not at all |        357       53.93       53.93
+           several days |        151       22.81       76.74
+more than half the days |        106       16.01       92.75
+        Nearly everyday |         21        3.17       95.92
+                      . |         27        4.08      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+Worrying too much about |
+       different things |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             Not at all |        372       56.19       56.19
+           several days |        146       22.05       78.25
+more than half the days |         83       12.54       90.79
+        Nearly everyday |         30        4.53       95.32
+                      . |         31        4.68      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+       Trouble relaxing |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             Not at all |        434       65.56       65.56
+           several days |        108       16.31       81.87
+more than half the days |         79       11.93       93.81
+        Nearly everyday |         18        2.72       96.53
+                      . |         23        3.47      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+ Being so restless that |
+ it's hard to sit still |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             Not at all |        487       73.56       73.56
+           several days |         84       12.69       86.25
+more than half the days |         45        6.80       93.05
+        Nearly everyday |         17        2.57       95.62
+                      . |         29        4.38      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+Becoming easily annoyed |
+           or Irritable |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             Not at all |        231       34.89       34.89
+           several days |        225       33.99       68.88
+more than half the days |        119       17.98       86.86
+        Nearly everyday |         51        7.70       94.56
+                      . |         36        5.44      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+   Feeling afraid as if |
+  something awful might |
+                 happen |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             Not at all |        425       64.20       64.20
+           several days |        120       18.13       82.33
+more than half the days |         58        8.76       91.09
+        Nearly everyday |         31        4.68       95.77
+                      . |         28        4.23      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+.    
+. count if Nervous==. | Worrying==. | Things==. | Trouble==.| Restless==.| Irritable==.| Afraid ==.
+  59
+
+. **59 Participants are missing atleast one of the components required to calculate GAD score
+. 
+. egen GAD = rowtotal (Nervous-Afraid), m 
+(20 missing values generated)
+
+. 
+. replace GAD =. if Nervous==. | Worrying==. | Things==. | Trouble==.| Restless==.| Irritable==.| Afraid
+>  ==.
+(39 real changes made, 39 to missing)
+
+. 
+. ***GAD7 SCORES
+. sum GAD, detail
+
+                             GAD
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            0              0
+ 5%            0              0
+10%            0              0       Obs                 603
+25%            1              0       Sum of wgt.         603
+
+50%            4                      Mean             4.6534
+                        Largest       Std. dev.      4.378018
+75%            7             21
+90%           10             21       Variance       19.16704
+95%           13             21       Skewness       1.089824
+99%           18             21       Kurtosis       4.072516
+
+. 
+. **Generating GAD categories 
+. ***Computing GAD-7 scores: Score 0-4: Minimal Anxiety. Score 5-9: Mild Anxiety. Score 10-14: Moderate 
+> Anxiety. Score greater than 15: Severe Anxiety.
+. recode GAD (min/4 =1 "Minimal") (5/9=2 "Mild") (10/14= 3 "Moderate ") (15/max=4 "Severe") (.=.), gen (
+> GADcategory)
+(537 differences between GAD and GADcategory)
+
+. lab var GADcategory "GAD Category"
+
+. tab GADcategory, m
+
+        GAD |
+   Category |      Freq.     Percent        Cum.
+------------+-----------------------------------
+    Minimal |        339       51.21       51.21
+       Mild |        168       25.38       76.59
+  Moderate  |         77       11.63       88.22
+     Severe |         19        2.87       91.09
+          . |         59        8.91      100.00
+------------+-----------------------------------
+      Total |        662      100.00
+
+. 
+. 
+. 
+. 
+. **PHQ9 QUESTIONNAIRE
+. ***The PHQ-9 is a multipurpose instrument for screening, diagnosing, monitoring and measuring the seve
+> rity of depression.
+. 
+. foreach var of varlist Usiyekuwanakukosahamuauraha - Kujihisikwambaingekuwaboraka{
+  2.         tab `var', m
+  3. }
+
+ Usiyekuwa na/kukosa hamu au |
+       raha ya kufanya mambo |      Freq.     Percent        Cum.
+-----------------------------+-----------------------------------
+                             |         19        2.87        2.87
+          Haijawahi kutokea  |        260       39.27       42.15
+           Karibu kila siku  |         28        4.23       46.37
+         Napendelea kutosema |          1        0.15       46.53
+                       Sijui |          4        0.60       47.13
+                 Siku kadhaa |        209       31.57       78.70
+ Zaidi ya nusu ya hizo siku  |        141       21.30      100.00
+-----------------------------+-----------------------------------
+                       Total |        662      100.00
+
+           Kujihisi mnyonge, |
+  mwenye
+huzuni/kusonononeka |
+  (depressed) au uliyepoteza |
+                    matumain |      Freq.     Percent        Cum.
+-----------------------------+-----------------------------------
+                             |         20        3.02        3.02
+          Haijawahi kutokea  |        247       37.31       40.33
+           Karibu kila siku  |         49        7.40       47.73
+         Napendelea kutosema |          3        0.45       48.19
+                       Sijui |          1        0.15       48.34
+                 Siku kadhaa |        200       30.21       78.55
+ Zaidi ya nusu ya hizo siku  |        142       21.45      100.00
+-----------------------------+-----------------------------------
+                       Total |        662      100.00
+
+             Una matatizo ya |
+     kupata
+usingizi/kusalia |
+            usingizini, ama  |
+         kulala
+kupita kiasi |      Freq.     Percent        Cum.
+-----------------------------+-----------------------------------
+                             |         22        3.32        3.32
+          Haijawahi kutokea  |        355       53.63       56.95
+           Karibu kila siku  |         31        4.68       61.63
+         Napendelea kutosema |          3        0.45       62.08
+                       Sijui |          4        0.60       62.69
+                 Siku kadhaa |        154       23.26       85.95
+ Zaidi ya nusu ya hizo siku  |         93       14.05      100.00
+-----------------------------+-----------------------------------
+                       Total |        662      100.00
+
+ Kujihisi mchovu ama mlegevu |      Freq.     Percent        Cum.
+-----------------------------+-----------------------------------
+                             |         22        3.32        3.32
+          Haijawahi kutokea  |        234       35.35       38.67
+           Karibu kila siku  |         30        4.53       43.20
+         Napendelea kutosema |          2        0.30       43.50
+                       Sijui |          2        0.30       43.81
+                 Siku kadhaa |        238       35.95       79.76
+ Zaidi ya nusu ya hizo siku  |        134       20.24      100.00
+-----------------------------+-----------------------------------
+                       Total |        662      100.00
+
+       Mwenye kukosa hamu ya |
+chakula au kula
+kupita kiasi |      Freq.     Percent        Cum.
+-----------------------------+-----------------------------------
+                             |         33        4.98        4.98
+          Haijawahi kutokea  |        521       78.70       83.69
+           Karibu kila siku  |         12        1.81       85.50
+         Napendelea kutosema |          1        0.15       85.65
+                       Sijui |          1        0.15       85.80
+                 Siku kadhaa |         68       10.27       96.07
+ Zaidi ya nusu ya hizo siku  |         26        3.93      100.00
+-----------------------------+-----------------------------------
+                       Total |        662      100.00
+
+   Kujihisi vibaya-au kuhisi |
+       kama mtu
+aliyeshindwa |
+maishani au kuwafeli familia |
+                         yak |      Freq.     Percent        Cum.
+-----------------------------+-----------------------------------
+                             |         23        3.47        3.47
+          Haijawahi kutokea  |        502       75.83       79.31
+           Karibu kila siku  |         25        3.78       83.08
+         Napendelea kutosema |          2        0.30       83.38
+                       Sijui |          1        0.15       83.53
+                 Siku kadhaa |         55        8.31       91.84
+ Zaidi ya nusu ya hizo siku  |         54        8.16      100.00
+-----------------------------+-----------------------------------
+                       Total |        662      100.00
+
+Kuwa
+matatizo ya kuwa makini |
+       kama kusoma gazeti au |
+kutazama runinga/televisheni |      Freq.     Percent        Cum.
+-----------------------------+-----------------------------------
+                             |         24        3.63        3.63
+          Haijawahi kutokea  |        551       83.23       86.86
+           Karibu kila siku  |         11        1.66       88.52
+         Napendelea kutosema |          2        0.30       88.82
+                       Sijui |          1        0.15       88.97
+                 Siku kadhaa |         52        7.85       96.83
+ Zaidi ya nusu ya hizo siku  |         21        3.17      100.00
+-----------------------------+-----------------------------------
+                       Total |        662      100.00
+
+    Kutembea
+au kuongea pole |
+    pole sana kiasi cha watu |
+       wengine kutambua? Ama |
+                    kinyume  |      Freq.     Percent        Cum.
+-----------------------------+-----------------------------------
+                             |         20        3.02        3.02
+          Haijawahi kutokea  |        524       79.15       82.18
+           Karibu kila siku  |         30        4.53       86.71
+         Napendelea kutosema |          1        0.15       86.86
+                       Sijui |          1        0.15       87.01
+                 Siku kadhaa |         49        7.40       94.41
+ Zaidi ya nusu ya hizo siku  |         37        5.59      100.00
+-----------------------------+-----------------------------------
+                       Total |        662      100.00
+
+    Kujihisi
+kwamba ingekuwa |
+  bora kama ungekufa au kama |
+ ungejidhuru kwa njia fulani |      Freq.     Percent        Cum.
+-----------------------------+-----------------------------------
+                             |         24        3.63        3.63
+          Haijawahi kutokea  |        591       89.27       92.90
+           Karibu kila siku  |         14        2.11       95.02
+         Napendelea kutosema |          7        1.06       96.07
+                 Siku kadhaa |         17        2.57       98.64
+ Zaidi ya nusu ya hizo siku  |          9        1.36      100.00
+-----------------------------+-----------------------------------
+                       Total |        662      100.00
+
+. 
+. rename Usiyekuwanakukosahamuauraha interest
+
+. rename Kujihisimnyongemwenyehuzuni hopeless
+
+. rename Unamatatizoyakupatausingizi sleeping
+
+. rename Kujihisimchovuamamlegevu tired
+
+. rename Mwenyekukosahamuyachakulaau appetite
+
+. rename Kujihisivibayaaukuhisikamam family
+
+. rename Kuwamatatizoyakuwamakinikam concentrating
+
+. rename Kutembeaaukuongeapolepolesa moving
+
+. rename Kujihisikwambaingekuwaboraka thoughts
+
+. 
+. foreach var of varlist interest - thoughts {
+  2.         encode `var', gen (`var'_1)
+  3. }
+
+. 
+. foreach var of varlist interest_1 - moving_1 {
+  2.         recode `var' (1=0 "not at all") (5=1 "several days") (6=2 "more than half the days") (2=3 "
+> Nearly everyday") (3 4=.), gen (`var'_2)
+  3. }
+(643 differences between interest_1 and interest_1_2)
+(642 differences between hopeless_1 and hopeless_1_2)
+(640 differences between sleeping_1 and sleeping_1_2)
+(640 differences between tired_1 and tired_1_2)
+(629 differences between appetite_1 and appetite_1_2)
+(639 differences between family_1 and family_1_2)
+(638 differences between concentrating_1 and concentrating_1_2)
+(642 differences between moving_1 and moving_1_2)
+
+. 
+. recode thoughts_1 (1=0 "not at all") (4=1 "several days") (5=2 "more than half the days") (2=3 "Nearly
+>  everyday") (3=.), gen (thoughts_1_2)
+(638 differences between thoughts_1 and thoughts_1_2)
+
+. 
+. lab var interest_1_2 "Little interest or pleasure in doing things"
+
+. lab var hopeless_1_2 "Feeling down, depressed, or hopeless"
+
+. lab var sleeping_1_2 "Trouble falling or staying asleep, or sleeping too much"
+
+. lab var tired_1_2 "Feeling tired or having little energy"
+
+. lab var appetite_1_2 "Poor appetite or overeating"
+
+. lab var family_1_2 "Feeling bad about yourself — or that you are a failure or have let yourself or you
+> r family down"
+note: label truncated to 80 characters
+
+. lab var concentrating_1_2 "Trouble concentrating on things, such as reading the newspaper or watching 
+> television"
+note: label truncated to 80 characters
+
+. lab var moving_1_2 "Moving or speaking so slowly that other people could have noticed? Or the opposite
+>  — being so fidgety or restless that you have been moving around a lot more than usual"
+note: label truncated to 80 characters
+
+. lab var thoughts_1_2 "Thoughts that you would be better off dead or of hurting yourself in some way"
+
+. 
+. rename interest_1_2 Interest
+
+. rename hopeless_1_2 Hopeless
+
+. rename sleeping_1_2 Sleeping
+
+. rename tired_1_2 Tired
+
+. rename appetite_1_2 Appetite
+
+. rename family_1_2 Family
+
+. rename concentrating_1_2 Concentrating
+
+. rename moving_1_2 Moving
+
+. rename thoughts_1_2 Thoughts
+
+. 
+. foreach var of varlist Interest-Thoughts {
+  2.         tab `var', m
+  3. }
+
+     Little interest or |
+      pleasure in doing |
+                 things |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        260       39.27       39.27
+           several days |        209       31.57       70.85
+more than half the days |        141       21.30       92.15
+        Nearly everyday |         28        4.23       96.37
+                      . |         24        3.63      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+          Feeling down, |
+ depressed, or hopeless |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        247       37.31       37.31
+           several days |        200       30.21       67.52
+more than half the days |        142       21.45       88.97
+        Nearly everyday |         49        7.40       96.37
+                      . |         24        3.63      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+     Trouble falling or |
+     staying asleep, or |
+      sleeping too much |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        355       53.63       53.63
+           several days |        154       23.26       76.89
+more than half the days |         93       14.05       90.94
+        Nearly everyday |         31        4.68       95.62
+                      . |         29        4.38      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+Feeling tired or having |
+          little energy |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        234       35.35       35.35
+           several days |        238       35.95       71.30
+more than half the days |        134       20.24       91.54
+        Nearly everyday |         30        4.53       96.07
+                      . |         26        3.93      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+       Poor appetite or |
+             overeating |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        521       78.70       78.70
+           several days |         68       10.27       88.97
+more than half the days |         26        3.93       92.90
+        Nearly everyday |         12        1.81       94.71
+                      . |         35        5.29      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+      Feeling bad about |
+     yourself — or that |
+   you are a failure or |
+ have let yourself or y |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        502       75.83       75.83
+           several days |         55        8.31       84.14
+more than half the days |         54        8.16       92.30
+        Nearly everyday |         25        3.78       96.07
+                      . |         26        3.93      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+  Trouble concentrating |
+     on things, such as |
+  reading the newspaper |
+      or watching telev |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        551       83.23       83.23
+           several days |         52        7.85       91.09
+more than half the days |         21        3.17       94.26
+        Nearly everyday |         11        1.66       95.92
+                      . |         27        4.08      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+  Moving or speaking so |
+      slowly that other |
+      people could have |
+ noticed? Or the opposi |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        524       79.15       79.15
+           several days |         49        7.40       86.56
+more than half the days |         37        5.59       92.15
+        Nearly everyday |         30        4.53       96.68
+                      . |         22        3.32      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+Thoughts that you would |
+  be better off dead or |
+ of hurting yourself in |
+               some way |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |        591       89.27       89.27
+           several days |         17        2.57       91.84
+more than half the days |          9        1.36       93.20
+        Nearly everyday |         14        2.11       95.32
+                      . |         31        4.68      100.00
+------------------------+-----------------------------------
+                  Total |        662      100.00
+
+. 
+. ****PHQ-9 ANALYSIS 
+. **PHQ-9 SCORES
+. egen PHQ = rowtotal(Interest-Thoughts), m
+(19 missing values generated)
+
+. sum PHQ, det
+
+                             PHQ
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            0              0
+ 5%            0              0
+10%            0              0       Obs                 643
+25%            1              0       Sum of wgt.         643
+
+50%            4                      Mean            4.73717
+                        Largest       Std. dev.       4.65384
+75%            7             24
+90%           10             24       Variance       21.65823
+95%           14             25       Skewness       1.519785
+99%           22             27       Kurtosis       6.089241
+
+. 
+. count if Interest==. | Hopeless==. | Sleeping==. | Tired==.| Appetite==.| Family ==. |Concentrating==.
+> | Moving==.| Thoughts==.
+  72
+
+. 
+. **72 Participants missing at least one variable required to calculate a PHQ score
+. replace PHQ=. if Interest==. | Hopeless==. | Sleeping==. | Tired==.| Appetite==.| Family ==. |Concentr
+> ating==.| Moving==.| Thoughts==.
+(53 real changes made, 53 to missing)
+
+. 
+. ***PHQ-9 categories: 0-4 None/minimal; 5-9 Mild; 10-14 Moderate; 15-19 Moderately severe; 20-27 Severe
+. recode PHQ (min/4=1 "None/minimal") (5/9=2 "Mild") (10/14=3 "Moderate") (15/19=4 "Moderate severe") (2
+> 0/27=4 "Severe"), gen (PHQcat)
+(529 differences between PHQ and PHQcat)
+
+. lab var PHQcat "PHQ Category"
+
+. tab PHQcat, m
+
+PHQ Category |      Freq.     Percent        Cum.
+-------------+-----------------------------------
+None/minimal |        349       52.72       52.72
+        Mild |        154       23.26       75.98
+    Moderate |         59        8.91       84.89
+      Severe |         28        4.23       89.12
+           . |         72       10.88      100.00
+-------------+-----------------------------------
+       Total |        662      100.00
+
+. 
+. 
+. 
+. 
+. ***Psychosis Screening Questionnaire
+. **Hypomania Probe
+. encode Hypomaniaprobe1Katikamuda, gen (hypomania)
+
+. encode Jekulikuwanasababudhahiriy, gen (hypomania2)
+
+. recode hypomania (1=1 "No") (2=2 "Yes"), gen (Hypomania)
+(0 differences between hypomania and Hypomania)
+
+. recode hypomania2 (1=1 "No") (2=2 "Yes"), gen (Hypomania2)
+(0 differences between hypomania2 and Hypomania2)
+
+. lab var Hypomania "you felt very happy indeed without a break for days on end"
+
+. tab Hypomania2, m // 93% missing
+
+  RECODE of |
+ hypomania2 |
+       (Je! |
+kulikuwa na |
+     sababu |
+ dhahiri ya |
+hii? (b) b) |
+  Je, jamaa |
+         au |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |         33        4.98        4.98
+        Yes |         11        1.66        6.65
+          . |        618       93.35      100.00
+------------+-----------------------------------
+      Total |        662      100.00
+
+. lab var Hypomania2 "Hypomania"
+
+. 
+. 
+. **Thought insertion
+. encode Thoughtinsertion2Katikamud, gen (thoughtinsertion)
+
+. encode Jehilililitokeakwanjiaamba, gen (thoughtinsertion2)
+
+. recode thoughtinsertion (1=1 "No") (2=2 "Yes"), gen (Thoughtinsertion)
+(0 differences between thoughtinsertion and Thoughtinsertion)
+
+. recode thoughtinsertion2 (1=1 "No") (2=2 "Yes"), gen (Thoughtinsertion2)
+(0 differences between thoughtinsertion2 and Thoughtinsertion2)
+
+. lab var Thoughtinsertion"felt that your thoughts were directly interfered with or controlled by some o
+> utside force or person"
+note: label truncated to 80 characters
+
+. tab Thoughtinsertion2, m //90% missing
+
+  RECODE of |
+thoughtinse |
+rtion2 (Je, |
+       hili |
+  lilitokea |
+   kwa njia |
+ambayo watu |
+wengi walio |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |         17        2.57        2.57
+        Yes |         50        7.55       10.12
+          . |        595       89.88      100.00
+------------+-----------------------------------
+      Total |        662      100.00
+
+. lab var Thoughtinsertion2 "Though insertion"
+
+. 
+. 
+. **Paranoia Probe
+. encode ParanoiaProbe3Katikamudaw, gen (paranoia)
+
+. encode Jekunanyakatiambapoulihisi, gen (paranoia2)
+
+. recode paranoia (1=1 "No") (2=2 "Yes"), gen (Paranoia)
+(0 differences between paranoia and Paranoia)
+
+. recode paranoia2 (1=1 "No") (2=2 "Yes"), gen (Paranoia2)
+(0 differences between paranoia2 and Paranoia2)
+
+. lab var Paranoia "u felt that people were against youu felt that people were against you"
+
+. tab Paranoia2, m //80% missing
+
+  RECODE of |
+  paranoia2 |
+  (Je, kuna |
+    nyakati |
+     ambapo |
+    ulihisi |
+kwamba watu |
+  walitenda |
+      jambo |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |         38        5.74        5.74
+        Yes |         92       13.90       19.64
+          . |        532       80.36      100.00
+------------+-----------------------------------
+      Total |        662      100.00
+
+. lab var Paranoia2 "Paranoia"
+
+. 
+. 
+. **Strange experiences
+. encode StrangeexperiencesKatikamuda, gen (strangeexperiences)
+
+. encode Jeulihisikuwanijambolaaja, gen (strangeexperiences2)
+
+. recode strangeexperiences (1=1 "No") (2=2 "Yes"), gen (Strangeexperiences)
+(0 differences between strangeexperiences and Strangeexperiences)
+
+. recode strangeexperiences2 (1=1 "No") (2=2 "Yes"), gen (Strangeexperiences2)
+(0 differences between strangeexperiences2 and Strangeexperiences2)
+
+. lab var strangeexperiences "have there been times when you felt that something strange was going on"
+
+. tab strangeexperiences2, m //91% missing
+
+Je, ulihisi |
+    kuwa ni |
+   jambo la |
+ ajabu sana |
+    kiwango |
+kwamba watu |
+    wengine |
+   wangeona |
+        kuw |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         La |         28        4.23        4.23
+       Ndio |         35        5.29        9.52
+          . |        599       90.48      100.00
+------------+-----------------------------------
+      Total |        662      100.00
+
+. lab var strangeexperiences2 "Strange experiences"
+
+. 
+. 
+. **Hallucinations
+. encode Hallucinations5Katikamudaw , gen (hallucinations)
+
+. encode Jewakatiwowoteulisikiasauti, gen (hallucinations2)
+
+. recode hallucinations (1=1 "No") (2=2 "Yes"), gen (Hallucinations)
+(0 differences between hallucinations and Hallucinations)
+
+. recode hallucinations2 (1=1 "No") (2=2 "Yes"), gen (Hallucinations2)
+(0 differences between hallucinations2 and Hallucinations2)
+
+. lab var Hallucinations "heard or saw things that other people couldn't"
+
+. tab Hallucinations2, m // 93% missing
+
+  RECODE of |
+hallucinati |
+  ons2 (Je, |
+     wakati |
+     wowote |
+   ulisikia |
+      sauti |
+   zikisema |
+maneno au s |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |         19        2.87        2.87
+        Yes |         27        4.08        6.95
+          . |        616       93.05      100.00
+------------+-----------------------------------
+      Total |        662      100.00
+
+. lab var Hallucinations2 "Hallucinations"
+
+. 
+. 
+. /*rename hypomania_supplement hypomania
+> rename hypomania_supplement_001 hypomania2
+> rename thoughtinsertion_supplement insertion
+> rename thoughtinsertion_supplement_001 insertion2
+> rename paranoia_supplement paranoia
+> rename paranoia_supplement_001 paranoia2
+> rename strangeexperience_supplement strange 
+> rename strangeexperience_supplement_001 strange2
+> rename hallucinations_supplement hallucination
+> rename hallucinations_supplement_001 hallucination2
+> 
+> foreach var of varlist hypomania-hallucination2{
+>         encode `var', gen (`var'_1)
+> }
+> 
+> */
+. **For an item to be considered positive, both the root and the additional corroborating questions have
+>  to be endorsed either in the last 12 months or lifetime.
+. 
+. gen Hypomaniasymp =. 
+(662 missing values generated)
+
+. replace Hypomaniasymp =1 if Hypomania==2 & Hypomania2 ==2
+(11 real changes made)
+
+. replace Hypomaniasymp = 2 if Hypomaniasymp !=1
+(651 real changes made)
+
+. lab var Hypomaniasymp "Symptoms of hypomania"
+
+. tab Hypomaniasymp
+
+Symptoms of |
+  hypomania |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         11        1.66        1.66
+          2 |        651       98.34      100.00
+------------+-----------------------------------
+      Total |        662      100.00
+
+. 
+. gen Insertion =. 
+(662 missing values generated)
+
+. replace Insertion =1 if Thoughtinsertion==2 & Thoughtinsertion2 ==2
+(50 real changes made)
+
+. replace Insertion = 2 if Thoughtinsertion ==1 | Thoughtinsertion2 == 1
+(587 real changes made)
+
+. replace Insertion =. if Thoughtinsertion == . 
+(0 real changes made)
+
+. lab var Insertion "Thought insertion"
+
+. tab Insertion
+
+    Thought |
+  insertion |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         50        7.85        7.85
+          2 |        587       92.15      100.00
+------------+-----------------------------------
+      Total |        637      100.00
+
+. 
+. gen Paranoiasymp =. 
+(662 missing values generated)
+
+. replace Paranoiasymp =1 if Paranoia==2 & Paranoia2 ==2
+(92 real changes made)
+
+. replace Paranoiasymp = 2 if Paranoia ==1 | Paranoia2 ==1
+(549 real changes made)
+
+. replace Paranoiasymp = . if Paranoia == . 
+(0 real changes made)
+
+. lab var Paranoiasymp "Symptoms of paranoia"
+
+. tab Paranoiasymp
+
+Symptoms of |
+   paranoia |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         92       14.35       14.35
+          2 |        549       85.65      100.00
+------------+-----------------------------------
+      Total |        641      100.00
+
+. 
+. gen Strange =. 
+(662 missing values generated)
+
+. replace Strange = 1 if Strangeexperiences==2 & Strangeexperiences2==2
+(35 real changes made)
+
+. replace Strange = 2 if Strangeexperiences==1 | Strangeexperiences2==1
+(603 real changes made)
+
+. replace Strange = . if  Strangeexperiences ==.
+(0 real changes made)
+
+. lab var Strange "Strange experiences"
+
+. tab Strange
+
+    Strange |
+experiences |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         35        5.49        5.49
+          2 |        603       94.51      100.00
+------------+-----------------------------------
+      Total |        638      100.00
+
+. 
+. gen Hallucinationsymp =. 
+(662 missing values generated)
+
+. replace Hallucinationsymp =1 if Hallucinations==2 & Hallucinations2 ==2
+(27 real changes made)
+
+. replace Hallucinationsymp = 2 if Hallucinations == 1 | Hallucinations2 == 1
+(609 real changes made)
+
+. replace Hallucinationsymp = . if Hallucinations ==.
+(0 real changes made)
+
+. lab var Hallucinationsymp "Symptoms of Hallucination"
+
+. tab Hallucinationsymp
+
+Symptoms of |
+Hallucinati |
+         on |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         27        4.25        4.25
+          2 |        609       95.75      100.00
+------------+-----------------------------------
+      Total |        636      100.00
+
+. 
+. 
+. 
+. ***In addition to these five binary measures, a composite screening measure was created using response
+> s across all five psychotic symptoms (0 = negative on all; 1 = positive on any) and was further catego
+> rized into past-year 
+. 
+. gen Psychosis =.
+(662 missing values generated)
+
+. replace Psychosis =1 if Hypomaniasymp ==1 | Insertion==1 | Paranoiasymp ==1 | Strange==1 | Hallucinati
+> onsymp==1
+(125 real changes made)
+
+. replace Psychosis =. if Hypomaniasymp ==. & Insertion==. & Paranoiasymp ==. & Strange==. & Hallucinati
+> onsymp==.
+(0 real changes made)
+
+. replace Psychosis =2 if Psychosis !=1
+(537 real changes made)
+
+. lab var Psychosis "Diagnosis of psychosis"
+
+. tab Psychosis
+
+  Diagnosis |
+         of |
+  psychosis |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        125       18.88       18.88
+          2 |        537       81.12      100.00
+------------+-----------------------------------
+      Total |        662      100.00
+
+. 
+. lab define symp 1 "Yes" 2 "No"
+
+. lab values Psychosis symp
+
+. tab Psychosis
+
+  Diagnosis |
+         of |
+  psychosis |      Freq.     Percent        Cum.
+------------+-----------------------------------
+        Yes |        125       18.88       18.88
+         No |        537       81.12      100.00
+------------+-----------------------------------
+      Total |        662      100.00
+
+. 
+. **Year of Study
+. tab MwakawaMasomo, m
+
+Mwaka wa Masomo |      Freq.     Percent        Cum.
+----------------+-----------------------------------
+                |        556       83.99       83.99
+Mwaka wa Kwanza |         46        6.95       90.94
+   Mwaka wa Nne |         47        7.10       98.04
+  Mwaka wa Pili |          9        1.36       99.40
+  Mwaka wa Tatu |          4        0.60      100.00
+----------------+-----------------------------------
+          Total |        662      100.00
+
+. encode MwakawaMasomo , gen (YearofStudy)
+
+. 
+. 
+. 
+. 
+. keep if YearofStudy ==. // subsetting community data
+(106 observations deleted)
+
+. 
+. 
+. keep age Agegrps  sex marstat Education HHead Activitylevel SocialMedia Nervous Worrying Things Troubl
+> e Restless Irritable Afraid GADcategory GAD Interest Hopeless Sleeping  Tired Appetite Family Concentr
+> ating Moving Thoughts PHQcat PHQ Hypomania Hypomania2 Thoughtinsertion Thoughtinsertion2 Paranoia Para
+> noia2 Strangeexperiences Strangeexperiences2 Hallucinations Hallucinations2 Hypomaniasymp Insertion Pa
+> ranoiasymp Strange Hallucinationsymp Psychosis
+
+. 
+. save community.dta, replace
+file community.dta saved
+
+. 
+. ****
+. log close
+      name:  <unnamed>
+       log:  D:\Mental Health\communitycleaning.log
+  log type:  text
+ closed on:   6 Nov 2024, 01:45:24
+--------------------------------------------------------------------------------------------------------

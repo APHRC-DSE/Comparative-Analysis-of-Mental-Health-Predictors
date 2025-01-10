@@ -1,0 +1,651 @@
+--------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  D:\Mental Health\communitydata.log
+  log type:  text
+ opened on:   6 Nov 2024, 01:45:24
+
+. use community2.dta
+
+. append using community.dta
+(label Hallucinations2 already defined)
+(label Hallucinations already defined)
+(label Strangeexperiences2 already defined)
+(label Strangeexperiences already defined)
+(label Paranoia2 already defined)
+(label Paranoia already defined)
+(label Thoughtinsertion2 already defined)
+(label Thoughtinsertion already defined)
+(label Hypomania2 already defined)
+(label Hypomania already defined)
+(label PHQcat already defined)
+(label thoughts_1_2 already defined)
+(label moving_1_2 already defined)
+(label concentrating_1_2 already defined)
+(label family_1_2 already defined)
+(label appetite_1_2 already defined)
+(label tired_1_2 already defined)
+(label sleeping_1_2 already defined)
+(label hopeless_1_2 already defined)
+(label interest_1_2 already defined)
+(label GADcategory already defined)
+(label afraid_1_2 already defined)
+(label irritable_1_2 already defined)
+(label restless_1_2 already defined)
+(label relaxing_1_2 already defined)
+(label worry_too_much_1_2 already defined)
+(label control_worrying_1_2 already defined)
+(label nervous_1_2 already defined)
+(label SocialMedia already defined)
+(label Activitylevel already defined)
+(label HHead already defined)
+(label Education already defined)
+(label marstat already defined)
+(label sex already defined)
+(label Agegrps already defined)
+
+. mdesc
+
+    Variable    |     Missing          Total     Percent Missing
+----------------+-----------------------------------------------
+            age |         106          3,361           3.15
+        Agegrps |         106          3,361           3.15
+            sex |         105          3,361           3.12
+        marstat |          99          3,361           2.95
+      Education |          99          3,361           2.95
+          HHead |          99          3,361           2.95
+   Activityle~l |          99          3,361           2.95
+    SocialMedia |         924          3,361          27.49
+        Nervous |         105          3,361           3.12
+       Worrying |         112          3,361           3.33
+         Things |         116          3,361           3.45
+        Trouble |         122          3,361           3.63
+       Restless |         141          3,361           4.20
+      Irritable |         114          3,361           3.39
+         Afraid |         132          3,361           3.93
+            GAD |         216          3,361           6.43
+    GADcategory |         216          3,361           6.43
+       Interest |         111          3,361           3.30
+       Hopeless |         115          3,361           3.42
+       Sleeping |         121          3,361           3.60
+          Tired |         109          3,361           3.24
+       Appetite |         132          3,361           3.93
+         Family |         153          3,361           4.55
+   Concentrat~g |         115          3,361           3.42
+         Moving |         111          3,361           3.30
+       Thoughts |         135          3,361           4.02
+            PHQ |         267          3,361           7.94
+         PHQcat |         267          3,361           7.94
+      Hypomania |         163          3,361           4.85
+     Hypomania2 |       1,990          3,361          59.21
+   Thoughtins~n |         115          3,361           3.42
+   Thoughtins~2 |       2,943          3,361          87.56
+       Paranoia |         119          3,361           3.54
+      Paranoia2 |       2,475          3,361          73.64
+   Strangeexp~s |         127          3,361           3.78
+   Strangeexp~2 |       2,850          3,361          84.80
+   Hallucinat~s |         121          3,361           3.60
+   Hallucinat~2 |       2,938          3,361          87.41
+   Hypomanias~p |           0          3,361           0.00
+      Insertion |         123          3,361           3.66
+   Paranoiasymp |         124          3,361           3.69
+        Strange |         130          3,361           3.87
+   Hallucinat~p |         132          3,361           3.93
+      Psychosis |           0          3,361           0.00
+----------------+-----------------------------------------------
+
+. 
+. 
+. **Generating descriptive statistics
+. 
+. 
+. 
+. 
+. sum age, det
+
+                             Age
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%           18             17
+ 5%           21             18
+10%           23             18       Obs               3,255
+25%           28             18       Sum of wgt.       3,255
+
+50%           36                      Mean           38.66974
+                        Largest       Std. dev.      13.65885
+75%           46             88
+90%           59             91       Variance       186.5642
+95%           65             93       Skewness       .8099267
+99%           75            101       Kurtosis        3.29763
+
+. foreach var of varlist Agegrps-SocialMedia {
+  2.         tab `var', m
+  3. }
+
+ AGE GROUPS |      Freq.     Percent        Cum.
+------------+-----------------------------------
+  <25 years |        477       14.19       14.19
+25-34 years |        962       28.62       42.81
+35-44 years |        870       25.89       68.70
+45-54 years |        499       14.85       83.55
+55-64 years |        255        7.59       91.13
+ > 65 years |        192        5.71       96.85
+          . |        106        3.15      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+ Sex of the |
+participant |      Freq.     Percent        Cum.
+------------+-----------------------------------
+     Female |      1,995       59.36       59.36
+       Male |      1,261       37.52       96.88
+          . |        105        3.12      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+          Marital status |      Freq.     Percent        Cum.
+-------------------------+-----------------------------------
+                 Married |      1,557       46.33       46.33
+single/widowed/separated |      1,705       50.73       97.05
+                       . |         99        2.95      100.00
+-------------------------+-----------------------------------
+                   Total |      3,361      100.00
+
+    Education level |      Freq.     Percent        Cum.
+--------------------+-----------------------------------
+No formal education |      1,110       33.03       33.03
+      Primary level |      1,098       32.67       65.69
+    Secondary level |        918       27.31       93.01
+     Tertiary level |        136        4.05       97.05
+                  . |         99        2.95      100.00
+--------------------+-----------------------------------
+              Total |      3,361      100.00
+
+Head of the |
+  household |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      1,020       30.35       30.35
+        Yes |      2,242       66.71       97.05
+          . |         99        2.95      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+    Activity |
+       level |      Freq.     Percent        Cum.
+-------------+-----------------------------------
+       Never |        111        3.30        3.30
+      Rarely |        775       23.06       26.36
+Occasionally |      1,105       32.88       59.24
+  Frequently |      1,271       37.82       97.05
+           . |         99        2.95      100.00
+-------------+-----------------------------------
+       Total |      3,361      100.00
+
+     Social |
+  Media Use |      Freq.     Percent        Cum.
+------------+-----------------------------------
+   < 1 hour |        907       26.99       26.99
+  1-3 hours |        638       18.98       45.97
+  3-5 hours |        598       17.79       63.76
+  > 5 hours |        294        8.75       72.51
+          . |        924       27.49      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+. 
+. foreach var of varlist Nervous-GADcategory {
+  2.         tab `var', m
+  3. }
+
+       Feeling nervous, |
+    anxious, or on edge |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,394       41.48       41.48
+           several days |      1,411       41.98       83.46
+more than half the days |        316        9.40       92.86
+        Nearly everyday |        135        4.02       96.88
+                      . |        105        3.12      100.00
+------------------------+-----------------------------------
+                  Total |      3,361      100.00
+
+ Not being able to stop |
+    or control worrying |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,865       55.49       55.49
+           several days |        766       22.79       78.28
+more than half the days |        546       16.25       94.53
+        Nearly everyday |         72        2.14       96.67
+                      . |        112        3.33      100.00
+------------------------+-----------------------------------
+                  Total |      3,361      100.00
+
+Worrying too much about |
+       different things |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,656       49.27       49.27
+           several days |      1,083       32.22       81.49
+more than half the days |        394       11.72       93.22
+        Nearly everyday |        112        3.33       96.55
+                      . |        116        3.45      100.00
+------------------------+-----------------------------------
+                  Total |      3,361      100.00
+
+       Trouble relaxing |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      2,131       63.40       63.40
+           several days |        651       19.37       82.77
+more than half the days |        379       11.28       94.05
+        Nearly everyday |         78        2.32       96.37
+                      . |        122        3.63      100.00
+------------------------+-----------------------------------
+                  Total |      3,361      100.00
+
+ Being so restless that |
+ it's hard to sit still |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      2,144       63.79       63.79
+           several days |        670       19.93       83.73
+more than half the days |        312        9.28       93.01
+        Nearly everyday |         94        2.80       95.80
+                      . |        141        4.20      100.00
+------------------------+-----------------------------------
+                  Total |      3,361      100.00
+
+Becoming easily annoyed |
+           or Irritable |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,032       30.71       30.71
+           several days |      1,530       45.52       76.23
+more than half the days |        529       15.74       91.97
+        Nearly everyday |        156        4.64       96.61
+                      . |        114        3.39      100.00
+------------------------+-----------------------------------
+                  Total |      3,361      100.00
+
+   Feeling afraid as if |
+  something awful might |
+                 happen |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,721       51.20       51.20
+           several days |        985       29.31       80.51
+more than half the days |        387       11.51       92.03
+        Nearly everyday |        136        4.05       96.07
+                      . |        132        3.93      100.00
+------------------------+-----------------------------------
+                  Total |      3,361      100.00
+
+        GAD |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |        451       13.42       13.42
+          1 |        475       14.13       27.55
+          2 |        355       10.56       38.11
+          3 |        249        7.41       45.52
+          4 |        235        6.99       52.51
+          5 |        171        5.09       57.60
+          6 |        166        4.94       62.54
+          7 |        161        4.79       67.33
+          8 |        208        6.19       73.52
+          9 |        232        6.90       80.42
+         10 |        187        5.56       85.99
+         11 |         92        2.74       88.72
+         12 |         68        2.02       90.75
+         13 |         32        0.95       91.70
+         14 |         19        0.57       92.26
+         15 |         14        0.42       92.68
+         16 |          9        0.27       92.95
+         17 |          7        0.21       93.16
+         18 |          8        0.24       93.39
+         19 |          1        0.03       93.42
+         21 |          5        0.15       93.57
+          . |        216        6.43      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+        GAD |
+   Category |      Freq.     Percent        Cum.
+------------+-----------------------------------
+    Minimal |      1,765       52.51       52.51
+       Mild |        938       27.91       80.42
+  Moderate  |        398       11.84       92.26
+     Severe |         44        1.31       93.57
+          . |        216        6.43      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+. 
+. foreach var of varlist Interest -PHQcat {
+  2.         tab `var', m
+  3. }
+
+     Little interest or |
+      pleasure in doing |
+                 things |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,227       36.51       36.51
+           several days |      1,595       47.46       83.96
+more than half the days |        335        9.97       93.93
+        Nearly everyday |         93        2.77       96.70
+                      . |        111        3.30      100.00
+------------------------+-----------------------------------
+                  Total |      3,361      100.00
+
+          Feeling down, |
+ depressed, or hopeless |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,582       47.07       47.07
+           several days |        900       26.78       73.85
+more than half the days |        607       18.06       91.91
+        Nearly everyday |        157        4.67       96.58
+                      . |        115        3.42      100.00
+------------------------+-----------------------------------
+                  Total |      3,361      100.00
+
+     Trouble falling or |
+     staying asleep, or |
+      sleeping too much |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,454       43.26       43.26
+           several days |      1,178       35.05       78.31
+more than half the days |        451       13.42       91.73
+        Nearly everyday |        157        4.67       96.40
+                      . |        121        3.60      100.00
+------------------------+-----------------------------------
+                  Total |      3,361      100.00
+
+Feeling tired or having |
+          little energy |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,046       31.12       31.12
+           several days |      1,622       48.26       79.38
+more than half the days |        455       13.54       92.92
+        Nearly everyday |        129        3.84       96.76
+                      . |        109        3.24      100.00
+------------------------+-----------------------------------
+                  Total |      3,361      100.00
+
+       Poor appetite or |
+             overeating |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      2,017       60.01       60.01
+           several days |        714       21.24       81.26
+more than half the days |        377       11.22       92.47
+        Nearly everyday |        121        3.60       96.07
+                      . |        132        3.93      100.00
+------------------------+-----------------------------------
+                  Total |      3,361      100.00
+
+      Feeling bad about |
+     yourself — or that |
+   you are a failure or |
+ have let yourself or y |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,963       58.41       58.41
+           several days |        762       22.67       81.08
+more than half the days |        343       10.21       91.28
+        Nearly everyday |        140        4.17       95.45
+                      . |        153        4.55      100.00
+------------------------+-----------------------------------
+                  Total |      3,361      100.00
+
+  Trouble concentrating |
+     on things, such as |
+  reading the newspaper |
+      or watching telev |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      2,299       68.40       68.40
+           several days |        684       20.35       88.75
+more than half the days |        199        5.92       94.67
+        Nearly everyday |         64        1.90       96.58
+                      . |        115        3.42      100.00
+------------------------+-----------------------------------
+                  Total |      3,361      100.00
+
+  Moving or speaking so |
+      slowly that other |
+      people could have |
+ noticed? Or the opposi |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      1,969       58.58       58.58
+           several days |        786       23.39       81.97
+more than half the days |        390       11.60       93.57
+        Nearly everyday |        105        3.12       96.70
+                      . |        111        3.30      100.00
+------------------------+-----------------------------------
+                  Total |      3,361      100.00
+
+Thoughts that you would |
+  be better off dead or |
+ of hurting yourself in |
+               some way |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+             not at all |      2,453       72.98       72.98
+           several days |        574       17.08       90.06
+more than half the days |        132        3.93       93.99
+        Nearly everyday |         67        1.99       95.98
+                      . |        135        4.02      100.00
+------------------------+-----------------------------------
+                  Total |      3,361      100.00
+
+        PHQ |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |        394       11.72       11.72
+          1 |        241        7.17       18.89
+          2 |        439       13.06       31.95
+          3 |        314        9.34       41.30
+          4 |        274        8.15       49.45
+          5 |        192        5.71       55.16
+          6 |        135        4.02       59.18
+          7 |         93        2.77       61.95
+          8 |        124        3.69       65.64
+          9 |         75        2.23       67.87
+         10 |        126        3.75       71.62
+         11 |        138        4.11       75.72
+         12 |        201        5.98       81.70
+         13 |        143        4.25       85.96
+         14 |         71        2.11       88.07
+         15 |         52        1.55       89.62
+         16 |         20        0.60       90.21
+         17 |         17        0.51       90.72
+         18 |         12        0.36       91.07
+         19 |          3        0.09       91.16
+         20 |          6        0.18       91.34
+         21 |          7        0.21       91.55
+         22 |          4        0.12       91.67
+         23 |          4        0.12       91.79
+         24 |          4        0.12       91.91
+         25 |          2        0.06       91.97
+         26 |          1        0.03       92.00
+         27 |          2        0.06       92.06
+          . |        267        7.94      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+PHQ Category |      Freq.     Percent        Cum.
+-------------+-----------------------------------
+None/minimal |      1,662       49.45       49.45
+        Mild |        619       18.42       67.87
+    Moderate |        679       20.20       88.07
+      Severe |        134        3.99       92.06
+           . |        267        7.94      100.00
+-------------+-----------------------------------
+       Total |      3,361      100.00
+
+. 
+. foreach var of varlist Hypomania-Psychosis {
+  2.         tab `var', m
+  3. }
+
+   you felt |
+ very happy |
+     indeed |
+  without a |
+  break for |
+days on end |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      1,821       54.18       54.18
+        Yes |      1,377       40.97       95.15
+          . |        163        4.85      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+  Hypomania |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        633       18.83       18.83
+        Yes |        738       21.96       40.79
+          . |      1,990       59.21      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+  felt that |
+       your |
+   thoughts |
+       were |
+   directly |
+ interfered |
+    with or |
+ controlled |
+    by some |
+       outs |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      2,820       83.90       83.90
+        Yes |        426       12.67       96.58
+          . |        115        3.42      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+     Though |
+  insertion |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        181        5.39        5.39
+        Yes |        237        7.05       12.44
+          . |      2,943       87.56      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+u felt that |
+people were |
+    against |
+  youu felt |
+that people |
+       were |
+against you |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      2,351       69.95       69.95
+        Yes |        891       26.51       96.46
+          . |        119        3.54      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+   Paranoia |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        540       16.07       16.07
+        Yes |        346       10.29       26.36
+          . |      2,475       73.64      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+ have there |
+ been times |
+   when you |
+  felt that |
+  something |
+strange was |
+   going on |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      2,720       80.93       80.93
+        Yes |        514       15.29       96.22
+          . |        127        3.78      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+    Strange |
+experiences |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        225        6.69        6.69
+        Yes |        286        8.51       15.20
+          . |      2,850       84.80      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+   heard or |
+ saw things |
+ that other |
+     people |
+   couldn't |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |      2,806       83.49       83.49
+        Yes |        434       12.91       96.40
+          . |        121        3.60      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+Hallucinati |
+        ons |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         No |        201        5.98        5.98
+        Yes |        222        6.61       12.59
+          . |      2,938       87.41      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+Symptoms of |
+  hypomania |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        738       21.96       21.96
+          2 |      2,623       78.04      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+    Thought |
+  insertion |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        237        7.05        7.05
+          2 |      3,001       89.29       96.34
+          . |        123        3.66      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+Symptoms of |
+   paranoia |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        346       10.29       10.29
+          2 |      2,891       86.02       96.31
+          . |        124        3.69      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+    Strange |
+experiences |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        286        8.51        8.51
+          2 |      2,945       87.62       96.13
+          . |        130        3.87      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+Symptoms of |
+Hallucinati |
+         on |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        222        6.61        6.61
+          2 |      3,007       89.47       96.07
+          . |        132        3.93      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+  Diagnosis |
+         of |
+  psychosis |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |      1,120       33.32       33.32
+          2 |      2,241       66.68      100.00
+------------+-----------------------------------
+      Total |      3,361      100.00
+
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  D:\Mental Health\communitydata.log
+  log type:  text
+ closed on:   6 Nov 2024, 01:45:24
+--------------------------------------------------------------------------------------------------------
