@@ -15,7 +15,13 @@ The aim of the study was to analyze and identify factors associated with mental 
       
 ## Setup
 
-We are assuming you have `STATA version 16 or higher` installed. If not, you can purchase the license from [**STATA**](https://www.stata.com/) then download and install.
+STATA was used for cleaning while R was used for analysis.
+
+We are assuming you have `STATA version 16 or higher`, `R Software` and `Rstudio IDE` installed. If not:
+
+- You can purchase the license from [**STATA**](https://www.stata.com/) then download and install.
+
+- Download and install [**R software**](https://www.r-project.org/) then followed by [**RStudio/Posit IDE**](https://posit.co/download/rstudio-desktop/).
 
 ## Data
 
