@@ -31,4 +31,16 @@ The raw data and clean data used for analysis are available on reasonable reques
 
 - **Data used for analysis:** `community.dta` and `studentdata.dta`
 
+## Run Analysis in R
 
+After cloning the repository or downloading the ZIP, you also need the data files (**Data used for analysis**) in the _data_ sub-folder of [Analysis](./Analysis) folder.
+
+Open `Rstudio` then set your working directory to the _Analysis_ folder. 
+
+- Copy the below code to run all files at once in Rstudio
+
+```
+source("main.R")
+
+```
+- To run individual files, open the `main.R` script, and run from the beginning.
