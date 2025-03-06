@@ -26,6 +26,7 @@ source("helperfuns_read_excel_sheets.R")
 source("helperfuns_gt_summary_themes.R")
 source("helperfuns_table_summary_categorical.R")
 source("helperfuns_ggplot_themes.R")
+source("helperfuns_simple_plots.R")
 source("helperfuns_effect_size.R")
 
 ### Load data 
@@ -62,6 +63,9 @@ source("save_descriptive_inferential_categorical_output.R")
 source("save_effect_size_categorical_output.R")
 source("save_reliability_correlation_tools_university_output.R")
 source("save_reliability_correlation_tools_community_output.R")
+
+### Descriptive plots
+source("descriptive_plots.R")
 
 ######################################################################
 
