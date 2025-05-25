@@ -67,3 +67,25 @@ ggtheme_regression_plot = function(angletext_yaxis=0, angletext_xaxis=0) {
             )
   )
 }
+
+ggtheme_rank_plot <- function() {
+  theme_set( theme_bw(base_size=11) +
+               theme( 
+                 legend.position="right", #default
+                 axis.text.x = element_text(angle = 0, lineheight = 0.6),
+                 axis.text.y = element_text(angle = 0, lineheight = 0.6),
+                 plot.title = element_text(hjust = 0.5),
+                 axis.title.x = element_text(size = 12, face = "bold"),
+                 axis.title.y = element_text(size = 12, face = "bold"),
+                 strip.background = element_blank(),
+                 panel.border = element_rect(colour = "grey"
+                                             , fill = NA
+                                             , linewidth = 0.8
+                 ),
+                 strip.text.x = element_text(size = 8
+                                             , colour = "black"
+                                             , face = "bold"
+                 )
+               )
+  )
+}

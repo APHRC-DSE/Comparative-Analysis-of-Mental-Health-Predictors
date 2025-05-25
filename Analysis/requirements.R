@@ -20,7 +20,7 @@ base::ifelse(!base::dir.exists(output_Dir), base::dir.create(output_Dir), "Sub D
 required_packages <- c("tidyverse", "haven", "janitor", "knitr", "kableExtra", "lubridate", "gtsummary", "flextable",
                        "labelled", "sjlabelled", "factoextra", "officer", "gridExtra", "ggpubr", "rstatix","scales",
                        "readxl", "writexl", "checkmate", "caret", "ggstats", "webr", "data.table", "tidyselect",
-                       "broom", "performance"
+                       "broom", "performance", "bayestestR", "DALEX"
                        )
 
 installed_packages <- required_packages %in% base::rownames(utils::installed.packages())
