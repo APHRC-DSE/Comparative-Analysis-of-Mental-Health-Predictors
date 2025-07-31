@@ -25,3 +25,16 @@ effect_size_categorical_stats <- if (length(outcome_character_vars)>0) {
   print(paste0("No effect size analysis done. Select outcome variable"))
 }
 
+
+effect_size_categorical_combined_stats <- if (length(outcome_character_vars)>0) {
+  
+  effectsize_corr_table(df = df_analysis %>%
+                          dplyr::mutate(across(c(any_of(outcome_character_vars)),~forcats::fct_rev(.x))
+                                        ),
+                        by_vars = outcome_character_vars)
+  
+  
+} else {
+  print(paste0("No effect size combined analysis done. Select outcome variable"))
+}
+

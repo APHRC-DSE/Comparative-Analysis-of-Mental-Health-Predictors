@@ -78,8 +78,11 @@ source("modelling_data.R")
 
 ### Crude Odds Ratio and Adjusted Odds Ratio
 source("CoR_categorical_analysis.R")
+source("CoR_categorical_combined_analysis.R")
 source("AoR_categorical_analysis.R")
+source("AoR_categorical_combined_analysis.R")
 source("AoR_categorical_analysis_plots.R")
+source("AoR_categorical_combined_analysis_plots.R")
 
 ### Save Crude Odds Ratio and Adjusted Odds Ratio output
 source("save_odds_ratio_output.R")
@@ -89,6 +92,9 @@ source("save_odds_ratio_output.R")
 ### Predictive Modelling - AUC and Variable Importance
 source("auc_categorical_modelling.R")
 source("varimp_categorical_modelling.R")
+
+source("auc_categorical_combined_modelling.R")
+source("varimp_categorical_combined_modelling.R")
 
 ######################################################################
 

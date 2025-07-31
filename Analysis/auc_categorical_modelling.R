@@ -7,7 +7,6 @@ library(performance)
 library(bayestestR)
 
 working_directory
-ggtheme_rank_plot()
 
 ## Area Under the Curve
 
@@ -74,29 +73,22 @@ auc_categorical_modelling_match <- sapply(levels(df_drop_vars[[group_vars]]), fu
   }, simplify = FALSE
   )
 
+ggtheme_rank_plot()
 auc_categorical_modelling_match_plot <- data.table::rbindlist(auc_categorical_modelling_match) %>%
-     ggplot(aes(x=x, y=y)) +
-     geom_line(aes(colour = method)) +
-     geom_abline(intercept = 0, slope = 1, colour = "grey40", linetype = 2) +
-     scale_x_continuous(limits = c(0, 1), n.breaks = 6, expand = expansion(mult = c(0.02,0.02))) +
-     scale_y_continuous(limits = c(0, 1), n.breaks = 6, expand = expansion(mult = c(0.02,0.02))) +
-     facet_wrap(pop~label_auc, scales="free", ncol = 3
-                ,labeller = labeller(.default = label_value, .multi_line = FALSE)
-                ) + 
-     labs(y = NULL, x = NULL, colour = NULL) + 
-     theme(legend.position="none"
-           )
+  ggplot(aes(x=x, y=y)) +
+  geom_line(aes(colour = method)) +
+  geom_abline(intercept = 0, slope = 1, colour = "grey40", linetype = 2) +
+  scale_x_continuous(limits = c(0, 1), n.breaks = 6, expand = expansion(mult = c(0.02,0.02))) +
+  scale_y_continuous(limits = c(0, 1), n.breaks = 6, expand = expansion(mult = c(0.02,0.02))) +
+  facet_wrap(pop~label_auc, scales="free", ncol = 3
+             ,labeller = labeller(.default = label_value, .multi_line = FALSE)
+             ) + 
+  labs(y = "True Positive Rate", x = "False Positive Rate", colour = NULL) + 
+  theme(legend.position="none"
+        )
 
-
-auc_categorical_modelling_match_plot_grid <- ggpubr::annotate_figure(
-  p = auc_categorical_modelling_match_plot,
-  top = NULL,
-  left = text_grob("True Positive Rate", color = "black", face = "bold", size = 12, rot = 90),
-  bottom = text_grob("False Positive Rate", color = "black", face = "bold", size = 12)
-)
-
-print(auc_categorical_modelling_match_plot_grid)
+print(auc_categorical_modelling_match_plot)
 
 ## Saving the plot
-ggsave(plot=auc_categorical_modelling_match_plot_grid, height = 7, width = 13,
+ggsave(plot=auc_categorical_modelling_match_plot, height = 7, width = 13,
        filename = "auc_roc_plots.png", path = output_Dir, bg='white')

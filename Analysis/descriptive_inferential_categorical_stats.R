@@ -6,8 +6,20 @@ my_gtsummary_theme
 
 gtsummary_compact_theme
 
-## Descriptive statistics
+## Descriptive statistics - Combined
 
+descriptive_combined_stats <- descriptive_table(df = df_analysis,
+                                               foot_note = "n (%); Mean (SD); Median (IQR); Range",
+                                               caption = "",
+                                               flex_table = FALSE,
+                                               ci=FALSE,
+                                               mean_vars = c("gad7_total_score","phq9_totalscore", "psq_totalscore" ),
+                                               include_vars = names(df_analysis)
+                                               )
+
+print(descriptive_combined_stats)
+
+## Descriptive statistics - Per Site
 descriptive_stats <- categorical_inferential_table(df = df_analysis,
                                                    foot_note = "n (%); Mean (SD); Median (IQR); Range",
                                                    caption = "",
@@ -22,7 +34,7 @@ descriptive_stats <- categorical_inferential_table(df = df_analysis,
 
 print(descriptive_stats)
 
-## Inferential statistics
+
 inferential_vars <- selected_vars_df$new_variable[selected_vars_df$inferential == "yes" &
                                                     !is.na(selected_vars_df$inferential)]
 
@@ -36,6 +48,25 @@ inferential_numeric_vars <- inferential_vars[inferential_vars %in% numeric_integ
 
 outcome_character_vars <- outcome_vars[outcome_vars %in% factor_character_vars]
 outcome_numeric_vars <- outcome_vars[outcome_vars %in% numeric_integer_vars]
+
+## Inferential statistics - Combined
+
+inferential_character_combined_stats_1 <- 
+  categorical_inferential_table(df = df_analysis,
+                                foot_note = "n (%); Mean (SD); Median (IQR); Range",
+                                caption = "",
+                                by_vars = outcome_character_vars, 
+                                percent = "row",
+                                flex_table = FALSE,
+                                overall = FALSE,
+                                ci=FALSE,
+                                mean_vars = c("gad7_total_score","phq9_totalscore", "psq_totalscore" ),
+                                include_vars = names(df_analysis)
+                                )
+
+print(inferential_character_combined_stats_1)
+
+## Inferential statistics - Per Site
 
 ### Population study as Strata 
 inferential_character_stats_1 <- if (length(outcome_character_vars)>0) {
@@ -138,3 +169,14 @@ inferential_character_stats_2 <- if (length(outcome_character_vars)>0) {
 }
 
 print(inferential_character_stats_2)
+
+## Merge the combined descriptive and Inferential statistics
+
+descriptive_inferential_combined_stats_merge <- 
+  gtsummary::tbl_merge(tbls= c(list(descriptive_combined_stats),
+                               inferential_character_combined_stats_1 
+                               ),
+                       tab_spanner = c("Overall", final_attribute$label[final_attribute$variable %in% outcome_character_vars]
+                                         )
+                       ) %>%
+      gtsummary::as_flex_table()
