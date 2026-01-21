@@ -47,7 +47,8 @@ varimp_categorical_modelling_match <- sapply(levels(df_drop_vars[[group_vars]]),
      variables_delete <- unname(tidyselect::vars_select(variables, starts_with(outcome_string, ignore.case = TRUE))
                                 ) #select numeric variables related to outcome
      
-     variables_final <- variables[!variables %in% variables_delete]
+     #variables_final <- variables[!variables %in% variables_delete]
+     variables_final <- variables[!variables %in% outcome_numeric_vars]
      
      df_final <- df %>%
        dplyr::select(any_of(c(z, variables_final))

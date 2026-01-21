@@ -34,7 +34,7 @@ ggtheme_descriptive_plot <- function(angletext_yaxis=0, angletext_xaxis=0,
   theme_set(theme_minimal() +
               theme(
                 legend.position="bottom",
-                legend.text = element_text(size = 8),
+                legend.text = element_text(size = 10),
                 legend.title = element_text(size = 8, color = "red", face = "bold", hjust = 0.5),
                 axis.line.y = element_line(colour = "grey",inherit.blank = FALSE),
                 axis.line.x = element_line(colour = "grey",inherit.blank = FALSE),

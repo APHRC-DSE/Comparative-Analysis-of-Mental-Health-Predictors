@@ -27,6 +27,7 @@ source("helperfuns_gt_summary_themes.R")
 source("helperfuns_table_summary_categorical.R")
 source("helperfuns_ggplot_themes.R")
 source("helperfuns_simple_plots.R")
+source("helperfuns_stack_plots.R")
 source("helperfuns_effect_size.R")
 
 ### Load data 
@@ -49,7 +50,7 @@ source("analysis_data.R")
 ######################################################################
 
 ### Descriptive and Inferential stats
-source("descriptive_inferential_categorical_stats.R")
+source("descriptive_inferential_categorical_stats.R") #defined character/numeric outcome vars
 
 ### Effect Size stats
 source("effect_size_categorical_stats.R")

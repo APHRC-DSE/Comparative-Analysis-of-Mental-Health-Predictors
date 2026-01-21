@@ -38,7 +38,8 @@ auc_categorical_combined_modelling_match <- sapply(outcome_character_vars, funct
   variables_delete <- unname(tidyselect::vars_select(variables, starts_with(outcome_string, ignore.case = TRUE))
                              ) #select numeric variables related to outcome
   
-  variables_final <- variables[!variables %in% variables_delete]
+  #variables_final <- variables[!variables %in% variables_delete]
+  variables_final <- variables[!variables %in% outcome_numeric_vars]
   
   df_final <- df %>%
     dplyr::select(any_of(c(nn, variables_final))

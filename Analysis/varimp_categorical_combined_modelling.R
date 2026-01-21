@@ -46,7 +46,8 @@ varimp_categorical_combined_modelling_match <- sapply(outcome_character_vars, fu
   variables_delete <- unname(tidyselect::vars_select(variables, starts_with(outcome_string, ignore.case = TRUE))
                              ) #select numeric variables related to outcome
   
-  variables_final <- variables[!variables %in% variables_delete]
+  #variables_final <- variables[!variables %in% variables_delete]
+  variables_final <- variables[!variables %in% outcome_numeric_vars]
   
   df_final <- df %>%
     dplyr::select(any_of(c(nn, variables_final))
@@ -90,7 +91,7 @@ varimp_categorical_combined_modelling_match <- sapply(outcome_character_vars, fu
   
   plot <- plot( var_imp_logistic_new
                 , show_boxplots = TRUE
-                , bar_width = 8 #default 10
+                , bar_width = 10 #default 10
                 , desc_sorting = TRUE
                 , title = "" #default 'Feature Importance' 
                 , subtitle = nn

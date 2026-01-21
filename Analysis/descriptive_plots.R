@@ -1,10 +1,12 @@
 library(dplyr)
+library(forcats)
 library(ggplot2)
 library(gridExtra)
+library(tidyr)
 
 working_directory
 
-ggtheme_descriptive_plot()
+ggtheme_descriptive_plot(striptext_size_x = 10)
 
 ## Simple plots
 
@@ -40,6 +42,7 @@ descriptive_plot <- sapply(unique(selected_vars_df$plot[selected_vars_df$plot !=
   
   grid <- do.call(gridExtra::grid.arrange, c(plots, list(ncol = length(plots), nrow = NULL))
                   )
+  grid
   
 }, simplify = FALSE
 )
@@ -51,3 +54,33 @@ for (i in seq(length(descriptive_plot))) {
          path = output_Dir, bg='white')  
 }
 
+## Stack plot
+
+descriptive_plot_stack <- df_final %>%
+  dplyr::select(any_of(c(selected_vars_df$new_variable[selected_vars_df$plot %in% c("GAD-7 Anxiety", "PHQ-9 Depression", "PSQ Psychosis")],
+                         group_vars
+                         )
+                       )
+                ) %>%
+  tidyr::pivot_longer(!any_of(group_vars)
+                      , names_to = "name"
+                      , values_to = "value"
+                      ) %>%
+  dplyr::mutate(value = forcats::fct_collapse(value
+                                              , "Yes" = c("Anxiety (10 and above)", "Depression (13 and above)", "Psychosis (3 and above)")
+                                              , "No" = c("No Anxiety (0-9)", "No Depression (0-12)", "No Psychosis (0-2)") 
+                                              )
+                ) %>%
+  stacked_plot(variable = c("site")
+              , fill_var = c("value")
+              , facet_wrap = TRUE
+              , facet_var = c("name")
+              , title_label = ""
+              , legend_label = ""
+              , facet_ncol = 3
+              )
+
+### Saving stacked plot
+ggsave(plot=descriptive_plot_stack, height = 7, width = 10,
+       filename = paste0("stack_plot_outcome.png"),
+       path = output_Dir, bg='white')

@@ -14,9 +14,9 @@ crude_odds_ratio_categorical_combined_analysis <- sapply(outcome_character_vars,
   model_form <- as.formula(paste0(nn, "~."))
   
   df_new <- df_drop_vars %>%
-    dplyr::select(-any_of(outcome_character_vars[!outcome_character_vars %in% nn])
-                  , -c(any_of(university_only_vars)) #drop variables not in both populations
+    dplyr::select(-c(any_of(university_only_vars)) #drop variables not in both populations
                   , -site
+                  #, -any_of(outcome_character_vars[!outcome_character_vars %in% nn])
                   )
   
   ### dropping variables with one level
