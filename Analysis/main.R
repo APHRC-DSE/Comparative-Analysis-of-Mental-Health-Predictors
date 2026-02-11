@@ -90,6 +90,17 @@ source("save_odds_ratio_output.R")
 
 ######################################################################
 
+### Multivariate analysis - Adjust p-values using Holm-Bonferroni correction
+source("multivariate_categorical_analysis_adjust_pvalues.R")
+source("multivariate_categorical_combined_analysis_adjust_pvalues.R")
+
+######################################################################
+#Marginal Effects - Adjusted Predicted Probability
+source("multivariate_categorical_predicted_probability_analysis.R")
+source("multivariate_categorical_predicted_probability_combined_analysis.R")
+
+######################################################################
+
 ### Predictive Modelling - AUC and Variable Importance
 source("auc_categorical_modelling.R")
 source("varimp_categorical_modelling.R")

@@ -18,7 +18,7 @@ adjusted_odds_ratio_categorical_combined_analysis_all <- sapply(outcome_characte
     dplyr::select(-any_of(outcome_character_vars[!outcome_character_vars %in% nn])
                   ,-c(any_of(university_only_vars)) #drop variables not in both populations
                   , -age #numerical age
-                  , -site
+                  #, -site
                   )
   
   ### dropping variables with one level
