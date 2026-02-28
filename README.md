@@ -1,4 +1,6 @@
 # Comparative-Analysis-of-Mental-Health-Predictors
+[![DOI](https://zenodo.org/badge/914761787.svg)](https://doi.org/10.5281/zenodo.14627504)
+
 Evaluating demographics, behavioral and socioeconomic factors between Rural Community and University Population in Kilifi County to understand their influence on mental health conditions.
 
 ## Summary
