@@ -17,6 +17,7 @@ df_university_clean <- df_university_raw_final %>%
                 , education = factor(education, levels = c("No formal education", "Primary level", "Secondary level",
                                                            "Tertiary level")
                                      ) # encode education column to factor
+                , date_of_interview = lubridate::dmy(date_of_interview)
                 , site = "University"
                 , site = factor(site, levels = c("Community", "University")
                                 ) # encode site column to factor

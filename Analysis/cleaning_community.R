@@ -16,6 +16,7 @@ df_community_clean <- df_community_raw_final %>%
   dplyr::mutate(education = factor(education, levels = c("No formal education", "Primary level", "Secondary level",
                                                            "Tertiary level")
                                    ) # encode education column to factor
+                , date_of_interview = lubridate::dmy(date_of_interview)
                 , site = "Community"
                 , site = factor(site, levels = c("Community", "University")
                                 ) # encode site column to factor
